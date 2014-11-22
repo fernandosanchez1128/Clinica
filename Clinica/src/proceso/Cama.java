@@ -20,14 +20,9 @@ import javax.persistence.Table;
  *
  * @author fernando
  */
-@Entity
-@Table(name = "cama")
-@NamedQueries({
-    @NamedQuery(name = "Cama.findAll", query = "SELECT c FROM Cama c")})
-public class Cama implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
+
+public class Cama {
+    
     @Column(name = "cod_cama")
     private String codCama;
     @Column(name = "descripcion")
