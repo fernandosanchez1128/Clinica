@@ -15,22 +15,22 @@ DROP  TABLE IF EXISTS  Paciente_Cama CASCADE;
 DROP  TABLE IF EXISTS  paciente_Campanna CASCADE;
 DROP  TABLE IF EXISTS  Registro CASCADE;
 DROP  TABLE IF EXISTS  Medicacion CASCADE;
-DROP TABLE IF EXISTS Usuario CASCADE;
-DROP TABLE IF EXISTS Perfiles CASCADE;
 
 
 --Areas(cod_area , nombre, descripcion)
+DROP SEQUENCE areas_seq;
 CREATE SEQUENCE areas_seq;
 
 CREATE TABLE Areas(
 cod_area VARCHAR(7) NOT NULL PRIMARY KEY, 
-nombre VARCHAR(50), 
+nombre VARCHAR(50) UNIQUE, 
 descripcion TEXT );
 --area999
 ALTER TABLE Areas ALTER cod_area SET DEFAULT nextval('areas_seq');
 -----------------------------------------------------------------------
 
 --Cama(cod_cama, cod_area (fk­>area), descripcion, estado)
+DROP SEQUENCE cama_seq;
 CREATE SEQUENCE cama_seq;
 CREATE TABLE cama(
 cod_cama VARCHAR(8) NOT NULL PRIMARY KEY, 
@@ -53,12 +53,12 @@ telefono VARCHAR  (10) );
 -----------------------------------------------------------------------
 
 --Medicamento(cod_medicamento, nombre, descripcion, costo)
-
+DROP SEQUENCE medicamento_seq;
 CREATE SEQUENCE medicamento_seq;
 
 CREATE TABLE Medicamento(
 cod_medicamento VARCHAR (15) NOT NULL PRIMARY KEY, 
-nombre VARCHAR  (20), 
+nombre VARCHAR  (20) UNIQUE , 
 descripcion TEXT, 
 costo INTEGER );
 
@@ -105,12 +105,12 @@ ON DELETE NO ACTION );
 -----------------------------------------------------------------------
 
 --Campanna(cod_campanna, nombre, objetivo, fecha_realizacion, id_medico (fk­>medico))
-
+DROP SEQUENCE campanna_seq;
 CREATE SEQUENCE campanna_seq;
 
 CREATE TABLE Campanna(
 cod_campanna VARCHAR (15) NOT NULL PRIMARY KEY, 
-nombre VARCHAR  (20), 
+nombre VARCHAR (20) UNIQUE, 
 objetivo TEXT, 
 fecha_realizacion DATE,
  id_medico VARCHAR  (20) NOT NULL, 
@@ -145,6 +145,7 @@ ON DELETE NO ACTION );
 -----------------------------------------------------------------------
 
 --Historia ( cod_historia, id_paciente (fk­>paciente), fecha_apertura)
+DROP SEQUENCE historia_seq;
 CREATE SEQUENCE historia_seq;
 
 CREATE TABLE Historia(
@@ -178,6 +179,7 @@ ON DELETE NO ACTION );
 -----------------------------------------------------------------------
 
 --Causa( codigo_causa, nombre, descripcion)
+DROP SEQUENCE causa_seq;
 CREATE SEQUENCE causa_seq;
 
 CREATE TABLE Causa(
@@ -262,22 +264,4 @@ REFERENCES Medicamento(cod_medicamento)
 ON DELETE NO ACTION);
 
 -----------------------------------------------------------------------
-CREATE TABLE Perfiles(
-	id_perfil VARCHAR(30) NOT NULL PRIMARY KEY,
-	nombre VARCHAR(20) NOT NULL
-);
-
------------------------------------------------------------------------
-CREATE TABLE Usuario(
-	name VARCHAR(30) NOT NULL,
-	lastname VARCHAR(30) NOT NULL,
-	userName VARCHAR(30) NOT NULL UNIQUE,
-	cedula VARCHAR(30) PRIMARY KEY NOT NULL, 
-	contrasena VARCHAR(20) NOT NULL,
-	email VARCHAR(30) NOT NULL UNIQUE,
-	id_perfil VARCHAR(30) NOT NULL,
-	estado BOOL NOT NULL,
-	CONSTRAINT fk_idPerfil FOREIGN KEY(id_perfil) REFERENCES perfiles(id_perfil) ON UPDATE CASCADE ON DELETE NO ACTION
-);
-
 
