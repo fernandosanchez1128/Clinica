@@ -8,10 +8,12 @@ import javax.swing.JOptionPane;
 import almacenamiento.controlador.*;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.Locale;
 import proceso.*;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import presentacion.*;
 /*import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -240,7 +242,12 @@ public class VistaLogin extends javax.swing.JFrame {
 
     private void btSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSignInActionPerformed
         // TODO add your handling code here:
+        
+        Medicamento vistaMedicamento = new Medicamento ();
+        vistaMedicamento.setVisible(true);
+        this.dispose();
         //Aqui va lo de ingresar
+        
 /**        
         userName = tfUserName.getText();
         password = pfPassword.getText();
