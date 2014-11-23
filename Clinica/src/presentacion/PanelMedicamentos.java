@@ -6,6 +6,7 @@
 package presentacion;
 import presentacion.*;
 import almacenamiento.controlador.*;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 
@@ -602,7 +603,9 @@ public class PanelMedicamentos extends javax.swing.JFrame {
         if (validacion)
         {
             costo = valida.consultarEntero();
-            controlMedicamentos.crearMedicamento(nombre, descripcion, costo);
+            int result = controlMedicamentos.crearMedicamento(nombre, descripcion, costo);
+            if (result == 1) { JOptionPane.showMessageDialog(this,"el medicamento se ha guardado en la base de datos satisfacoriamente" );}
+            if (result == -2) { JOptionPane.showInputDialog(this,"el medicamento ya existe",JOptionPane.ERROR_MESSAGE );}
         }
                 
         
