@@ -1,4 +1,4 @@
-DROP  TABLE IF EXISTS  Areas  CASCADE;
+﻿DROP  TABLE IF EXISTS  Areas  CASCADE;
 DROP  TABLE IF EXISTS  Cama CASCADE;
 DROP  TABLE IF EXISTS  Persona CASCADE;
 DROP  TABLE IF EXISTS  Medicamento CASCADE;
@@ -18,7 +18,7 @@ DROP  TABLE IF EXISTS  Medicacion CASCADE;
 
 
 --Areas(cod_area , nombre, descripcion)
-DROP SEQUENCE areas_seq;
+DROP SEQUENCE IF EXISTS areas_seq;
 CREATE SEQUENCE areas_seq;
 
 CREATE TABLE Areas(
@@ -30,7 +30,7 @@ ALTER TABLE Areas ALTER cod_area SET DEFAULT nextval('areas_seq');
 -----------------------------------------------------------------------
 
 --Cama(cod_cama, cod_area (fk­>area), descripcion, estado)
-DROP SEQUENCE cama_seq;
+DROP SEQUENCE IF EXISTS cama_seq;
 CREATE SEQUENCE cama_seq;
 CREATE TABLE cama(
 cod_cama VARCHAR(8) NOT NULL PRIMARY KEY, 
@@ -53,7 +53,7 @@ telefono VARCHAR  (10) );
 -----------------------------------------------------------------------
 
 --Medicamento(cod_medicamento, nombre, descripcion, costo)
-DROP SEQUENCE medicamento_seq;
+DROP SEQUENCE IF EXISTS medicamento_seq;
 CREATE SEQUENCE medicamento_seq;
 
 CREATE TABLE Medicamento(
@@ -105,7 +105,7 @@ ON DELETE NO ACTION );
 -----------------------------------------------------------------------
 
 --Campanna(cod_campanna, nombre, objetivo, fecha_realizacion, id_medico (fk­>medico))
-DROP SEQUENCE campanna_seq;
+DROP SEQUENCE IF EXISTS campanna_seq;
 CREATE SEQUENCE campanna_seq;
 
 CREATE TABLE Campanna(
@@ -145,7 +145,7 @@ ON DELETE NO ACTION );
 -----------------------------------------------------------------------
 
 --Historia ( cod_historia, id_paciente (fk­>paciente), fecha_apertura)
-DROP SEQUENCE historia_seq;
+DROP SEQUENCE IF EXISTS historia_seq;
 CREATE SEQUENCE historia_seq;
 
 CREATE TABLE Historia(
@@ -179,7 +179,7 @@ ON DELETE NO ACTION );
 -----------------------------------------------------------------------
 
 --Causa( codigo_causa, nombre, descripcion)
-DROP SEQUENCE causa_seq;
+DROP SEQUENCE IF EXISTS causa_seq;
 CREATE SEQUENCE causa_seq;
 
 CREATE TABLE Causa(
@@ -262,6 +262,4 @@ ON DELETE NO ACTION,
 CONSTRAINT Registro_fk3 FOREIGN KEY (cod_medicamento)
 REFERENCES Medicamento(cod_medicamento) 
 ON DELETE NO ACTION);
-
------------------------------------------------------------------------
-
+---------

@@ -59,28 +59,15 @@ public class DAOUser {
         
         try{
             Statement sentencia = conn.createStatement();
-
-            numRows = sentencia.executeUpdate(sql_save);
-            /**
-            System.out.println("antes del if, prof : "+prof);
-             if(!(prof.equals("Administrador"))){
-                System.out.println("antes sentencia"); 
-                sql_convo = "INSERT INTO convoUsuario VALUES ('"+us.getCedula()+"', '"+us.getConvocatoria().getCode()+"', true)";
-                sentencia.executeUpdate(sql_convo);
-                System.out.println("despues sentencia");
-            } //el registro de convoUsuario se crea solo si el usuario es digitador o coordinador.
-            System.out.println("numRowsDAO: " + numRows);
-            **/
-            return numRows;
-            
+            numRows = sentencia.executeUpdate(sql_save);           
+            return numRows;            
         }
-        catch(SQLException e){
-            
+        catch(SQLException e){            
             System.out.println(e); 
             return -2;
         }
         catch(Exception e){ 
-            System.out.println("exception dao creare user");
+            System.out.println("exception dao crear user");
             System.out.println(e);
         }
         return -1;
