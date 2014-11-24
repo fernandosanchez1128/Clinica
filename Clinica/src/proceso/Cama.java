@@ -31,8 +31,14 @@ public class Cama {
     private String estado;
     @JoinColumn(name = "cod_area", referencedColumnName = "cod_area")
     @ManyToOne(optional = false)
-    private Areas codArea;
+    private Areas area;
 
+    public Cama(String codigo,String desc_cama,String estado_cama, Areas area_cama) {
+        codCama = codigo;
+        descripcion = desc_cama;
+        estado = estado_cama;
+        area = area_cama;
+    }
     public Cama() {
     }
 
@@ -64,12 +70,12 @@ public class Cama {
         this.estado = estado;
     }
 
-    public Areas getCodArea() {
-        return codArea;
+    public Areas getArea() {
+        return area;
     }
 
-    public void setCodArea(Areas codArea) {
-        this.codArea = codArea;
+    public void setArea(Areas area) {
+        this.area = area;
     }
 
     @Override

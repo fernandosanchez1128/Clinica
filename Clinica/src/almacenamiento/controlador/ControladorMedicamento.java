@@ -60,21 +60,33 @@ public class ControladorMedicamento {
      * @return medicamento : objeto con la informacion del medicamento
      */
     public Medicamento consultarMedicamentoNom (String nombre){
-        Medicamento med = daoMed.consultarMedicamentoCod(nombre);
+        Medicamento med = daoMed.consultarMedicamentoNom(nombre);
         return med;
     }
     
         /**
-     * Metodo que permite actualizar la informacion de un medicamento en la BD. 
+     * Metodo que permite actualizar la informacion de un medicamento en la BD dado el codigo. 
      * @param codigo: codigo del medicamento a actualizar
      * @param med : objeto con la nueva informacion del medicamento.
-     * @return 
+     * @return -1 en caso de error , -2 si el Medicamento ya existe y el numero de filas en caso contrario
      */
-    public int updateForm(String cedula, Medicamento med){
-        int result = daoMed.actualizarMedicamento(cedula, med);
+    public int editarMedicamentoCod(String codigo, Medicamento med){
+        int result = daoMed.actualizarMedicamentoCod(codigo, med);
         return result;
     }
+    
+    /**
+     * metodo que permite modificar un medicamento dado el nombre
+     * @param nom nombre del medicamento
+     * @param med objeto don estan los nuevos datos del medicamento.
+     * @return -1 en caso de error , -2 si el Medicamento ya existe y el numero de filas en caso contrario
+     */
 
+    public int editarMedicamentoNom(String nom, Medicamento med){
+        int result = daoMed.actualizarMedicamentoNom(nom, med);
+        return result;
+    }
+    
     
     /**
      * Metodo que permite eliminar un medicamento

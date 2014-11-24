@@ -53,7 +53,7 @@ public class Validador {
             //Si el dato no es un Doble, despliega este mensaje
             String msjError=datoEntero+" no es un numero. campo " + campo;
             //Si el dato tiene longitud 0, despliega el mensaje "Cadena vacía"
-            if (datoEntero.length()==0) {msjError = "Cadena vacia en " + campo;}
+            if (datoEntero.length()==0) {msjError = "Cadena vacia en campo " + campo;}
             desplegarMensajeDialogo(parentComponent,
                                 msjError,
                                 "Error en formato de entrada",
@@ -105,7 +105,7 @@ public class Validador {
         }else{
             bandera=true;
         }
-        if (!bandera) {desplegarMensajeDialogo(parentComponent, "error cadena vacia en " + campo, "error en validacion", JOptionPane.ERROR_MESSAGE);}
+        if (!bandera) {desplegarMensajeDialogo(parentComponent, "error cadena vacia en campo " + campo, "error en validacion", JOptionPane.ERROR_MESSAGE);}
         return bandera;
     }
     

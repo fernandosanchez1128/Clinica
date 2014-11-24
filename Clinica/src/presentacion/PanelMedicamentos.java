@@ -8,6 +8,7 @@ import presentacion.*;
 import almacenamiento.controlador.*;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import proceso.Medicamento;
 
 
 /**
@@ -21,13 +22,15 @@ public class PanelMedicamentos extends javax.swing.JFrame {
      */
     private Validador valida;
     private ControladorMedicamento controlMedicamentos;
-    
+    private boolean editar_codigo = false;
+    private boolean editar_nombre = false;
     public PanelMedicamentos() {
         valida = new Validador ();
         controlMedicamentos = new ControladorMedicamento();
         controlMedicamentos.connectDB();
         
         initComponents();
+        
         //adiccion del titulo al frame
         this.setTitle("Medicamentos");
         //ajusta el tamaño
@@ -241,16 +244,21 @@ public class PanelMedicamentos extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel34.setText("Nombre:");
 
+        nombre_consultar.setEnabled(false);
+        nombre_consultar.setOpaque(false);
+
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel35.setText("Descripcion:");
 
         descripcion_consultar.setColumns(20);
         descripcion_consultar.setRows(5);
+        descripcion_consultar.setEnabled(false);
         jScrollPane4.setViewportView(descripcion_consultar);
 
         jLabel36.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel36.setText("Costo:");
 
+        costo_consultar.setEnabled(false);
         costo_consultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 costo_consultarActionPerformed(evt);
@@ -259,6 +267,8 @@ public class PanelMedicamentos extends javax.swing.JFrame {
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel37.setText("Codigo:");
+
+        codigo_consultar.setEnabled(false);
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -371,6 +381,8 @@ public class PanelMedicamentos extends javax.swing.JFrame {
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel41.setText("Codigo:");
 
+        codigo_editar.setEnabled(false);
+
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
@@ -409,17 +421,17 @@ public class PanelMedicamentos extends javax.swing.JFrame {
                     .addComponent(nombre_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(costo_editar1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32))))
+                        .addGap(52, 52, 52))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(costo_editar1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
@@ -453,8 +465,18 @@ public class PanelMedicamentos extends javax.swing.JFrame {
         consult_nom_edit.setText("Busqueda Por nombre");
 
         buscar_cod_edit.setText("Buscar");
+        buscar_cod_edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_cod_editActionPerformed(evt);
+            }
+        });
 
         buscar_nom_edit.setText("Buscar");
+        buscar_nom_edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_nom_editActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -509,6 +531,11 @@ public class PanelMedicamentos extends javax.swing.JFrame {
         });
 
         eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -552,18 +579,55 @@ public class PanelMedicamentos extends javax.swing.JFrame {
 
     private void costo_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_costo_consultarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_costo_consultarActionPerformed
 
     private void buscar_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_nombreActionPerformed
         // TODO add your handling code here:
+         System.out.println("paso");
+        String nombre = consultar_nombre_text.getText();
+        boolean control = true; 
+        if (valida.ValidaVacios(this, nombre, "Nombre"))
+        {
+            Medicamento med = controlMedicamentos.consultarMedicamentoNom(nombre);
+            String mensaje = "el medicamento con nombre " + nombre +" no  se encuentra en la Base de Datos";
+            if (med == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
+            else  
+                if (med.getNombre() == null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            if (control)
+            {
+                codigo_consultar.setText(med.getCodMedicamento());
+                nombre_consultar.setText(med.getNombre());
+                descripcion_consultar.setText(med.getDescripcion());
+                costo_consultar.setText(med.getCosto().toString());
+            }
+        }
     }//GEN-LAST:event_buscar_nombreActionPerformed
 
     private void consultar_nombre_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_nombre_textActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_consultar_nombre_textActionPerformed
 
     private void buscar_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_codigoActionPerformed
         // TODO add your handling code here:
+        String codigo = consultar_codigo_text.getText();
+        boolean control = true; 
+        if (valida.capturarEntero(this, codigo, "Codigo"))
+        {
+            Medicamento med = controlMedicamentos.consultarMedicamentoCod(codigo);
+            String mensaje = "el medicamento con codigo " + codigo +" no  se encuentra en la Base de Datos";
+            if (med == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
+            else  
+                if (med.getNombre() == null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            if (control)
+            {
+                codigo_consultar.setText(med.getCodMedicamento());
+                nombre_consultar.setText(med.getNombre());
+                descripcion_consultar.setText(med.getDescripcion());
+                costo_consultar.setText(med.getCosto().toString());
+            }
+        }
     }//GEN-LAST:event_buscar_codigoActionPerformed
 
     private void consultar_codigo_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_codigo_textActionPerformed
@@ -576,6 +640,47 @@ public class PanelMedicamentos extends javax.swing.JFrame {
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         // TODO add your handling code here:
+                
+        boolean validacion = true;
+        String codigo_act =consult_cod_edit.getText();
+        String nombre_act =consult_nom_edit.getText();
+        String nombre,descripcion,precio;
+        int costo;
+        nombre = nombre_editar.getText();
+        descripcion = descripcion_editar.getText();
+        precio = costo_editar1.getText();
+        
+        validacion = validacion && valida.ValidaVacios(this, nombre, "Nombre");
+        validacion = validacion && valida.ValidaVacios(this, descripcion, "Descripcion");
+        validacion = validacion && valida.capturarEntero(this, precio,"Costo");
+                
+        if (validacion)
+        {
+            int result = 0;
+            costo = valida.consultarEntero();
+            Medicamento med = new Medicamento ("1",nombre,descripcion,costo);
+            if (editar_codigo) { result = controlMedicamentos.editarMedicamentoCod(codigo_act,med);}
+            else if (editar_nombre) { result = controlMedicamentos.editarMedicamentoNom(nombre_act,med);}
+            else {valida.desplegarMensajeDialogo(this, "no ha realizado la actualizacion debe consultar previamente", "ERROR", JOptionPane.ERROR_MESSAGE);}
+            
+            if (editar_codigo || editar_nombre)
+            {
+                if (result == 1) { valida.desplegarMensajeDialogo(this,"el medicamento se ha guardado en la base de datos satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
+                if (result == -2) { valida.desplegarMensajeDialogo(this,"el medicamento ya existe","ERROR",JOptionPane.ERROR_MESSAGE );}
+                if (result == -1) { valida.desplegarMensajeDialogo(this,"el medicamento no se ha podido registrar","ERROR",JOptionPane.ERROR_MESSAGE );}
+            }
+            
+            codigo_editar.setText("");
+            nombre_editar.setText("");
+            descripcion_editar.setText("");
+            costo_editar1.setText("");
+            
+            editar_codigo = false;
+            editar_nombre = false;
+        }
+        
+
+        
     }//GEN-LAST:event_editarActionPerformed
 
     private void consult_cod_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consult_cod_editActionPerformed
@@ -604,52 +709,136 @@ public class PanelMedicamentos extends javax.swing.JFrame {
         {
             costo = valida.consultarEntero();
             int result = controlMedicamentos.crearMedicamento(nombre, descripcion, costo);
-            if (result == 1) { JOptionPane.showMessageDialog(this,"el medicamento se ha guardado en la base de datos satisfacoriamente" );}
-            if (result == -2) { JOptionPane.showInputDialog(this,"el medicamento ya existe",JOptionPane.ERROR_MESSAGE );}
+            if (result == 1) { valida.desplegarMensajeDialogo(this,"el medicamento se ha guardado en la base de datos satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
+            if (result == -2) { valida.desplegarMensajeDialogo(this,"el medicamento ya existe","ERROR",JOptionPane.ERROR_MESSAGE );}
+            if (result == -1) { valida.desplegarMensajeDialogo(this,"el medicamento no se ha podido registrar","ERROR",JOptionPane.ERROR_MESSAGE );}
         }
-                
-        
-        
+                        
     }//GEN-LAST:event_insertar7insertarActionPerformed
 
     private void costo_crear7costo_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_costo_crear7costo_crearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_costo_crear7costo_crearActionPerformed
 
+    private void buscar_cod_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_cod_editActionPerformed
+        // TODO add your handling code here:
+        editar_nombre = false;
+        editar_codigo = false;
+        String codigo = consult_cod_edit.getText();
+        boolean control = true; 
+        if (valida.capturarEntero(this, codigo,"Codigo"))
+        {
+            Medicamento med = controlMedicamentos.consultarMedicamentoCod(codigo);
+            String mensaje = "el medicamento con codigo " + codigo +" no  se encuentra en la Base de Datos";
+            if (med == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
+            else  
+                if (med.getNombre() == null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            if (control)
+            {
+                editar_codigo = true;
+                codigo_editar.setText(med.getCodMedicamento());
+                nombre_editar.setText(med.getNombre());
+                descripcion_editar.setText(med.getDescripcion());
+                costo_editar1.setText(med.getCosto().toString());
+            }
+            else 
+            {
+                codigo_editar.setText("");
+                nombre_editar.setText("");
+                descripcion_editar.setText("");
+                costo_editar1.setText("");
+            }
+        }
+    }//GEN-LAST:event_buscar_cod_editActionPerformed
+
+    private void buscar_nom_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_nom_editActionPerformed
+        // TODO add your handling code here:
+        editar_codigo = false;
+        editar_nombre = false;  
+        String nombre = consult_nom_edit.getText();
+        boolean control = true; 
+        if (valida.ValidaVacios(this, nombre, "Campo Nombre"))
+        {
+            Medicamento med = controlMedicamentos.consultarMedicamentoNom(nombre);
+            String mensaje = "el medicamento con nombre " + nombre +" no  se encuentra en la Base de Datos";
+            if (med == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
+            else  
+                if (med.getNombre() == null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            if (control)
+            {
+                editar_nombre = true;
+                codigo_editar.setText(med.getCodMedicamento());
+                nombre_editar.setText(med.getNombre());
+                descripcion_editar.setText(med.getDescripcion());
+                costo_editar1.setText(med.getCosto().toString());
+            }
+            else 
+            {
+                codigo_editar.setText("");
+                nombre_editar.setText("");
+                descripcion_editar.setText("");
+                costo_editar1.setText("");
+            }
+        }
+    }//GEN-LAST:event_buscar_nom_editActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+        String codigo = codigo_eliminar.getText();
+        boolean control = true;
+        String mensaje = "La cama con codigo " + codigo +" no  se encuentra en la Base de Datos";
+        if (valida.capturarEntero(this, codigo, "codigo"))
+        {
+            Medicamento med = controlMedicamentos.consultarMedicamentoCod(codigo);
+            if (med == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
+            else  
+                if (med.getNombre() == null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            String msj = "desea eliminar el medicamento " + med.getNombre() ;
+            if (control)
+            {
+                int opcion = JOptionPane.showConfirmDialog(this, msj, "CONFIRMACION", JOptionPane.YES_NO_CANCEL_OPTION);
+                if (opcion == 0) 
+                {
+                    controlMedicamentos.eliminarMedicamento(codigo);
+                    valida.desplegarMensajeDialogo(this, "se ha realizado la operacion satisfactoriamente ","Proceso Exitoso" , JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_eliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        
-        try 
-        {
-                    
-            javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } 
-        catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PanelMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PanelMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PanelMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PanelMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PanelMedicamentos().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        
+//        try 
+//        {
+//            javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//        } 
+//        catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(PanelMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(PanelMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(PanelMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(PanelMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PanelMedicamentos().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane ELIMINAR;
