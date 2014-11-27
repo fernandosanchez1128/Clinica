@@ -10,7 +10,6 @@ package almacenamiento.accesodatos;
  * @author Nelson
  */
 import java.sql.*;
-import proceso.Usuario;
 import proceso.Persona;
 public class DAOPersona {
     /**
@@ -34,14 +33,18 @@ public class DAOPersona {
     public Connection getConn(){
         return conn;
     }
-    
+    /**
+    *Metodo para insertar una persona en la base de datos.
+    *@param per Objeto de la clase persona
+    *@return numRows numero de tuplas insertadas o afectadas. negativo si hay error
+    */
     public int CrearPersona(Persona per){
         String sql_save;
         int numRows=0;
         sql_save="INSERT INTO Persona VALUES ('" + per.getId() + 
                 "' , '" + per.getNombre() + 
                 "', '" + per.getDireccion()+  
-                "', '" + per.getTelefono() + "' , ')";
+                "', '" + per.getTelefono() + "' , true)";
         try{
             Statement sentencia = conn.createStatement();
             numRows = sentencia.executeUpdate(sql_save);           
@@ -97,9 +100,10 @@ public class DAOPersona {
      * actualizar la informacion de un usuario, con la cedula que entra por parametro.
      * @param us objeto de Usuario con los atributos a modificar en la base de datos.
      * @param cedula la cedula del usuario que se quiere actualizar.
-     * @return 1 si el proceso ocurrio bien durante todo el metodo, -3 si el usuario entregado tiene un perfil inexistente, -2 si hay algun error de sql y -1 si hay cualquier otro error.
+     * @return 1 si el proceso ocurrio bien durante todo el metodo, -3 si el usuario entregado tiene un perfil 
+     * inexistente, -2 si hay algun error de sql y -1 si hay cualquier otro error.
      */
-    public int updateUser(Persona per, String cedula){
+    public int ActualizarPersona(Persona per, String cedula){
         String sql_save;
 	sql_save="UPDATE persona SET nombre='"+per.getNombre()+
                 "', direccion='"+per.getDireccion()+
@@ -128,7 +132,10 @@ public class DAOPersona {
    public Usuario[] listUsers(){
         
         String sql_select;
-        sql_select="SELECT usuario.cedula, usuario.name, usuario.lastName,usuario.userName, usuario.contrasena, usuario.email ,  perfiles.nombre, usuario.estado FROM  usuario, perfiles WHERE usuario.id_perfil=perfiles.id_perfil";
+        sql_select="SELECT usuario.cedula, usuario.name, usuario.lastName,usuario.userName, usuario.contrasena, 
+        * usuario.email ,  perfiles.nombre, 
+        * usuario.estado FROM  usuario, 
+        * perfiles WHERE usuario.id_perfil=perfiles.id_perfil";
         try{
             System.out.println("consultando en la bd");
             Statement statement = conn.createStatement();
@@ -164,7 +171,9 @@ public class DAOPersona {
                 us[j].setState(table.getBoolean(8));
                 
                 if(!us[j].getProfile().equals("Administrador")){
-                    sql_conv= "SELECT convocatoria.nombre FROM convoUsuario, convocatoria WHERE cedula='"+us[j].getCedula() +"' AND estado=true AND convoUsuario.codigo=convocatoria.codigo";
+                    sql_conv= "SELECT convocatoria.nombre FROM convoUsuario, 
+                    * convocatoria WHERE cedula='"+us[j].getCedula() +"' AND estado=true AND 
+                    * convoUsuario.codigo=convocatoria.codigo";
                     ResultSet table3= statement.executeQuery(sql_conv);
                     String nom="";
                     while(table3.next()){
@@ -196,7 +205,7 @@ public class DAOPersona {
     public int EliminarPersona(String cedula){	
         String sql_save;
         //sql_save="UPDATE usuario SET estado=false WHERE cedula='" + cedula + "'";
-        sql_save="delete from persona where id='"+cedula+"'";
+        sql_save="UPDATE persona SET estado=false WHERE id='"+cedula+"'";
         try{
             Statement statement = conn.createStatement();
 
