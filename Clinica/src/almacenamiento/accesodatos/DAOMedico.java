@@ -41,7 +41,7 @@ public class DAOMedico {
     public int CrearMedico(Medico med){
         String sql_save;
         int numRows=0;
-        sql_save="INSERT INTO Persona VALUES ('" + med.getIdMedico()+ 
+        sql_save="INSERT INTO Medico VALUES ('" + med.getIdMedico()+ 
                 "' , '" + med.getEspecialidad()+ 
                 "', '" + med.getNumLicencia()+  
                 "', '" + med.getUniversidad()+ "' , true)";
@@ -69,7 +69,7 @@ public class DAOMedico {
         Medico med= new Medico();
         String sql_select;
         
-            sql_select="SELECT Medico.id_medico, Medico.especialidad, Medico.num_licencia,Medico.universidad FROM  Medico WHERE id_medico='" + req +  "'";
+            sql_select="SELECT Medico.id_medico, Medico.especialidad, Medico.num_licencia,Medico.universidad FROM  Medico WHERE id_medico='" + req +  "' AND estado=true";
         
         try{
             System.out.println("consultando en la bd");

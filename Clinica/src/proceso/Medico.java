@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package proceso;
-import java.util.List;
 /**
  *
  * @author nelson
@@ -13,13 +12,12 @@ import java.util.List;
 public class Medico {
     
     private String idMedico,especialidad, numLicencia, universidad;
-    private List<Campanna> campannaList;
     private boolean estado;
 
     public Medico() {
     }
 
-    public Medico(String idMedico, String especialidad, String numLicencia, String universidad, List<Campanna> campannaList, boolean estado) {
+    public Medico(String idMedico, String especialidad, String numLicencia, String universidad, boolean estado) {
         this.idMedico = idMedico;
         this.especialidad=especialidad;
         this.numLicencia=numLicencia;
@@ -57,14 +55,6 @@ public class Medico {
 
     public void setUniversidad(String universidad) {
         this.universidad = universidad;
-    }
-
-    public List<Campanna> getCampannaList() {
-        return campannaList;
-    }
-
-    public void setCampannaList(List<Campanna> campannaList) {
-        this.campannaList = campannaList;
     }
 
     public boolean getEstado() {

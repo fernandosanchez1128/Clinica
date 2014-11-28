@@ -37,8 +37,9 @@ public class ControlMedico {
      * @param estado:estado de la persona
      * @return result: Resultado de la consulta
      */
-    public int CrearMedico(String id, String especialidad, String num_licencia, String universidad,List<Campanna> campannaList, boolean estado){
-        Medico med=new Medico(id, especialidad, num_licencia, universidad, campannaList, estado);
+    public int CrearMedico(String id, String especialidad, String num_licencia, String universidad, boolean estado){
+        Medico med=new Medico(id, especialidad, num_licencia, universidad, estado);
+        daomed.connectDB();
         int result=daomed.CrearMedico(med);
         return result;
         
@@ -66,9 +67,9 @@ public class ControlMedico {
      * @param estado:estado de la persona
      * @return 
      */
-    public int EditarMedico(String id, String especialidad, String num_licencia, String universidad,List<Campanna> campannaList, boolean estado){
+    public int EditarMedico(String id, String especialidad, String num_licencia, String universidad, boolean estado){
         int result=0;
-        Medico med=new Medico(id, especialidad, num_licencia, universidad, campannaList, estado);
+        Medico med=new Medico(id, especialidad, num_licencia, universidad, estado);
         result=daomed.ActualizarMedico(med, id);
         return result;
     }
