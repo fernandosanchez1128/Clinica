@@ -34,8 +34,7 @@ public class DAOPaciente {
         int numRows=0;
         sql_save="INSERT INTO Paciente VALUES ('" + pac.getIdPaciente()+ 
                 "' , '" + pac.getNumSeguridadSocial()+ 
-                "', '" + pac.getActividadEconomica()+  
-                "', '" + pac.getHistoria()+ 
+                "', '" + pac.getActividadEconomica()+                   
                 "', '"+ pac.getFechaNac()+"' , true)"; ///CONVERTIR DATE
         try{
             Statement sentencia = conn.createStatement();
@@ -56,7 +55,7 @@ public class DAOPaciente {
     public Paciente LeerPaciente(String req){
         Paciente pac= new Paciente();
         String sql_select;
-        sql_select="SELECT Paciente.idPaciente, Paciente.numSeguridadSocial, Paciente.actividadEconomica,Paciente.historia,Paciente.fechaNac FROM  Paciente WHERE idPaciente='" + req +  "'";
+        sql_select="SELECT Paciente.id_paciente, Paciente.num_seguridad_social, Paciente.actividad_economica,Paciente.fecha_nac FROM  Paciente WHERE id_paciente='" + req +  "' and estado=true";
         try{
             System.out.println("consultando en la bd");
             Statement statement = conn.createStatement();
@@ -70,9 +69,7 @@ public class DAOPaciente {
                 
                 pac.setActividadEconomica(table.getString(3));
                 
-                pac.setHistoria(table.getString(4));
-                
-                pac.setFechaNac(table.getDate(5));
+                pac.setFechaNac(table.getString(4));
                 System.out.println("ok");
             }            
             return pac;
@@ -85,10 +82,9 @@ public class DAOPaciente {
     
     public int ActualizarPaciente(Paciente pac, String cedula){
         String sql_save;
-	sql_save="UPDATE Paciente SET numSeguridadSocial='"+pac.getNumSeguridadSocial()+
-                "', ActividadEconomica='"+pac.getActividadEconomica()+
-                "', Historia='"+pac.getHistoria()+
-                "', FechaNac='"+pac.getFechaNac()+" WHERE idPaciente='" + pac.getIdPaciente()+ "'";
+	sql_save="UPDATE Paciente SET num_seguridad_social='"+pac.getNumSeguridadSocial()+
+                "', Actividad_economica='"+pac.getActividadEconomica()+
+                "', Fecha_nac='"+pac.getFechaNac()+"' WHERE id_paciente='" + pac.getIdPaciente()+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);
@@ -108,7 +104,7 @@ public class DAOPaciente {
     public int EliminarPaciente(String cedula){	
         String sql_save;
         //sql_save="UPDATE usuario SET estado=false WHERE cedula='" + cedula + "'";
-        sql_save="UPDATE Paciente SET estado=false WHERE idPaciente='"+cedula+"'";
+        sql_save="UPDATE Paciente SET estado=false WHERE id_paciente='"+cedula+"'";
         try{
             Statement statement = conn.createStatement();
 

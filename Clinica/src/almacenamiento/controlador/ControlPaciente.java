@@ -30,8 +30,8 @@ public class ControlPaciente {
         return daopac.getConn();
     }
     
-     public int CrearPaciente(String idPaciente, String numSeguridadSocial,String actividadEconomica,String historia,Date fechaNac, boolean estado){
-        Paciente pac=new Paciente(idPaciente, numSeguridadSocial, actividadEconomica, historia, fechaNac, estado);
+     public int CrearPaciente(String idPaciente, String numSeguridadSocial,String actividadEconomica,String fechaNac, boolean estado){
+        Paciente pac=new Paciente(idPaciente, numSeguridadSocial, actividadEconomica, fechaNac, estado);
         int result=daopac.CrearPaciente(pac);
         return result;
     }
@@ -42,9 +42,9 @@ public class ControlPaciente {
         return pac;
     }
     
-    public int EditarPaciente(String idPaciente, String numSeguridadSocial,String actividadEconomica,String historia,Date fechaNac, boolean estado){
+    public int EditarPaciente(String idPaciente, String numSeguridadSocial,String actividadEconomica,String fechaNac, boolean estado){
         int result=0;
-        Paciente per=new Paciente(idPaciente, numSeguridadSocial, actividadEconomica, historia, fechaNac, estado);
+        Paciente per=new Paciente(idPaciente, numSeguridadSocial, actividadEconomica,  fechaNac, estado);
         result=daopac.ActualizarPaciente(per, idPaciente);
         return result;
     }

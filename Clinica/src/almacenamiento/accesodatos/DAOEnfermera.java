@@ -61,7 +61,7 @@ public class DAOEnfermera {
         Enfermera enf= new Enfermera();
         String sql_select;
         
-            sql_select="SELECT Enfermera.idEnfermera, Enfermera.experiencia, Enfermera.codArea FROM  Enfermera WHERE idEnfermera='" + req +  "'";
+            sql_select="SELECT Enfermera.id_Enfermera, Enfermera.experiencia, Enfermera.cod_area FROM  Enfermera WHERE id_Enfermera='" + req +  "' AND estado=true";
         
         try{
             System.out.println("consultando en la bd");
@@ -72,7 +72,7 @@ public class DAOEnfermera {
                 //System.out.println("dentro del while");
                 enf.setIdEnfermera(table.getString(1));
                
-                enf.setExperiencia(table.getString(2));
+                enf.setExperiencia(table.getInt(2));
                 
                 enf.setCodArea(table.getString(3));
                 
@@ -88,7 +88,7 @@ public class DAOEnfermera {
     public int ActualizarEnfermera(Enfermera enf, String cedula){
         String sql_save;
 	sql_save="UPDATE Enfermera SET experiencia='"+enf.getExperiencia()+
-                "', codArea='"+enf.getCodArea()+"' WHERE idEnfermera='" + enf.getIdEnfermera()+ "'";
+                "', cod_area='"+enf.getCodArea()+"' WHERE id_Enfermera='" + enf.getIdEnfermera()+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);
@@ -108,7 +108,7 @@ public class DAOEnfermera {
     public int EliminarEnfermera(String cedula){	
         String sql_save;
         //sql_save="UPDATE usuario SET estado=false WHERE cedula='" + cedula + "'";
-        sql_save="UPDATE Enfermera SET estado=false WHERE idEnfermera='"+cedula+"'";
+        sql_save="UPDATE Enfermera SET estado=false WHERE id_Enfermera='"+cedula+"'";
         try{
             Statement statement = conn.createStatement();
 

@@ -48,7 +48,8 @@ CREATE TABLE persona(
 id VARCHAR (15) NOT NULL PRIMARY KEY,
 nombre VARCHAR  (20),
 direccion VARCHAR  (20), 
-telefono VARCHAR  (10) );
+telefono VARCHAR  (10),
+estado boolean );
 
 -----------------------------------------------------------------------
 
@@ -72,6 +73,7 @@ cargo VARCHAR  (20),
 salario INTEGER, 
 email VARCHAR  (35),
  id_jefe VARCHAR  (15),
+ estado boolean,
  CONSTRAINT Empleado_fk1 FOREIGN KEY (id_empleado)
  REFERENCES Persona (id) 
 ON DELETE NO ACTION,
@@ -84,8 +86,9 @@ ON DELETE NO ACTION );
 CREATE TABLE Paciente(
 id_paciente VARCHAR (15) NOT NULL PRIMARY KEY, 
 num_seguridad_social VARCHAR  (20), 
-fecha_nac date, 
 actividad_economica VARCHAR  (20),
+fecha_nac VARCHAR (30), 
+estado boolean,
  CONSTRAINT Paciente_fk FOREIGN KEY (id_paciente)
  REFERENCES Persona (id) 
 ON DELETE NO ACTION );
@@ -98,8 +101,9 @@ id_medico VARCHAR (15) NOT NULL PRIMARY KEY,
 especialidad VARCHAR  (20), 
 num_licencia  VARCHAR (20), 
 universidad VARCHAR  (20),
+estado boolean,
 CONSTRAINT Medico_fk FOREIGN KEY (id_medico)
-REFERENCES Persona (id) 
+REFERENCES Empleado (id_empleado) 
 ON DELETE NO ACTION );
 
 -----------------------------------------------------------------------
@@ -125,9 +129,13 @@ ALTER TABLE Campanna ALTER cod_campanna SET DEFAULT nextval('campanna_seq');
 --Enfermera (id_enfermera (fk­>persona) , experiencia, cod_area (fk­>area))
 CREATE TABLE Enfermera(
 id_enfermera VARCHAR (15) NOT NULL PRIMARY KEY, 
-experiencia VARCHAR  (20), 
+experiencia integer, 
 cod_area  VARCHAR (20) NOT NULL,
- CONSTRAINT Enfermera_fk FOREIGN KEY (cod_area)
+estado boolean,
+CONSTRAINT Enfermera_fk1 FOREIGN KEY (id_enfermera)
+REFERENCES Empleado (id_empleado) 
+ON DELETE NO ACTION,
+ CONSTRAINT Enfermera_fk2 FOREIGN KEY (cod_area)
  REFERENCES Areas (cod_area) 
 ON DELETE NO ACTION );
 

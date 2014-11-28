@@ -6,13 +6,14 @@ package proceso;
 
 public class Enfermera {
     
-    private String idEnfermera, experiencia, codArea;
+    private String idEnfermera, codArea;
     private boolean estado;
+    int experiencia;
 
     public Enfermera() {
     }
 
-    public Enfermera(String idEnfermera, String experiencia, String codArea, boolean estado) {
+    public Enfermera(String idEnfermera, int experiencia, String codArea, boolean estado) {
         this.idEnfermera = idEnfermera;        
         this.experiencia=experiencia;
         this.codArea=codArea;       
@@ -27,11 +28,11 @@ public class Enfermera {
         this.idEnfermera = idEnfermera;
     }
 
-    public String getExperiencia() {
+    public int getExperiencia() {
         return experiencia;
     }
 
-    public void setExperiencia(String experiencia) {
+    public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
     }
 

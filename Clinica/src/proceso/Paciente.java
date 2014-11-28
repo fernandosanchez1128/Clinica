@@ -10,18 +10,17 @@ import java.util.Date;
  */
 
 public class Paciente {
-    private String idPaciente, numSeguridadSocial, actividadEconomica, historia;
-    private Date fechaNac;
+    private String idPaciente, numSeguridadSocial, actividadEconomica;
+    private String fechaNac;
     private boolean estado;
 
     public Paciente() {
     }
 
-    public Paciente(String idPaciente, String numSeguridadSocial,String actividadEconomica,String historia,Date fechaNac, boolean estado) {
+    public Paciente(String idPaciente, String numSeguridadSocial,String actividadEconomica,String fechaNac, boolean estado) {
         this.idPaciente = idPaciente;
         this.numSeguridadSocial=numSeguridadSocial;
         this.actividadEconomica=actividadEconomica;
-        this.historia=historia;
         this.fechaNac=fechaNac;
         this.estado=estado;
     }
@@ -42,11 +41,11 @@ public class Paciente {
         this.numSeguridadSocial = numSeguridadSocial;
     }
 
-    public Date getFechaNac() {
+    public String getFechaNac() {
         return fechaNac;
     }
 
-    public void setFechaNac(Date fechaNac) {
+    public void setFechaNac(String fechaNac) {
         this.fechaNac = fechaNac;
     }
 
@@ -57,14 +56,7 @@ public class Paciente {
     public void setActividadEconomica(String actividadEconomica) {
         this.actividadEconomica = actividadEconomica;
     }    
-
-    public String getHistoria() {
-        return historia;
-    }
-
-    public void setHistoria(String historia) {
-        this.historia = historia;
-    }
+    
     
     public boolean getEstado() {
         return estado;

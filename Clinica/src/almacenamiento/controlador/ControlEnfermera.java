@@ -26,7 +26,7 @@ public class ControlEnfermera {
     }
     
     
-    public int CrearEnfermera(String idEnfermera, String experiencia, String codArea, boolean estado){
+    public int CrearEnfermera(String idEnfermera, int experiencia, String codArea, boolean estado){
         Enfermera enf=new Enfermera(idEnfermera, experiencia, codArea, estado);
         int result=daoenf.CrearEnfermera(enf);
         return result;
@@ -41,7 +41,7 @@ public class ControlEnfermera {
     }
     
     
-    public int EditarEnfermera(String idEnfermera, String experiencia, String codArea, boolean estado){
+    public int EditarEnfermera(String idEnfermera, int experiencia, String codArea, boolean estado){
         int result=0;
         Enfermera enf=new Enfermera(idEnfermera, experiencia, codArea, estado);
         result=daoenf.ActualizarEnfermera(enf, idEnfermera);
