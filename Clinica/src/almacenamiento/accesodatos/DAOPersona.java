@@ -48,6 +48,7 @@ public class DAOPersona {
         try{
             Statement sentencia = conn.createStatement();
             numRows = sentencia.executeUpdate(sql_save);           
+            System.out.print("En insert: "+numRows);
             return numRows;            
         }
         catch(SQLException e){            
@@ -69,9 +70,9 @@ public class DAOPersona {
         Persona per= new Persona();
         String sql_select;
         if(tipoCon==1){
-            sql_select="SELECT Persona.id, Persona.nombre, Persona.direccion,Persona.telefono FROM  Persona WHERE nombre='" + req +  "'";        
+            sql_select="SELECT Persona.id, Persona.nombre, Persona.direccion,Persona.telefono FROM  Persona WHERE nombre='" + req +  "'and estado=true";        
         }else{
-            sql_select="SELECT Persona.id, Persona.nombre, Persona.direccion,Persona.telefono FROM  Persona WHERE id='" + req +  "'";
+            sql_select="SELECT Persona.id, Persona.nombre, Persona.direccion,Persona.telefono FROM  Persona WHERE id='" + req +  "' and estado=true";
         }
         try{
             System.out.println("consultando en la bd");
@@ -88,8 +89,9 @@ public class DAOPersona {
                 
                 per.setTelefono(table.getString(4));
                 System.out.println("ok");
-            }            
             return per;
+            }            
+            
          }
          catch(SQLException e){ System.out.println(e); }
          catch(Exception e){ System.out.println("excepcion del dao"); System.out.println(e); }
@@ -110,8 +112,9 @@ public class DAOPersona {
                 "', telefono='"+per.getTelefono()+"' WHERE id='" + per.getId() + "'";
         try{
             Statement statement = conn.createStatement();
-            statement.executeUpdate(sql_save);
-            
+            int tm=statement.executeUpdate(sql_save);
+            System.out.println("EN UPDATE: "+tm);
+            return tm;
         }            
         catch(SQLException e){
             System.out.println(e); 
@@ -121,7 +124,7 @@ public class DAOPersona {
             System.out.println(e);
             return -1;
         }
-        return 1;
+        //return 1;
     }//fin updateUser
 
    /**
@@ -209,8 +212,9 @@ public class DAOPersona {
         try{
             Statement statement = conn.createStatement();
 
-            statement.executeUpdate(sql_save);            
-            return 1;
+            int tm= statement.executeUpdate(sql_save); 
+            System.out.println("EN ELIMINAR: "+tm);
+            return tm;            
         }
         catch(SQLException e){
             System.out.println(e);

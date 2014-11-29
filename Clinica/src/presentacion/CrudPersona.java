@@ -5,23 +5,21 @@
  */
 package presentacion;
 import almacenamiento.accesodatos.BaseDatos;
-import almacenamiento.controlador.ControlMedico;
+import almacenamiento.controlador.ControlPersona;
 import javax.swing.JOptionPane;
-import proceso.Medico;
+import proceso.Persona;
 /**
  *
  * @author USUARIO
  */
-public class CrudMedico extends javax.swing.JFrame {
-
-    String IdMedico, especialidad, num_licencia, universidad;
-    ControlMedico controlmed;
+public class CrudPersona extends javax.swing.JFrame {
+    ControlPersona control;
     /**
-     * Creates new form CrearMedico
+     * Creates new form CrudPersona
      */
-    public CrudMedico(ControlMedico obj) {
+    public CrudPersona(ControlPersona obj) {
         initComponents();
-        controlmed=obj;
+        control=obj;
     }
 
     /**
@@ -34,16 +32,17 @@ public class CrudMedico extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jTextIdMedico = new javax.swing.JTextField();
+        jTextIdPersona = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextEspe = new javax.swing.JTextField();
-        jTextNumLic = new javax.swing.JTextField();
-        jTextUni = new javax.swing.JTextField();
+        jTextNom = new javax.swing.JTextField();
+        jTextDir = new javax.swing.JTextField();
+        jTextTel = new javax.swing.JTextField();
         btLimpiar = new javax.swing.JButton();
         btCrear = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -51,56 +50,68 @@ public class CrudMedico extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         rtxtId = new javax.swing.JTextField();
         rbtBuscar = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        rtxtNumLic = new javax.swing.JTextField();
-        rtxtIdMed = new javax.swing.JTextField();
-        rtxtEspe = new javax.swing.JTextField();
-        rtxtUni = new javax.swing.JTextField();
         rbtLimpiar = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        rtxtid = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        rtxtnombre = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        rtxtdir = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        rtxttel = new javax.swing.JTextField();
+        rtxtNombre = new javax.swing.JTextField();
+        rbtBuscar2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         utxtId = new javax.swing.JTextField();
         ubtBuscar = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        utxtEspe = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        utxtNumLic = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        utxtUni = new javax.swing.JTextField();
         ubtLimpiar = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
+        utxtNombre = new javax.swing.JTextField();
+        ubtBuscar2 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        utxtid = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        utxtnombre = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        utxtdir = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        utxttel = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         dtxtId = new javax.swing.JTextField();
         btEliminar = new javax.swing.JButton();
-        jButtonSalir = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Gestion Medico");
+        setTitle("Gestion Persona");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("GESTIÓN MEDICO");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/Persona-icon.png"))); // NOI18N
+        jLabel1.setText("GESTIÓN PERSONA");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/Login-out-icon.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
 
-        jTextIdMedico.addActionListener(new java.awt.event.ActionListener() {
+        jTextIdPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextIdMedicoActionPerformed(evt);
+                jTextIdPersonaActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Identificacion:");
 
-        jLabel3.setText("Especialidad:");
+        jLabel3.setText("Nombre:");
 
-        jLabel4.setText("Numero de Licencia:");
+        jLabel4.setText("Direccion:");
 
-        jLabel5.setText("Universidad:");
+        jLabel5.setText("Telefono:");
 
         btLimpiar.setText("Limpiar");
         btLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +130,7 @@ public class CrudMedico extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Crear Medico");
+        jLabel6.setText("Crear Persona");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,15 +147,15 @@ public class CrudMedico extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextEspe, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(jTextNom, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btLimpiar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextUni)
-                            .addComponent(jTextIdMedico)
-                            .addComponent(jTextNumLic))
-                        .addContainerGap(28, Short.MAX_VALUE))
+                            .addComponent(jTextTel)
+                            .addComponent(jTextDir)
+                            .addComponent(jTextIdPersona, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -156,31 +167,31 @@ public class CrudMedico extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextIdMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextIdPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextEspe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextNumLic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextUni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btLimpiar))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Crear", jPanel1);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel7.setText("Consultar Medico");
+        jLabel7.setText("Consultar Persona");
 
         rtxtId.setText("Numero de Identificacion");
 
@@ -191,18 +202,33 @@ public class CrudMedico extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Identificacion:");
-
-        jLabel11.setText("Especialidad");
-
-        jLabel12.setText("Numero Licencia:");
-
-        jLabel13.setText("Universidad:");
-
         rbtLimpiar.setText("Limpiar");
         rbtLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtLimpiarActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Identificacion:");
+
+        rtxtid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rtxtidActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Nombre:");
+
+        jLabel19.setText("Direccion:");
+
+        jLabel20.setText("Telefono:");
+
+        rtxtNombre.setText("Nombre");
+
+        rbtBuscar2.setText("Buscar");
+        rbtBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtBuscar2ActionPerformed(evt);
             }
         });
 
@@ -213,28 +239,33 @@ public class CrudMedico extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(rbtLimpiar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel17))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(rtxtnombre)
+                                    .addComponent(rtxttel)
+                                    .addComponent(rtxtdir)
+                                    .addComponent(rtxtid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(rtxtId)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbtBuscar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
-                        .addComponent(rbtLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel13))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rtxtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rtxtId))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rtxtEspe)
-                            .addComponent(rtxtNumLic)
-                            .addComponent(rtxtUni)
-                            .addComponent(rtxtIdMed))))
+                            .addComponent(rbtBuscar)
+                            .addComponent(rbtBuscar2))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -246,31 +277,35 @@ public class CrudMedico extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbtBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtBuscar2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(rtxtIdMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rtxtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(rtxtEspe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel18)
+                    .addComponent(rtxtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(rtxtNumLic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel19)
+                    .addComponent(rtxtdir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(rtxtUni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel20)
+                    .addComponent(rtxttel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtLimpiar)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar", jPanel2);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel8.setText("Editar Medico");
+        jLabel8.setText("Editar Persona");
 
         utxtId.setText("Numero de Identificacion");
 
@@ -280,12 +315,6 @@ public class CrudMedico extends javax.swing.JFrame {
                 ubtBuscarActionPerformed(evt);
             }
         });
-
-        jLabel14.setText("Especialidad");
-
-        jLabel15.setText("Numero Licencia:");
-
-        jLabel16.setText("Universidad:");
 
         ubtLimpiar.setText("Limpiar");
         ubtLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -302,6 +331,29 @@ public class CrudMedico extends javax.swing.JFrame {
             }
         });
 
+        utxtNombre.setText("Nombre");
+
+        ubtBuscar2.setText("Buscar");
+        ubtBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubtBuscar2ActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setText("Identificacion:");
+
+        utxtid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                utxtidActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Nombre:");
+
+        jLabel23.setText("Direccion:");
+
+        jLabel24.setText("Telefono:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -310,27 +362,34 @@ public class CrudMedico extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(utxtId, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                        .addComponent(utxtId)
                         .addGap(18, 18, 18)
                         .addComponent(ubtBuscar))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel16))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(utxtEspe)
-                            .addComponent(utxtNumLic)
-                            .addComponent(utxtUni)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ubtLimpiar)
                         .addGap(18, 18, 18)
-                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(utxtNombre)
+                        .addGap(18, 18, 18)
+                        .addComponent(ubtBuscar2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel23)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel24)
+                                    .addComponent(jLabel21))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(utxtnombre)
+                                    .addComponent(utxttel)
+                                    .addComponent(utxtdir)
+                                    .addComponent(utxtid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -342,23 +401,31 @@ public class CrudMedico extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(utxtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ubtBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(utxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ubtBuscar2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(utxtEspe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(utxtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(utxtNumLic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel22)
+                    .addComponent(utxtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(utxtUni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel23)
+                    .addComponent(utxtdir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(utxttel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ubtLimpiar)
                     .addComponent(btEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Editar", jPanel3);
@@ -386,7 +453,7 @@ public class CrudMedico extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(dtxtId, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                        .addComponent(dtxtId, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btEliminar)))
                 .addContainerGap())
@@ -400,19 +467,10 @@ public class CrudMedico extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEliminar))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Eliminar", jPanel4);
-
-        jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/Login-out-icon.png"))); // NOI18N
-        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirActionPerformed(evt);
-            }
-        });
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/Doctor-icon.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -420,82 +478,107 @@ public class CrudMedico extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
-                        .addGap(64, 64, 64)
-                        .addComponent(jButtonSalir))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonSalir, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextIdPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIdPersonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextIdPersonaActionPerformed
+
     private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
-        jTextIdMedico.setText("");
-        jTextEspe.setText("");
-        jTextNumLic.setText("");
-        jTextUni.setText("");
+        jTextIdPersona.setText("");
+        jTextNom.setText("");
+        jTextDir.setText("");
+        jTextTel.setText("");
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     private void btCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearActionPerformed
-        IdMedico=jTextIdMedico.getText();
-        especialidad=jTextEspe.getText();
-        num_licencia=jTextNumLic.getText();
-        universidad=jTextUni.getText();
+        String Idper=jTextIdPersona.getText();
+        String nom=jTextNom.getText();
+        String dir=jTextDir.getText();
+        String tel=jTextTel.getText();
         //controlmed=new ControlMedico();
-        if(controlmed.CrearMedico(IdMedico, especialidad, num_licencia, universidad, true)==1){
-            JOptionPane.showMessageDialog(null, "Medico Creado Exitosamente");
+        if(control.CrearPersona(Idper, nom, dir, tel, true)==1){
+            JOptionPane.showMessageDialog(null, "Persona Creada Exitosamente");
         }
         else{
-            JOptionPane.showMessageDialog(null, "No se creo Medico");
+            JOptionPane.showMessageDialog(null, "No se creo Persona");
         }
     }//GEN-LAST:event_btCrearActionPerformed
 
-    private void jTextIdMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIdMedicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextIdMedicoActionPerformed
-
-    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jButtonSalirActionPerformed
-
     private void rbtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtBuscarActionPerformed
-        Medico med;
-        med=controlmed.ConsultarMedico(rtxtId.getText());
-        if(med==null){
+        Persona per;
+        per=control.ConsultarPersona(rtxtId.getText(), 2);
+        if(per==null){
             JOptionPane.showMessageDialog(null, "No Se Encuentra en la Base de Datos");
         }
         else{
-            rtxtIdMed.setText(med.getIdMedico());
-            rtxtEspe.setText(med.getEspecialidad());
-            rtxtNumLic.setText(med.getNumLicencia());
-            rtxtUni.setText(med.getUniversidad());
+            rtxtid.setText(per.getId());
+            rtxtnombre.setText(per.getNombre());
+            rtxtdir.setText(per.getDireccion());
+            rtxttel.setText(per.getTelefono());
         }
     }//GEN-LAST:event_rbtBuscarActionPerformed
 
+    private void rbtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtLimpiarActionPerformed
+        rtxtId.setText("");
+        rtxtnombre.setText("");
+        rtxtNombre.setText("");
+        rtxtdir.setText("");
+        rtxttel.setText("");
+        rtxtid.setText("");
+    }//GEN-LAST:event_rbtLimpiarActionPerformed
+
+    private void ubtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubtBuscarActionPerformed
+        Persona per;
+        per=control.ConsultarPersona(utxtId.getText(), 2);
+        if(per==null){
+            JOptionPane.showMessageDialog(null, "No Se Encuentra en la Base de Datos");
+        }
+        else{
+            utxtid.setText(per.getId());
+            utxtnombre.setText(per.getNombre());
+            utxtdir.setText(per.getDireccion());
+            utxttel.setText(per.getTelefono());
+        }
+    }//GEN-LAST:event_ubtBuscarActionPerformed
+
+    private void ubtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubtLimpiarActionPerformed
+        utxtId.setText("");
+        utxtnombre.setText("");
+        utxtNombre.setText("");
+        utxtdir.setText("");
+        utxttel.setText("");
+        utxtid.setText("");
+    }//GEN-LAST:event_ubtLimpiarActionPerformed
+
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         int result=0;
-        String id=utxtId.getText();
-        String espec=utxtEspe.getText();
-        String numlic=utxtNumLic.getText();
-        String uni=utxtUni.getText();
-        result=controlmed.EditarMedico(id, espec, numlic, uni, true);
+        String id=utxtid.getText();
+        String nom=utxtnombre.getText();
+        String dir=utxtdir.getText();
+        String tel=utxttel.getText();
+        result=control.EditarPersona(id, nom, dir, tel, true);
         if(result==1){
             JOptionPane.showMessageDialog(null, "Editado Exitosamente");
         }
@@ -504,25 +587,10 @@ public class CrudMedico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btEditarActionPerformed
 
-    private void rbtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtLimpiarActionPerformed
-        rtxtIdMed.setText("");
-        rtxtEspe.setText("");
-        rtxtNumLic.setText("");
-        rtxtUni.setText("");
-        rtxtId.setText("");
-    }//GEN-LAST:event_rbtLimpiarActionPerformed
-
-    private void ubtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubtLimpiarActionPerformed
-        utxtId.setText("");
-        utxtEspe.setText("");
-        utxtNumLic.setText("");
-        utxtUni.setText("");        
-    }//GEN-LAST:event_ubtLimpiarActionPerformed
-
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
         String idm=dtxtId.getText();
         int res=0;
-        res=controlmed.EliminarMedico(idm);
+        res=control.EliminarPersona(idm);
         if(res==1){
             JOptionPane.showMessageDialog(null, "Eliminado Exitosamente");
         }
@@ -531,29 +599,56 @@ public class CrudMedico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btEliminarActionPerformed
 
-    private void ubtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubtBuscarActionPerformed
-        Medico med;
-        med=controlmed.ConsultarMedico(utxtId.getText());
-        if(med==null){
+    private void rtxtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtxtidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rtxtidActionPerformed
+
+    private void utxtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utxtidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_utxtidActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void rbtBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtBuscar2ActionPerformed
+        Persona per;
+        per=control.ConsultarPersona(rtxtNombre.getText(), 1);
+        if(per==null){
             JOptionPane.showMessageDialog(null, "No Se Encuentra en la Base de Datos");
         }
         else{
-            utxtEspe.setText(med.getEspecialidad());
-            utxtNumLic.setText(med.getNumLicencia());
-            utxtUni.setText(med.getUniversidad());
+            rtxtid.setText(per.getId());
+            rtxtnombre.setText(per.getNombre());
+            rtxtdir.setText(per.getDireccion());
+            rtxttel.setText(per.getTelefono());
         }
-    }//GEN-LAST:event_ubtBuscarActionPerformed
+    }//GEN-LAST:event_rbtBuscar2ActionPerformed
+
+    private void ubtBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubtBuscar2ActionPerformed
+        Persona per;
+        per=control.ConsultarPersona(utxtNombre.getText(), 1);
+        if(per==null){
+            JOptionPane.showMessageDialog(null, "No Se Encuentra en la Base de Datos");
+        }
+        else{
+            utxtid.setText(per.getId());
+            utxtnombre.setText(per.getNombre());
+            utxtdir.setText(per.getDireccion());
+            utxttel.setText(per.getTelefono());
+        }
+    }//GEN-LAST:event_ubtBuscar2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-       try {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -561,24 +656,23 @@ public class CrudMedico extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrudMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrudMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrudMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrudMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BaseDatos bd = new BaseDatos();
-                ControlMedico objcontrol = new ControlMedico();
+                BaseDatos bd=new BaseDatos();
+                ControlPersona objcontrol = new ControlPersona();
                 objcontrol.connectDB();
-                new CrudMedico(objcontrol).setVisible(true);
+                new CrudPersona(objcontrol).setVisible(true);
             }
         });
     }
@@ -589,17 +683,17 @@ public class CrudMedico extends javax.swing.JFrame {
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btLimpiar;
     private javax.swing.JTextField dtxtId;
-    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -612,22 +706,27 @@ public class CrudMedico extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextEspe;
-    private javax.swing.JTextField jTextIdMedico;
-    private javax.swing.JTextField jTextNumLic;
-    private javax.swing.JTextField jTextUni;
+    private javax.swing.JTextField jTextDir;
+    private javax.swing.JTextField jTextIdPersona;
+    private javax.swing.JTextField jTextNom;
+    private javax.swing.JTextField jTextTel;
     private javax.swing.JButton rbtBuscar;
+    private javax.swing.JButton rbtBuscar2;
     private javax.swing.JButton rbtLimpiar;
-    private javax.swing.JTextField rtxtEspe;
     private javax.swing.JTextField rtxtId;
-    private javax.swing.JTextField rtxtIdMed;
-    private javax.swing.JTextField rtxtNumLic;
-    private javax.swing.JTextField rtxtUni;
+    private javax.swing.JTextField rtxtNombre;
+    private javax.swing.JTextField rtxtdir;
+    private javax.swing.JTextField rtxtid;
+    private javax.swing.JTextField rtxtnombre;
+    private javax.swing.JTextField rtxttel;
     private javax.swing.JButton ubtBuscar;
+    private javax.swing.JButton ubtBuscar2;
     private javax.swing.JButton ubtLimpiar;
-    private javax.swing.JTextField utxtEspe;
     private javax.swing.JTextField utxtId;
-    private javax.swing.JTextField utxtNumLic;
-    private javax.swing.JTextField utxtUni;
+    private javax.swing.JTextField utxtNombre;
+    private javax.swing.JTextField utxtdir;
+    private javax.swing.JTextField utxtid;
+    private javax.swing.JTextField utxtnombre;
+    private javax.swing.JTextField utxttel;
     // End of variables declaration//GEN-END:variables
 }

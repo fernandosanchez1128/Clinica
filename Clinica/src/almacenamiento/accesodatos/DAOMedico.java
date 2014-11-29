@@ -86,8 +86,9 @@ public class DAOMedico {
                 
                 med.setUniversidad(table.getString(4));
                 System.out.println("ok");
-            }            
             return med;
+            }            
+            
          }
          catch(SQLException e){ System.out.println(e); }
          catch(Exception e){ System.out.println("excepcion del dao"); System.out.println(e); }
@@ -133,8 +134,7 @@ public class DAOMedico {
         try{
             Statement statement = conn.createStatement();
 
-            statement.executeUpdate(sql_save);            
-            return 1;
+            return statement.executeUpdate(sql_save);                        
         }
         catch(SQLException e){
             System.out.println(e);

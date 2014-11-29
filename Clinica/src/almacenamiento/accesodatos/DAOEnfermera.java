@@ -38,8 +38,8 @@ public class DAOEnfermera {
         String sql_save;
         int numRows=0;
         sql_save="INSERT INTO Enfermera VALUES ('" + enf.getIdEnfermera()+ 
-                "' , '" + enf.getExperiencia()+ 
-                "', '" + enf.getCodArea()+  
+                "' , " + enf.getExperiencia()+ 
+                ", '" + enf.getCodArea()+  
                 "', '" + enf.getEstado()+ "')";
         try{
             Statement sentencia = conn.createStatement();
@@ -77,8 +77,9 @@ public class DAOEnfermera {
                 enf.setCodArea(table.getString(3));
                 
                 System.out.println("ok");
+                return enf;
             }            
-            return enf;
+            
          }
          catch(SQLException e){ System.out.println(e); }
          catch(Exception e){ System.out.println("excepcion del dao"); System.out.println(e); }
@@ -112,8 +113,7 @@ public class DAOEnfermera {
         try{
             Statement statement = conn.createStatement();
 
-            statement.executeUpdate(sql_save);            
-            return 1;
+            return statement.executeUpdate(sql_save);                       
         }
         catch(SQLException e){
             System.out.println(e);

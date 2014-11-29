@@ -35,9 +35,9 @@ public class DAOEmpleado {
         int numRows=0;
         sql_save="INSERT INTO Empleado VALUES ('" + emp.getIdEmpleado()+ 
                 "' , '" + emp.getCargo()+ 
-                "', '" + emp.getEmail()+  
-                "', '" + emp.getIdJefe()+ 
-                "', '"+ emp.getSalario()+"' , true)"; ///CONVERTIR DATE
+                "', " + emp.getSalario()+  
+                ", '" + emp.getEmail()+ 
+                "', '"+ emp.getIdJefe()+"' , true)"; ///CONVERTIR DATE
         try{
             Statement sentencia = conn.createStatement();
             numRows = sentencia.executeUpdate(sql_save);           
@@ -57,7 +57,7 @@ public class DAOEmpleado {
     public Empleado LeerEmpleado(String req){
         Empleado emp= new Empleado();
         String sql_select;
-        sql_select="SELECT Empleado.IdEmpleado, Empleado.Cargo, Empleado.Email,Empleado.IdJefe,Empleado.Salario FROM  Empleado WHERE idEmpleado='" + req +  "'";
+        sql_select="SELECT Empleado.Id_empleado, Empleado.Cargo, Empleado.salario,Empleado.email,Empleado.id_jefe FROM  Empleado WHERE id_empleado='" + req +  "' and estado=true";
         try{
             System.out.println("consultando en la bd");
             Statement statement = conn.createStatement();
@@ -69,11 +69,11 @@ public class DAOEmpleado {
                
                 emp.setCargo(table.getString(2));
                 
-                emp.setEmail(table.getString(3));
+                emp.setSalario(table.getInt(3));
                 
-                emp.setIdJefe(table.getString(4));
+                emp.setEmail(table.getString(4));
                 
-                emp.setSalario(table.getInt(5));
+                emp.setIdJefe(table.getString(5));
                 System.out.println("ok");
             }            
             return emp;
@@ -87,9 +87,9 @@ public class DAOEmpleado {
     public int ActualizarEmpleado(Empleado emp, String cedula){
         String sql_save;
 	sql_save="UPDATE Empleado SET cargo='"+emp.getCargo()+
-                "', ActividadEconomica='"+emp.getEmail()+
-                "', Historia='"+emp.getIdJefe()+
-                "', FechaNac='"+emp.getSalario()+" WHERE idEmpleado='" + emp.getIdEmpleado()+ "'";
+                "', email='"+emp.getEmail()+
+                "', id_jefe='"+emp.getIdJefe()+
+                "', salario="+emp.getSalario()+" WHERE id_empleado='" + emp.getIdEmpleado()+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);
@@ -106,15 +106,13 @@ public class DAOEmpleado {
         return 1;
     }//fin updateUser
     
-     public int EliminarEmpleado(String cedula){	
-        String sql_save;
-        //sql_save="UPDATE usuario SET estado=false WHERE cedula='" + cedula + "'";
-        sql_save="UPDATE Empleado SET estado=false WHERE idEmpleado='"+cedula+"'";
+     public int EliminarEmpleado(String cedula){	        
+         String sql_save;        
+        sql_save="UPDATE Empleado SET estado=false WHERE id_empleado='"+cedula+"'";
         try{
-            Statement statement = conn.createStatement();
-
-            statement.executeUpdate(sql_save);            
-            return 1;
+            Statement statement = conn.createStatement();            
+            int tm=statement.executeUpdate(sql_save);                        
+            return tm;
         }
         catch(SQLException e){
             System.out.println(e);
