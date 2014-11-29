@@ -6,6 +6,8 @@
 package presentacion;
 
 import almacenamiento.controlador.ControladorAreas;
+import javax.swing.JOptionPane;
+import proceso.Areas;
 
 /**
  *
@@ -19,7 +21,6 @@ public class PanelAreas extends javax.swing.JFrame {
     private Validador valida;
     private ControladorAreas controlArea;
     private boolean editar_codigo = false;
-    private boolean editar_nombre = false;
     public PanelAreas() {
         valida = new Validador ();
         controlArea = new ControladorAreas();
@@ -66,7 +67,7 @@ public class PanelAreas extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        codigo_cama_editar = new javax.swing.JTextField();
+        codigo_area_editar = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         nombre_area2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -100,6 +101,11 @@ public class PanelAreas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(descripcion_crear);
 
         crear.setText("Crear");
+        crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -342,10 +348,10 @@ public class PanelAreas extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("EDITAR AREA");
 
-        codigo_cama_editar.setText("Codigo Area");
-        codigo_cama_editar.addActionListener(new java.awt.event.ActionListener() {
+        codigo_area_editar.setText("Codigo Area");
+        codigo_area_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codigo_cama_editarActionPerformed(evt);
+                codigo_area_editarActionPerformed(evt);
             }
         });
 
@@ -372,7 +378,7 @@ public class PanelAreas extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(codigo_cama_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigo_area_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -387,7 +393,7 @@ public class PanelAreas extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(codigo_cama_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(codigo_area_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
@@ -564,12 +570,28 @@ public class PanelAreas extends javax.swing.JFrame {
 
     private void Busca_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busca_codigoActionPerformed
         // TODO add your handling code here:
-        
+        String codigo = codigo_area_consulta.getText();
+        boolean control = true; 
+        if (valida.capturarEntero(this, codigo, "Codigo"))
+        {
+            Areas area = controlArea.consultarAreasCod(codigo);
+            String mensaje = "el area con codigo " + codigo +" no  se encuentra en la Base de Datos";
+            if (area == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
+            else  
+                if (area.getNombre() == null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            if (control)
+            {
+                codigo_consulta.setText(area.getCodArea());
+                nombre_consulta.setText(area.getNombre());
+                descripcion_consulta.setText(area.getDescripcion());
+                
+            }
+        }
     }//GEN-LAST:event_Busca_codigoActionPerformed
 
-    private void codigo_cama_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_cama_editarActionPerformed
+    private void codigo_area_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_area_editarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_codigo_cama_editarActionPerformed
+    }//GEN-LAST:event_codigo_area_editarActionPerformed
 
     private void nombre_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_editarActionPerformed
         // TODO add your handling code here:
@@ -577,6 +599,28 @@ public class PanelAreas extends javax.swing.JFrame {
 
     private void buscar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_editarActionPerformed
         // TODO add your handling code here:
+        editar_codigo = false;
+        String codigo = codigo_area_editar.getText();
+        boolean control = true; 
+        if (valida.capturarEntero(this, codigo,"Codigo"))
+        {
+            Areas area = controlArea.consultarAreasCod(codigo);
+            String mensaje = "el area con codigo " + codigo +" no  se encuentra en la Base de Datos";
+            if (area == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
+            else  
+                if (area.getNombre() == null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            if (control)
+            {
+                editar_codigo = true;
+                nombre_editar.setText(area.getNombre());
+                descripcion_editar.setText(area.getDescripcion());
+            }
+            else 
+            {
+                nombre_editar.setText("");
+                descripcion_editar.setText("");
+            }
+        }
         
     }//GEN-LAST:event_buscar_editarActionPerformed
 
@@ -586,6 +630,26 @@ public class PanelAreas extends javax.swing.JFrame {
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
+        String codigo = codigo_eliminar.getText();
+        boolean control = true;
+        String mensaje = "El area  con codigo " + codigo +" no  se encuentra en la Base de Datos";
+        if (valida.capturarEntero(this, codigo, "codigo"))
+        {
+            Areas area = controlArea.consultarAreasCod(codigo);
+            if (area == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
+            else  
+                if (area.getNombre() == null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            String msj = "desea eliminar el medicamento " + area.getNombre() ;
+            if (control)
+            {
+                int opcion = JOptionPane.showConfirmDialog(this, msj, "CONFIRMACION", JOptionPane.YES_NO_CANCEL_OPTION);
+                if (opcion == 0) 
+                {
+                    controlArea.eliminarAreas(codigo);
+                    valida.desplegarMensajeDialogo(this, "se ha realizado la operacion satisfactoriamente ","Proceso Exitoso" , JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
        
     }//GEN-LAST:event_eliminarActionPerformed
 
@@ -603,7 +667,45 @@ public class PanelAreas extends javax.swing.JFrame {
 
     private void Buscar_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_nombreActionPerformed
         // TODO add your handling code here:
+        String nombre = nombre_area_consulta.getText();
+        boolean control = true; 
+        if (valida.ValidaVacios(this, nombre, "Nombre"))
+        {
+            Areas area = controlArea.consultarAreasNom(nombre);
+            String mensaje = "el area con nombre " + nombre +" no  se encuentra en la Base de Datos";
+            if (area == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
+            else  
+                if (area.getNombre() == null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            if (control)
+            {
+                codigo_consulta.setText(area.getCodArea());
+                nombre_consulta.setText(area.getNombre());
+                descripcion_consulta.setText(area.getDescripcion());
+                
+            }
+        }
     }//GEN-LAST:event_Buscar_nombreActionPerformed
+
+    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
+        // TODO add your handling code here:
+        boolean validacion = true;
+        String nombre,descripcion;
+        nombre = nombre_crear.getText();
+        descripcion = descripcion_crear.getText();
+
+        
+        validacion = validacion && valida.ValidaVacios(this, nombre, "Nombre");
+        validacion = validacion && valida.ValidaVacios(this, descripcion, "Descripcion");
+                
+        if (validacion)
+        {
+            
+            int result = controlArea.crearAreas(nombre, descripcion);
+            if (result == 1) { valida.desplegarMensajeDialogo(this,"el area se ha guardado en la base de datos satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
+            if (result == -2) { valida.desplegarMensajeDialogo(this,"el area ya existe","ERROR",JOptionPane.ERROR_MESSAGE );}
+            if (result == -1) { valida.desplegarMensajeDialogo(this,"el area no se ha podido registrar","ERROR",JOptionPane.ERROR_MESSAGE );}
+        }
+    }//GEN-LAST:event_crearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -646,7 +748,7 @@ public class PanelAreas extends javax.swing.JFrame {
     private javax.swing.JButton Buscar_nombre;
     private javax.swing.JButton buscar_editar;
     private javax.swing.JTextField codigo_area_consulta;
-    private javax.swing.JTextField codigo_cama_editar;
+    private javax.swing.JTextField codigo_area_editar;
     private javax.swing.JTextField codigo_consulta;
     private javax.swing.JTextField codigo_eliminar;
     private javax.swing.JButton crear;

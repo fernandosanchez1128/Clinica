@@ -584,7 +584,6 @@ public class PanelMedicamentos extends javax.swing.JFrame {
 
     private void buscar_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_nombreActionPerformed
         // TODO add your handling code here:
-         System.out.println("paso");
         String nombre = consultar_nombre_text.getText();
         boolean control = true; 
         if (valida.ValidaVacios(this, nombre, "Nombre"))

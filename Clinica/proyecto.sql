@@ -39,7 +39,7 @@ cod_area VARCHAR(7) NOT NULL,
 descripcion TEXT, 
 estado VARCHAR(15),
 activa  BOOLEAN, 
-CONSTRAINT fk_cama FOREIGN KEY (cod_area) references areas(cod_area) 
+CONSTRAINT fk_cama FOREIGN KEY (cod_area) references Areas(cod_area) 
 ON UPDATE NO ACTION ON DELETE NO ACTION ); 
 --cama9999
 ALTER TABLE cama ALTER cod_cama SET DEFAULT nextval('cama_seq');
