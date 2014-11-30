@@ -44,7 +44,7 @@ public class DAOAreas {
         int numRows=0;
         
         sql_save = "INSERT INTO Areas (nombre,descripcion,estado) VALUES ( '"+ area.getNombre()+ "','" + area.getDescripcion() + "'," +
-                  ",true );";
+                  "true );";
         System.out.println(sql_save);
         try{
             Statement sentencia = conn.createStatement();

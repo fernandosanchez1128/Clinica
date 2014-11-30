@@ -7,6 +7,7 @@ package presentacion;
 
 import almacenamiento.controlador.ControlCama;
 import almacenamiento.controlador.ControladorMedicamento;
+import java.awt.geom.Area;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import proceso.Areas;
@@ -24,6 +25,7 @@ public class PanelCamas extends javax.swing.JFrame {
      */
     private Validador valida;
     private ControlCama controlCama;
+    private boolean editar_codigo = false;
     
     public PanelCamas() {
          valida = new Validador ();
@@ -92,8 +94,6 @@ public class PanelCamas extends javax.swing.JFrame {
         codigo_eliminar = new javax.swing.JTextField();
         eliminar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jLayeredPane5 = new javax.swing.JLayeredPane();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,25 +140,26 @@ public class PanelCamas extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+                .addGap(113, 113, 113)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(descripcion_area)
                             .addComponent(descripcion_area1)
-                            .addComponent(nombre_area, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(nombre_area, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(area_cama, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(estado_cama, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(crear_cama, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(58, 58, 58))))
+                            .addComponent(estado_cama, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)))
+                .addContainerGap(115, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(crear_cama, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,17 +190,11 @@ public class PanelCamas extends javax.swing.JFrame {
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -252,23 +247,18 @@ public class PanelCamas extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigo_cama_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(estado_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(codigo_cama_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nombre_area1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(area_cama_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombre_area1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(area_cama_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(estado_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,7 +269,7 @@ public class PanelCamas extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(nombre_area1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addComponent(area_cama_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,7 +301,7 @@ public class PanelCamas extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Buscar)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,7 +325,7 @@ public class PanelCamas extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 93, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,14 +344,12 @@ public class PanelCamas extends javax.swing.JFrame {
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jLayeredPane2.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -459,7 +447,7 @@ public class PanelCamas extends javax.swing.JFrame {
                 .addComponent(buscar_editar)
                 .addGap(99, 99, 99)
                 .addComponent(Buscar1)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,6 +461,11 @@ public class PanelCamas extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -481,18 +474,14 @@ public class PanelCamas extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(218, 218, 218))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -512,9 +501,7 @@ public class PanelCamas extends javax.swing.JFrame {
         jLayeredPane3.setLayout(jLayeredPane3Layout);
         jLayeredPane3Layout.setHorizontalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jLayeredPane3Layout.setVerticalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,7 +542,7 @@ public class PanelCamas extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(eliminar))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 46, Short.MAX_VALUE))
+                .addGap(0, 134, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -583,39 +570,11 @@ public class PanelCamas extends javax.swing.JFrame {
 
         SALIR.addTab("ELIMINAR", jLayeredPane4);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("SALIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jLayeredPane5Layout = new javax.swing.GroupLayout(jLayeredPane5);
-        jLayeredPane5.setLayout(jLayeredPane5Layout);
-        jLayeredPane5Layout.setHorizontalGroup(
-            jLayeredPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane5Layout.createSequentialGroup()
-                .addContainerGap(332, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-        );
-        jLayeredPane5Layout.setVerticalGroup(
-            jLayeredPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane5Layout.createSequentialGroup()
-                .addContainerGap(299, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-        );
-        jLayeredPane5.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        SALIR.addTab("SALIR", jLayeredPane5);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -626,42 +585,6 @@ public class PanelCamas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void area_camaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_area_camaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_area_camaActionPerformed
-
-    private void crear_camaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_camaActionPerformed
-        // TODO add your handling code here:
-        boolean validacion = true;
-        String cod_area,descripcion,estado;
-        cod_area = area_cama.getText();
-        descripcion = descripcion_cama.getText();
-        estado = estado_cama.getSelectedItem().toString();
-        
-        validacion = validacion && valida.capturarEntero(this, cod_area,"Codigo Area");
-        validacion = validacion && valida.ValidaVacios(this, descripcion, "Nombre");
-        validacion = validacion && valida.ValidaVacios(this, estado, "Descripcion");
-        
-                
-        if (validacion)
-        {
-            Areas area = new Areas ();
-            area.setCodArea(cod_area);
-            int result = controlCama.crearCama(descripcion, estado, area);
-            if (result == 1) { valida.desplegarMensajeDialogo(this,"la cama se ha guardado en la base de datos satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
-            if (result == -2) { valida.desplegarMensajeDialogo(this,"la cama ya se encuentra registrada o el area no existe","ERROR",JOptionPane.ERROR_MESSAGE );}
-            if (result == -1) { valida.desplegarMensajeDialogo(this,"no se no se ha podido registrar error interno","ERROR",JOptionPane.ERROR_MESSAGE );}
-        }
-    }//GEN-LAST:event_crear_camaActionPerformed
-
-    private void estado_camaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado_camaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estado_camaActionPerformed
-
-    private void codigo_cama_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_cama_consultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codigo_cama_consultaActionPerformed
 
     private void codigo_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_eliminarActionPerformed
         // TODO add your handling code here:
@@ -693,86 +616,160 @@ public class PanelCamas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_eliminarActionPerformed
 
-    private void area_cama_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_area_cama_consultaActionPerformed
+    private void estado_camaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado_camaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_area_cama_consultaActionPerformed
+    }//GEN-LAST:event_estado_camaActionPerformed
 
-    private void codigo_cama_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_cama_editarActionPerformed
+    private void crear_camaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_camaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_codigo_cama_editarActionPerformed
+        boolean validacion = true;
+        String cod_area,descripcion,estado;
+        cod_area = area_cama.getText();
+        descripcion = descripcion_cama.getText();
+        estado = estado_cama.getSelectedItem().toString();
 
-    private void areas_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areas_editarActionPerformed
+        validacion = validacion && valida.capturarEntero(this, cod_area,"Codigo Area");
+        validacion = validacion && valida.ValidaVacios(this, descripcion, "Nombre");
+        validacion = validacion && valida.ValidaVacios(this, estado, "Descripcion");
+
+        if (validacion)
+        {
+            Areas area = new Areas ();
+            area.setCodArea(cod_area);
+            int result = controlCama.crearCama(descripcion, estado, area);
+            if (result == 1) { valida.desplegarMensajeDialogo(this,"la cama se ha guardado en la base de datos satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
+            if (result == -2) { valida.desplegarMensajeDialogo(this,"la cama ya se encuentra registrada o el area no existe","ERROR",JOptionPane.ERROR_MESSAGE );}
+            if (result == -1) { valida.desplegarMensajeDialogo(this,"no se no se ha podido registrar error interno","ERROR",JOptionPane.ERROR_MESSAGE );}
+        }
+    }//GEN-LAST:event_crear_camaActionPerformed
+
+    private void area_camaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_area_camaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_areas_editarActionPerformed
+    }//GEN-LAST:event_area_camaActionPerformed
 
     @SuppressWarnings("empty-statement")
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         // TODO add your handling code here:
         String codigo = codigo_cama_consulta.getText();
-        boolean control = true; 
-        
+        boolean control = true;
+
         if (valida.capturarEntero(this, codigo, "Codigo"))
         {
             Cama cama = controlCama.consultarCama(codigo);
             String mensaje = "la cama con codigo " + codigo +" no  se encuentra en la Base de Datos";
             if (cama == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
-            else  
-                if (cama.getDescripcion()== null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            else
+            if (cama.getDescripcion()== null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
             if (control)
             {
                 String area = cama.getArea().getCodArea() + "-> " + cama.getArea().getNombre();
                 area_cama_consulta.setText(area);
                 descripcion_cama_consulta.setText(cama.getDescripcion());
-                
+
                 System.out.println(estado_consulta.getSelectedItem());
-                
+
                 if (cama.getEstado() == "Libre") {estado_consulta.setSelectedIndex(0);}
                 else { estado_consulta.setSelectedIndex(1);}
-                
+
             }
         }
     }//GEN-LAST:event_BuscarActionPerformed
+
+    private void area_cama_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_area_cama_consultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_area_cama_consultaActionPerformed
 
     private void estado_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado_consultaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_estado_consultaActionPerformed
 
+    private void codigo_cama_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_cama_consultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigo_cama_consultaActionPerformed
+
     private void buscar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_editarActionPerformed
         // TODO add your handling code here:
+        editar_codigo = false;
         String codigo = codigo_cama_editar.getText();
-        boolean control = true; 
-        
+        boolean control = true;
+
         if (valida.capturarEntero(this, codigo, "Codigo"))
         {
             Cama cama = controlCama.consultarCama(codigo);
             String mensaje = "la cama con codigo " + codigo +" no  se encuentra en la Base de Datos";
             if (cama == null) { JOptionPane.showMessageDialog(this, "ha ocurrido un error" , "ERROR", JOptionPane.ERROR_MESSAGE); control = false;}
-            else  
-                if (cama.getDescripcion()== null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
+            else
+            if (cama.getDescripcion()== null ) { valida.desplegarMensajeDialogo(this, mensaje , "ERROR", JOptionPane.ERROR_MESSAGE); control=false;}
             if (control)
             {
-                
-                areas_editar.setText(cama.getArea().getCodArea());
+                editar_codigo = true;
+                areas_editar.setText(cama.getArea().getCodArea());  
                 descripcion_editar.setText(cama.getDescripcion());
                 if ("Libre".equals(cama.getEstado())) {estado_editar.setSelectedIndex(0);}
-                else { estado_editar.setSelectedIndex(1);}   
+                else { estado_editar.setSelectedIndex(1);}
             }
-            else 
+            else
             {
                 areas_editar.setText("");
                 descripcion_editar.setText ("");
             }
-                
+
         }
     }//GEN-LAST:event_buscar_editarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void areas_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areas_editarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_areas_editarActionPerformed
+
+    private void codigo_cama_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_cama_editarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigo_cama_editarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        boolean validacion = true;
+        String codigo_act = codigo_cama_editar.getText();
+        
+        String area,descripcion,estado;
+        int costo;
+        area = areas_editar.getText();
+        descripcion = descripcion_editar.getText();
+        estado = estado_editar.getSelectedItem().toString();
+        
+        validacion = validacion && valida.capturarEntero(this, area,"Area");
+        validacion = validacion && valida.ValidaVacios(this,descripcion, "Descripcion");
+        validacion = validacion && valida.ValidaVacios(this, estado, "Estado");
+        
+                
+        if (validacion)
+        {
+            int result = 0;
+            Areas obj_area= new Areas();
+            obj_area.setCodArea(area);
+            Cama cama = new Cama ("1",descripcion,estado,obj_area);
+            if (editar_codigo) { result = controlCama.editarCamaCod(codigo_act, cama);}
+            else {valida.desplegarMensajeDialogo(this, "no se ha realizado la actualizacion, debe consultar previamente", "ERROR", JOptionPane.ERROR_MESSAGE);}
+            
+            if (editar_codigo)
+            {
+                if (result == 1) { valida.desplegarMensajeDialogo(this,"el medicamento se ha guardado en la base de datos satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
+                if (result == -2) { valida.desplegarMensajeDialogo(this,"el medicamento ya existe","ERROR",JOptionPane.ERROR_MESSAGE );}
+                if (result == -1) { valida.desplegarMensajeDialogo(this,"el medicamento no se ha podido registrar","ERROR",JOptionPane.ERROR_MESSAGE );}
+            }
+            
+            areas_editar.setText("");
+            descripcion_editar.setText("");
+            
+            
+            editar_codigo = false;
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -780,16 +777,21 @@ public class PanelCamas extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-              javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());                
+              for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+              }
             
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PanelCamas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+          } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PanelAreas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PanelCamas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PanelAreas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PanelCamas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PanelAreas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PanelCamas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PanelAreas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -822,7 +824,6 @@ public class PanelCamas extends javax.swing.JFrame {
     private javax.swing.JComboBox estado_cama;
     private javax.swing.JComboBox estado_consulta;
     private javax.swing.JComboBox estado_editar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -836,7 +837,6 @@ public class PanelCamas extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
-    private javax.swing.JLayeredPane jLayeredPane5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
