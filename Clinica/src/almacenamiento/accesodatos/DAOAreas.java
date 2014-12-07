@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import proceso.*;
 
 /**
@@ -189,6 +191,43 @@ public class DAOAreas {
          */
         public void closeConectionDB(){
         db.closeConection(db.getConnetion());
+    }
+        
+        public String [] [] ConsultaEmpleados  () 
+    {
+       
+        String sql = "SELECT * FROM Persona, Empleado WHERE id = id_empleado ORDER BY area;";
+        String[][] resultado = null ;
+        try {
+            System.out.println("consultando en la bd");
+            Statement sentence = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet table = sentence.executeQuery(sql);
+            table.last();
+            int filas = table.getRow();
+            table.first();
+            table.previous();
+            resultado = new String [filas][9];
+            int i =0;
+            while(table.next()){
+                resultado[i][0] = table.getString(1);
+                resultado[i][1] = table.getString(2);
+                resultado[i][2] = table.getString(3);
+                resultado[i][3] = table.getString(4);
+                resultado[i][4] = table.getString(6);
+                int salario = table.getInt(7);
+                resultado[i][5] = Integer.toString(salario);
+                resultado[i][6] = table.getString(8);
+                resultado[i][7] = table.getString(9);
+                resultado[i][8] = table.getString(10);
+                i++;
+                        
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOAreas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return resultado;
     }
 
     

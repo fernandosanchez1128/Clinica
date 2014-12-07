@@ -18,35 +18,23 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import proceso.Areas;
 
 /**
  *
  * @author fernando
  */
-@Entity
-@Table(name = "empleado")
-@NamedQueries({
-    @NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e")})
 public class Empleado implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "id_empleado")
+   
+   
     private String idEmpleado;
-    @Column(name = "cargo")
     private String cargo;
-    @Column(name = "salario")
     private Integer salario;
-    @Column(name = "email")
     private String email;
-    @JoinColumn(name = "id_empleado", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
     private Persona persona;
-    @OneToMany(mappedBy = "idJefe")
     private List<Empleado> empleadoList;
-    @JoinColumn(name = "id_jefe", referencedColumnName = "id_empleado")
-    @ManyToOne
     private Empleado idJefe;
+    private Areas area;
 
     public Empleado() {
     }
@@ -105,6 +93,14 @@ public class Empleado implements Serializable {
 
     public Empleado getIdJefe() {
         return idJefe;
+    }
+    
+    public void setArea(Areas area ) {
+        this.area = area;
+    }
+
+    public Areas getArea() {
+        return area;
     }
 
     public void setIdJefe(Empleado idJefe) {

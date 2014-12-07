@@ -82,6 +82,11 @@ public class ControladorAreas {
         int result = daoAreas.eliminarAreas(codigo);
         return result;
     }
+    public String [] [] ConsultaEmpleados  () 
+    {
+       String [] [] resultado = daoAreas.ConsultaEmpleados();
+       return resultado;
+    }
   
 }
 

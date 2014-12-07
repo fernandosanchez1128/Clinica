@@ -6,7 +6,10 @@
 package presentacion;
 
 import almacenamiento.controlador.ControladorAreas;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import proceso.Areas;
 
 /**
@@ -82,6 +85,8 @@ public class PanelAreas extends javax.swing.JFrame {
         codigo_eliminar = new javax.swing.JTextField();
         eliminar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jLayeredPane5 = new javax.swing.JLayeredPane();
+        Consulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -550,6 +555,33 @@ public class PanelAreas extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("ELIMINAR", jLayeredPane4);
 
+        Consulta.setText("Consulta");
+        Consulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jLayeredPane5Layout = new javax.swing.GroupLayout(jLayeredPane5);
+        jLayeredPane5.setLayout(jLayeredPane5Layout);
+        jLayeredPane5Layout.setHorizontalGroup(
+            jLayeredPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane5Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(Consulta)
+                .addContainerGap(390, Short.MAX_VALUE))
+        );
+        jLayeredPane5Layout.setVerticalGroup(
+            jLayeredPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane5Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(Consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(268, Short.MAX_VALUE))
+        );
+        jLayeredPane5.setLayer(Consulta, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jTabbedPane1.addTab("tab5", jLayeredPane5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -745,6 +777,27 @@ public class PanelAreas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_editarActionPerformed
 
+    private void ConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaActionPerformed
+        // TODO add your handling code here:
+         String[][] resultado = controlArea.ConsultaEmpleados();
+        if(resultado==null){
+            JOptionPane.showMessageDialog(this, "No hay empleados en la base de datos","Error!",JOptionPane.ERROR_MESSAGE);
+        }else{
+                String[] nombresColumnas = {"ID", "NOMBRES","DIRECCION","TELEFONO","CARGO","SALARIO","EMAIL", "ID_JEFE","AREA"};
+                JTable ventana = new JTable(resultado,nombresColumnas);
+                ventana.setEnabled(true);
+                Dimension d = ventana.getPreferredSize();
+                
+                
+                JScrollPane panel = new JScrollPane(ventana);
+                panel.setPreferredSize(new Dimension(nombresColumnas.length * 110,ventana.getRowHeight()*9+1));
+               
+                
+                JOptionPane.showMessageDialog(this, panel,"Aspirantes",JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_ConsultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -784,6 +837,7 @@ public class PanelAreas extends javax.swing.JFrame {
     private javax.swing.JButton Busca_codigo;
     private javax.swing.JButton Buscar1;
     private javax.swing.JButton Buscar_nombre;
+    private javax.swing.JButton Consulta;
     private javax.swing.JButton buscar_editar;
     private javax.swing.JTextField codigo_area_consulta;
     private javax.swing.JTextField codigo_area_editar;
@@ -806,6 +860,7 @@ public class PanelAreas extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JLayeredPane jLayeredPane4;
+    private javax.swing.JLayeredPane jLayeredPane5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
