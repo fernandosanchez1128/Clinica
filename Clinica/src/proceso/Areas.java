@@ -42,7 +42,13 @@ public class Areas implements Serializable {
 
     public Areas() {
     }
-
+    
+    public Areas (String codigo, String nom,String desc)
+    {
+        codArea = codigo;
+        nombre = nom;
+        descripcion = desc;
+    }
     public Areas(String codArea) {
         this.codArea = codArea;
     }

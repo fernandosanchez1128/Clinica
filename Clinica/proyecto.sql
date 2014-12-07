@@ -24,7 +24,8 @@ CREATE SEQUENCE areas_seq;
 CREATE TABLE Areas(
 cod_area VARCHAR(7) NOT NULL PRIMARY KEY, 
 nombre VARCHAR(50) UNIQUE, 
-descripcion TEXT );
+descripcion TEXT,
+estado BOOLEAN );
 --area999
 ALTER TABLE Areas ALTER cod_area SET DEFAULT nextval('areas_seq');
 -----------------------------------------------------------------------
@@ -36,8 +37,9 @@ CREATE TABLE cama(
 cod_cama VARCHAR(8) NOT NULL PRIMARY KEY, 
 cod_area VARCHAR(7) NOT NULL, 
 descripcion TEXT, 
-estado VARCHAR(15), 
-CONSTRAINT fk_cama FOREIGN KEY (cod_area) references areas(cod_area) 
+estado VARCHAR(15),
+activa  BOOLEAN, 
+CONSTRAINT fk_cama FOREIGN KEY (cod_area) references Areas(cod_area) 
 ON UPDATE NO ACTION ON DELETE NO ACTION ); 
 --cama9999
 ALTER TABLE cama ALTER cod_cama SET DEFAULT nextval('cama_seq');
@@ -60,7 +62,8 @@ CREATE TABLE Medicamento(
 cod_medicamento VARCHAR (15) NOT NULL PRIMARY KEY, 
 nombre VARCHAR  (20) UNIQUE , 
 descripcion TEXT, 
-costo INTEGER );
+costo INTEGER,
+estado BOOLEAN);
 
 ALTER TABLE Medicamento ALTER cod_medicamento SET DEFAULT nextval('medicamento_seq');
 --Empleado(id_empleado (fk­>persona), cargo, salario, email, id_jefe(fk­>empleado), cod_area)
