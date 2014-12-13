@@ -779,7 +779,7 @@ public class PanelAreas extends javax.swing.JFrame {
 
     private void ConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaActionPerformed
         // TODO add your handling code here:
-         String[][] resultado = controlArea.ConsultaEmpleados();
+        String[][] resultado = controlArea.ConsultaEmpleados();
         if(resultado==null){
             JOptionPane.showMessageDialog(this, "No hay empleados en la base de datos","Error!",JOptionPane.ERROR_MESSAGE);
         }else{

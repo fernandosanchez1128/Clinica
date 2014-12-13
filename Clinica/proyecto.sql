@@ -165,13 +165,14 @@ ALTER TABLE Historia ALTER cod_historia SET DEFAULT nextval('historia_seq');
 
 --Cita ( id_paciente (fk­>persona), id_medico (fk­>persona) ,hora, fecha, tipo,costo)
 CREATE TABLE Cita(
+id varchar (10) PRIMARY KEY,
 id_paciente VARCHAR (20) NOT NULL, 
 id_medico VARCHAR  (20) NOT NULL, 
 hora TIME NOT NULL,
 fecha DATE NOT NULL,
 tipo VARCHAR (30),
 costo INTEGER,
- CONSTRAINT cita_pk PRIMARY KEY (id_paciente, id_medico, hora, fecha),
+ UNIQUE (id_paciente, id_medico, hora, fecha),
  CONSTRAINT cita_fk1 FOREIGN KEY (id_paciente)
  REFERENCES Paciente(id_paciente) 
  ON DELETE NO ACTION,

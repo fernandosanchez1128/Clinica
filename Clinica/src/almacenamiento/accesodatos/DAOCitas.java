@@ -106,6 +106,36 @@ public class DAOCitas {
         return -1;
     }
     
+    public String [][] BuscarMedico (String nombre){	
+        String sql_save;
+
+        sql_save="SELECT id,nombre FROM Persona, Empleado WHERE id = id_empleado AND cargo = 'Medico' AND nombre like '%" + nombre + "%';";
+        String [] [] resultado= null;
+        try{
+            Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet table = statement.executeQuery(sql_save);
+            int i = 0;
+            table.last();
+            int filas = table.getRow();
+            resultado = new String [filas][2];
+            table.first();
+            table.previous();
+            while (table.next ())
+            {
+                resultado [i][0] = table.getString(1);
+                resultado [i][1] = table.getString(2);
+                i++;
+            }
+            
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(DAOAreas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return resultado;
+        
+    }
     /**
     * metodo que permite cancelar una cita.
     * @param codigo : codigo de la cita.
