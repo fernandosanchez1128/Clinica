@@ -61,7 +61,9 @@ public class Cita extends javax.swing.JFrame {
         tipo = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         buscarMedico = new javax.swing.JButton();
+        nombre_medico = new javax.swing.JTextField();
         jLayeredPane2 = new javax.swing.JLayeredPane();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +133,13 @@ public class Cita extends javax.swing.JFrame {
             }
         });
 
+        nombre_medico.setText("parte del nombre");
+        nombre_medico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombre_medicoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -138,56 +147,59 @@ public class Cita extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(descripcion_area3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(39, 39, 39)
+                            .addComponent(tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(descripcion_area4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(38, 38, 38)
+                            .addComponent(costo))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nombre_area, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(descripcion_area, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(descripcion_area2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(descripcion_area1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nombre_medico, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cedula_paciente)
+                                    .addComponent(cedula_medico, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(combo_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(16, 16, 16)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(combo_minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(buscarMedico, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGap(6, 6, 6)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(descripcion_area3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(descripcion_area4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(costo))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(nombre_area, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(descripcion_area, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(descripcion_area2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel2))
-                                            .addComponent(descripcion_area1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(33, 33, 33)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(cedula_paciente)
-                                                .addComponent(cedula_medico))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(combo_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(16, 16, 16)
-                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(combo_minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(151, 151, 151)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(6, 6, 6)))
-                        .addGap(0, 82, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(buscarMedico)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(151, 151, 151)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(93, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre_medico, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombre_area, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,9 +210,6 @@ public class Cita extends javax.swing.JFrame {
                     .addComponent(cedula_medico, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -208,7 +217,7 @@ public class Cita extends javax.swing.JFrame {
                         .addComponent(descripcion_area2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(descripcion_area1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(combo_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,48 +227,55 @@ public class Cita extends javax.swing.JFrame {
                     .addComponent(descripcion_area3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(descripcion_area4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(costo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(buscarMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(descripcion_area4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(costo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel4))
         );
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jTabbedPane1.addTab("tab1", jLayeredPane1);
+        jTabbedPane1.addTab("Programar Cita", jLayeredPane1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 468, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 495, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        jLayeredPane2.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jTabbedPane1.addTab("tab2", jLayeredPane2);
+        jTabbedPane1.addTab("Cancelar Cita", jLayeredPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,6 +291,35 @@ public class Cita extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buscarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMedicoActionPerformed
+        // TODO add your handling code here:
+        String[] columnas = {"ID", "NOMBRE"};
+        String nombre = nombre_medico.getText();
+        if (valida.ValidaVacios(rootPane, nombre, "nombre"));
+        {
+            String[][] resultado = daoCitas.BuscarMedico(nombre);
+            if(resultado==null){
+                JOptionPane.showMessageDialog(this, "No hay medico con ese nombre","Error!",JOptionPane.ERROR_MESSAGE);
+            }else{
+                
+                Reporte rep_medicos =  new Reporte("Medicos", columnas, resultado);
+                rep_medicos.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_buscarMedicoActionPerformed
+
+    private void combo_minutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_minutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_minutosActionPerformed
+
+    private void combo_horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_horaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_horaActionPerformed
+
+    private void cedula_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedula_medicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cedula_medicoActionPerformed
+
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
         // TODO add your handling code here:
         boolean validacion = true;
@@ -284,7 +329,7 @@ public class Cita extends javax.swing.JFrame {
         id_medico = cedula_medico.getText();
         fecha_cita = fecha.getText();
         tipo_cita = tipo.getSelectedItem().toString();
-        
+
         validacion = validacion && valida.capturarEntero(this, id_paciente, "Cedula Paciente");
         validacion = validacion && valida.capturarEntero(this, id_medico, "Cedula Medico");
         validacion = validacion && valida.ValidaVacios(this, fecha_cita, "Fecha");
@@ -298,50 +343,23 @@ public class Cita extends javax.swing.JFrame {
         if (validacion)
         {
             int prueba = daoCitas.ConsultarDisponiilidad(id_medico, hora, minutos,fecha_cita);
-            if (prueba == 0) 
-            {   
+            if (prueba == 0)
+            {
                 String hora_char = Integer.toString(hora) + ":"+ Integer.toString(minutos);
                 int result =  daoCitas.crearCita(id_paciente, id_medico,hora_char , fecha_cita, tipo_cita, costo_cita);
                 if (result == 1) { valida.desplegarMensajeDialogo(this,"La Cita ha sido registrada con exito","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
                 if (result == -2) { valida.desplegarMensajeDialogo(this,"La cita no ha podido ser registrada. Medico o Paciente no Existen en la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE );}
                 if (result == -1) { valida.desplegarMensajeDialogo(this,"Error interno la cita no ha sido programada","ERROR",JOptionPane.ERROR_MESSAGE );}
-                
+
             }
             else {valida.desplegarMensajeDialogo(this,"el medico ya tiene asignada una cita para ese horario","ERROR",JOptionPane.ERROR_MESSAGE );}
-            
+
         }
     }//GEN-LAST:event_crearActionPerformed
 
-    private void cedula_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedula_medicoActionPerformed
+    private void nombre_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_medicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cedula_medicoActionPerformed
-
-    private void combo_horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_horaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_horaActionPerformed
-
-    private void combo_minutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_minutosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_minutosActionPerformed
-
-    private void buscarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMedicoActionPerformed
-        // TODO add your handling code here:
-        String nombre = JOptionPane.showInputDialog(rootPane, "ingrese parte del nomre del medico");
-        String[][] resultado = daoCitas.BuscarMedico(nombre);
-        if(resultado==null){
-            JOptionPane.showMessageDialog(this, "No hay medico con ese nombre","Error!",JOptionPane.ERROR_MESSAGE);
-        }else{
-                String[] nombresColumnas = {"ID", "NOMBRE"};
-                JTable ventana = new JTable(resultado,nombresColumnas);
-                ventana.setEnabled(true);
-                Dimension d = ventana.getPreferredSize();
-                JScrollPane panel = new JScrollPane(ventana);
-                panel.setPreferredSize(new Dimension(nombresColumnas.length * 110,ventana.getRowHeight()*9+1));
-               
-                
-                JOptionPane.showMessageDialog(this, panel,"Medicos",JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_buscarMedicoActionPerformed
+    }//GEN-LAST:event_nombre_medicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,8 +417,10 @@ public class Cita extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel nombre_area;
+    private javax.swing.JTextField nombre_medico;
     private javax.swing.JComboBox tipo;
     // End of variables declaration//GEN-END:variables
 }

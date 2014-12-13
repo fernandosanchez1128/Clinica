@@ -117,7 +117,7 @@ public class DAOCitas {
             int i = 0;
             table.last();
             int filas = table.getRow();
-            resultado = new String [filas][2];
+            if (filas !=0) {resultado = new String [filas][2];}
             table.first();
             table.previous();
             while (table.next ())
