@@ -7,6 +7,7 @@ package presentacion;
 
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlPaciente;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import proceso.Paciente;
 /**
@@ -19,6 +20,7 @@ public class CrudPaciente extends javax.swing.JFrame {
      * Creates new form CrudPaciente
      */
     public CrudPaciente(ControlPaciente obj) {
+        getContentPane().setBackground(Color.white);
         initComponents();
         control=obj;
     }

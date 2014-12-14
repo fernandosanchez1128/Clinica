@@ -4,25 +4,19 @@
  * and open the template in the editor.
  */
 package almacenamiento.accesodatos;
-
+import java.sql.*;
+import proceso.Causa;
 /**
  *
  * @author Nelson
  */
-import java.sql.*;
-import proceso.Medico;
-public class DAOMedico {
-    /**
-     * @param db objeto encargado de la conexión a la base de datos.
-     * @param conn objeto para ejecutar las sentencias de SQL
-     * 
-     */
+public class DaoCausa {
     private BaseDatos db;
     Connection conn ;
     /**
      * constructor, inicializa los atributos.
      */
-    public DAOMedico(){ db=new BaseDatos(); }
+    public DaoCausa(){ db=new BaseDatos(); }
     /**
      * Metodo que permite realizar la conexion a la base de datos
      */
@@ -38,13 +32,12 @@ public class DAOMedico {
     *@param med Objeto de la clase persona
     *@return numRows numero de tuplas insertadas o afectadas. negativo si hay error
     */
-    public int CrearMedico(Medico med){
+    public int CrearCausa(Causa cau){
         String sql_save;
         int numRows=0;
-        sql_save="INSERT INTO Medico VALUES ('" + med.getIdMedico()+ 
-                "' , '" + med.getEspecialidad()+ 
-                "', '" + med.getNumLicencia()+  
-                "', '" + med.getUniversidad()+ "' , true)";
+        sql_save="INSERT INTO Causa VALUES ('" + cau.getCodCausa()+ 
+                "' , '" + cau.getNombre()+ 
+                "', '" + cau.getDescripcion()+"' , true)";
         try{
             Statement sentencia = conn.createStatement();
             numRows = sentencia.executeUpdate(sql_save);           
@@ -55,7 +48,7 @@ public class DAOMedico {
             return -2;
         }
         catch(Exception e){ 
-            System.out.println("exception dao crear Medico");
+            System.out.println("exception dao crear Causa");
             System.out.println(e);
         }
         return -1;
@@ -65,11 +58,11 @@ public class DAOMedico {
         * @param req el username del usuario que se quiere consultar.
         * @return null si hay error en la consulta a la base de datos. Objeto tipo Usuario si el objeto del usuario que se consulto. Devuelve 
         */
-    public Medico LeerMedico(String req){
-        Medico med= new Medico();
+    public Causa LeerCausa(String req){
+        Causa cau= new Causa();
         String sql_select;
         
-            sql_select="SELECT Medico.id_medico, Medico.especialidad, Medico.num_licencia,Medico.universidad FROM  Medico WHERE id_medico='" + req +  "' AND estado=true";
+            sql_select="SELECT codigo_causa, nombre, descripcion FROM  Causa WHERE codigo_causa='" + req +  "' AND estado=true";
         
         try{
             System.out.println("consultando en la bd");
@@ -78,15 +71,14 @@ public class DAOMedico {
             
             while(table.next()){
                 //System.out.println("dentro del while");
-                med.setIdMedico(table.getString(1));
+                cau.setCodCausa(table.getString(1));
                
-                med.setEspecialidad(table.getString(2));
+                cau.setNombre(table.getString(2));
                 
-                med.setNumLicencia(table.getString(3));
+                cau.setDescripcion(table.getString(3));
                 
-                med.setUniversidad(table.getString(4));
                 System.out.println("ok");
-            return med;
+            return cau;
             }            
             
          }
@@ -95,18 +87,12 @@ public class DAOMedico {
         return null;
     }//fin readUser
     
-    /**
-     * actualizar la informacion de un usuario, con la cedula que entra por parametro.
-     * @param Med objeto de Usuario con los atributos a modificar en la base de datos.
-     * @param cedula la cedula del usuario que se quiere actualizar.
-     * @return 1 si el proceso ocurrio bien durante todo el metodo, -3 si el usuario entregado tiene un perfil 
-     * inexistente, -2 si hay algun error de sql y -1 si hay cualquier otro error.
-     */
-    public int ActualizarMedico(Medico med, String cedula){
+    
+    public int ActualizarCausa(Causa cau, String codigo){
         String sql_save;
-	sql_save="UPDATE Medico SET especialidad='"+med.getEspecialidad()+
-                "', num_licencia='"+med.getNumLicencia()+
-                "', universidad='"+med.getUniversidad()+"' WHERE id_medico='" + med.getIdMedico()+ "'";
+	sql_save="UPDATE causa SET nombre='"+cau.getNombre()+
+                "', descripcion='"+cau.getDescripcion()+
+                "', codigo_causa='"+codigo+"' WHERE codigo_causa='" + cau.getCodCausa()+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);
@@ -127,10 +113,10 @@ public class DAOMedico {
     * borrar un medico de la tabla.
     * @param cedula la cedula del usuario que se quiere borrar.
     */
-    public int EliminarMedico(String cedula){	
+    public int EliminarCausa(String cedula){	
         String sql_save;
         //sql_save="UPDATE usuario SET estado=false WHERE cedula='" + cedula + "'";
-        sql_save="UPDATE medico SET estado=false WHERE id_medico='"+cedula+"'";
+        sql_save="UPDATE Causa SET estado=false WHERE codigo_causa='"+cedula+"'";
         try{
             Statement statement = conn.createStatement();
 
