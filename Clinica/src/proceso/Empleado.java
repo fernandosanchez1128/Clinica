@@ -1,46 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package proceso;
 
-import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import proceso.Areas;
 
 /**
  *
- * @author fernando
+ * @author Nelson
  */
-public class Empleado implements Serializable {
-   
-   
-    private String idEmpleado;
-    private String cargo;
+
+public class Empleado {
+    private String idEmpleado, cargo, email, idJefe;
     private Integer salario;
-    private String email;
-    private Persona persona;
-    private List<Empleado> empleadoList;
-    private Empleado idJefe;
-    private Areas area;
+    
+    private boolean estado;
 
     public Empleado() {
     }
 
-    public Empleado(String idEmpleado) {
+    public Empleado(String idEmpleado,String cargo, String email,String idJefe,Integer salario, boolean estado) {
         this.idEmpleado = idEmpleado;
+        this.cargo = cargo;
+        this.email = email;
+        this.idJefe = idJefe;
+        this.salario = salario;
+        this.estado = estado;
     }
 
     public String getIdEmpleado() {
@@ -73,25 +55,9 @@ public class Empleado implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
+    }    
 
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
-    public List<Empleado> getEmpleadoList() {
-        return empleadoList;
-    }
-
-    public void setEmpleadoList(List<Empleado> empleadoList) {
-        this.empleadoList = empleadoList;
-    }
-
-    public Empleado getIdJefe() {
+    public String getIdJefe() {
         return idJefe;
     }
     
@@ -103,33 +69,16 @@ public class Empleado implements Serializable {
         return area;
     }
 
-    public void setIdJefe(Empleado idJefe) {
+    public void setIdJefe(String idJefe) {
         this.idJefe = idJefe;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idEmpleado != null ? idEmpleado.hashCode() : 0);
-        return hash;
+    public boolean getEstado() {
+        return estado;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Empleado)) {
-            return false;
-        }
-        Empleado other = (Empleado) object;
-        if ((this.idEmpleado == null && other.idEmpleado != null) || (this.idEmpleado != null && !this.idEmpleado.equals(other.idEmpleado))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "proceso.Empleado[ idEmpleado=" + idEmpleado + " ]";
-    }
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    } 
     
 }
