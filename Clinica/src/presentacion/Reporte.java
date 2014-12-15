@@ -5,6 +5,8 @@
  */
 package presentacion;
 
+import javax.swing.JRadioButton;
+
 /**
  *
  * @author juand
@@ -15,7 +17,7 @@ public class Reporte extends javax.swing.JFrame {
     /**
      * Arreglo con los aspirantes seleccionados y sus datos
      */
-    String[][] seleccionados;
+    String[][] resultado;
     String[] nombre_columnas;
     
     /**
@@ -23,12 +25,21 @@ public class Reporte extends javax.swing.JFrame {
      * @param totalSeleccionados numero total de seleccionados
      * @param seleccion aspirantes seleccionados con sus datos personales
      */
-    public Reporte(String Titulo, String[] columnas, String[][] seleccion) {
+    public Reporte(String Titulo, String[] columnas, String[][] resultado) {
 //        lblTitulo.setText(Titulo);
-        seleccionados=seleccion;
+        this.resultado = resultado;
         nombre_columnas = columnas;
         initComponents();
         iniciaTabla();
+    }
+    public Reporte(String Titulo, String[] columnas, String[][] resultado,int ancho) {
+//        lblTitulo.setText(Titulo);
+        this.resultado = resultado;
+        nombre_columnas = columnas;
+        initComponents();
+        this.setSize(ancho, 400);
+        iniciaTabla();
+        
     }
 
     /**
@@ -94,6 +105,14 @@ public class Reporte extends javax.swing.JFrame {
      * Metodo que se usa para inicializar la tabla con todos los aspirantes seleccionados
      * y el label que informa el numero de seleccionados
      */
+    
+    
+    
+    
+    
+    
+    
+    
     private void iniciaTabla(){
         javax.swing.table.DefaultTableModel modelo;
         modelo = new javax.swing.table.DefaultTableModel();
@@ -101,13 +120,21 @@ public class Reporte extends javax.swing.JFrame {
         for(int i=0; i<nombre_columnas.length; i++){
         modelo.addColumn(nombre_columnas[i]);
         }
-        
-        for(int i=0; i<seleccionados.length; i++){
-            Object[] aspiranteSel = new Object[4];
-            aspiranteSel[0]= seleccionados[i][0];
-            aspiranteSel[1]= seleccionados[i][1];
+        int filas = resultado.length;
+        int columnas = nombre_columnas.length;
+        for(int i=0; i<filas; i++)
+        {
+            Object[] aspiranteSel = new Object[columnas];
+            for(int a=0; a<columnas; a++)
+            {
+                aspiranteSel[a]= resultado[i][a];
+            }
             modelo.addRow(aspiranteSel);
         }
+        
+        
+        
+        
     }
     
 //    /**

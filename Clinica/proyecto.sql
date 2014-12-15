@@ -167,6 +167,8 @@ ALTER TABLE Historia ALTER cod_historia SET DEFAULT nextval('historia_seq');
 -----------------------------------------------------------------------
 
 --Cita ( id_paciente (fk­>persona), id_medico (fk­>persona) ,hora, fecha, tipo,costo)
+DROP SEQUENCE cita_seq;
+CREATE SEQUENCE cita_seq;
 CREATE TABLE Cita(
 id varchar (10) PRIMARY KEY,
 id_paciente VARCHAR (20) NOT NULL, 
@@ -183,6 +185,8 @@ costo INTEGER,
  REFERENCES Medico(id_medico) 
 ON DELETE NO ACTION );
 
+ALTER TABLE Cita ADD COLUMN estado VARCHAR (20) DEFAULT 'Programada';
+ALTER TABLE Cita ALTER id SET DEFAULT nextval('cita_seq');
 -----------------------------------------------------------------------
 
 --Causa( codigo_causa, nombre, descripcion)
