@@ -60,14 +60,6 @@ public class Empleado {
     public String getIdJefe() {
         return idJefe;
     }
-    
-    public void setArea(Areas area ) {
-        this.area = area;
-    }
-
-    public Areas getArea() {
-        return area;
-    }
 
     public void setIdJefe(String idJefe) {
         this.idJefe = idJefe;

@@ -51,7 +51,9 @@ id VARCHAR (15) NOT NULL PRIMARY KEY,
 nombre VARCHAR  (20),
 direccion VARCHAR  (20), 
 telefono VARCHAR  (10) );
-
+CREATE INDEX indice_nombre_medico
+ON Persona
+USING BTREE (nombre);
 -----------------------------------------------------------------------
 
 --Medicamento(cod_medicamento, nombre, descripcion, costo)
@@ -105,9 +107,7 @@ CONSTRAINT Medico_fk FOREIGN KEY (id_medico)
 REFERENCES Persona (id) 
 ON DELETE NO ACTION );
 
-CREATE INDEX indice_nombre_medico
-ON Persona
-USING BTREE (nombre);
+
 -----------------------------------------------------------------------
 
 --Campanna(cod_campanna, nombre, objetivo, fecha_realizacion, id_medico (fk­>medico))
