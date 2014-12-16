@@ -101,6 +101,7 @@ public class CrudCausa extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        ctxtcod.setEnabled(false);
         ctxtcod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ctxtcodActionPerformed(evt);
@@ -108,6 +109,7 @@ public class CrudCausa extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Codigo causa:");
+        jLabel3.setEnabled(false);
 
         jLabel4.setText("Nombre causa:");
 
@@ -306,7 +308,9 @@ public class CrudCausa extends javax.swing.JFrame {
         });
 
         jLabel12.setText("Codigo causa:");
+        jLabel12.setEnabled(false);
 
+        utxtcod.setEnabled(false);
         utxtcod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 utxtcodActionPerformed(evt);
@@ -470,7 +474,8 @@ public class CrudCausa extends javax.swing.JFrame {
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     private void btCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearActionPerformed
-        String codigo=ctxtcod.getText();
+        //String codigo=ctxtcod.getText();
+        String codigo="temp";
         String nombre=ctxtnombre.getText();
         String desc=ctxtdesc.getText();                       
         if(ControlCausa.CrearCausa(codigo, nombre, desc, true)==1){
@@ -591,8 +596,8 @@ public class CrudCausa extends javax.swing.JFrame {
             public void run() {
                 BaseDatos bd = new BaseDatos();
                 Connection c= bd.getConnetion();
-                ControlCausa objcontrol = new ControlCausa();
-                objcontrol.connectDB();
+                ControlCausa objcontrol = new ControlCausa(c);
+                //objcontrol.connectDB();
                 new CrudCausa(objcontrol, c).setVisible(true);
             }
         });

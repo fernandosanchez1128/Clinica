@@ -22,7 +22,7 @@ public class DAOPersona {
     /**
      * constructor, inicializa los atributos.
      */
-    public DAOPersona(){  db=new BaseDatos();  }
+    public DAOPersona(Connection con){  db=new BaseDatos(); conn=con;  }
     
     /**
      * Metodo que permite realizar la conexion a la base de datos

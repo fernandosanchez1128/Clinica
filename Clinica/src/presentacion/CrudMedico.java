@@ -7,6 +7,7 @@ package presentacion;
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlMedico;
 import java.awt.Color;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import proceso.Medico;
 /**
@@ -596,8 +597,9 @@ public class CrudMedico extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 BaseDatos bd = new BaseDatos();
-                ControlMedico objcontrol = new ControlMedico();
-                objcontrol.connectDB();
+                Connection con=bd.getConnetion();
+                ControlMedico objcontrol = new ControlMedico(con);
+                //objcontrol.connectDB();
                 new CrudMedico(objcontrol).setVisible(true);
             }
         });

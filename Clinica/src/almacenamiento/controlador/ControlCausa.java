@@ -13,11 +13,13 @@ import java.sql.Connection;
  */
 public class ControlCausa {
     DaoCausa daocau;
+    Connection con;
     /**
      * En el constructor se crea el DAO
      */
-    public ControlCausa(){
-        daocau=new DaoCausa();
+    public ControlCausa(Connection con){        
+        this.con=con;
+        daocau=new DaoCausa(con);
     }
     public void connectDB(){
         daocau.connectDB();

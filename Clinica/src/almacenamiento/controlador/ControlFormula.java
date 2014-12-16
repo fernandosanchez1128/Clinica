@@ -14,8 +14,8 @@ import java.sql.Connection;
 public class ControlFormula {
     DAOFormula daoForm;
     
-    public ControlFormula(){
-        daoForm = new DAOFormula();
+    public ControlFormula(Connection con){
+        daoForm = new DAOFormula(con);
     }
    
     public void connectDB(){

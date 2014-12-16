@@ -7,6 +7,7 @@ package presentacion;
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlPersona;
 import java.awt.Color;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import proceso.Persona;
 /**
@@ -576,7 +577,7 @@ public class CrudPersona extends javax.swing.JFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         int result=0;
-        String id=utxtid.getText();
+        String id=utxtId.getText();
         String nom=utxtnombre.getText();
         String dir=utxtdir.getText();
         String tel=utxttel.getText();
@@ -672,8 +673,9 @@ public class CrudPersona extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 BaseDatos bd=new BaseDatos();
-                ControlPersona objcontrol = new ControlPersona();
-                objcontrol.connectDB();
+                Connection con=bd.getConnetion();
+                ControlPersona objcontrol = new ControlPersona(con);
+                //objcontrol.connectDB();
                 new CrudPersona(objcontrol).setVisible(true);
             }
         });

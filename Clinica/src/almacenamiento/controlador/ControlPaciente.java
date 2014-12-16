@@ -20,8 +20,8 @@ public class ControlPaciente {
     /**
      * En el constructor se crea el DAO
      */
-    public ControlPaciente(){
-        daopac=new DAOPaciente();
+    public ControlPaciente(Connection con){
+        daopac=new DAOPaciente(con);
     }
     public void connectDB(){
         daopac.connectDB();

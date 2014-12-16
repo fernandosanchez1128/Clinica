@@ -8,6 +8,7 @@ package presentacion;
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlEmpleado;
 import java.awt.Color;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import proceso.Empleado;
 
@@ -54,6 +55,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
         ctxtidjefe = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         txtPass = new javax.swing.JTextField();
+        comboPerfil = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         rtxtIdemp = new javax.swing.JTextField();
@@ -71,6 +73,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
         rtxtidjefe = new javax.swing.JTextField();
         rtxtUsername = new javax.swing.JTextField();
         rtxtPass = new javax.swing.JTextField();
+        rtxtperfil = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         utxtId = new javax.swing.JTextField();
         ubtBuscar = new javax.swing.JButton();
@@ -89,6 +92,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
         utxtIdemp = new javax.swing.JTextField();
         utxtUsername = new javax.swing.JTextField();
         utxtPass = new javax.swing.JTextField();
+        ucomboPerfil = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         dtxtId = new javax.swing.JTextField();
         btEliminar = new javax.swing.JButton();
@@ -145,6 +149,10 @@ public class CrudEmpleado extends javax.swing.JFrame {
         txtPass.setToolTipText("NickName");
         txtPass.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
 
+        comboPerfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPerfil.setToolTipText("Seleccione un perfil de Usuario");
+        comboPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil de Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -176,7 +184,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
                             .addComponent(ctxtemail)
                             .addComponent(ctxtidjefe)))
                     .addComponent(txtUsername)
-                    .addComponent(txtPass))
+                    .addComponent(txtPass)
+                    .addComponent(comboPerfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -205,15 +214,17 @@ public class CrudEmpleado extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(ctxtidjefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbtLimpiar))
-                .addGap(33, 33, 33))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Crear", jPanel1);
@@ -253,13 +264,16 @@ public class CrudEmpleado extends javax.swing.JFrame {
         rtxtPass.setToolTipText("NickName");
         rtxtPass.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
 
+        rtxtperfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil de Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rtxtperfil)
                     .addComponent(jLabel11)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
@@ -318,11 +332,13 @@ public class CrudEmpleado extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(rtxtidjefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rtxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rtxtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rtxtperfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(rbtLimpiar)
                 .addContainerGap())
         );
@@ -372,6 +388,10 @@ public class CrudEmpleado extends javax.swing.JFrame {
         utxtPass.setToolTipText("NickName");
         utxtPass.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
 
+        ucomboPerfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ucomboPerfil.setToolTipText("Seleccione un perfil de Usuario");
+        ucomboPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil de Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11))); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -390,8 +410,6 @@ public class CrudEmpleado extends javax.swing.JFrame {
                             .addComponent(ubtBuscar)))
                     .addComponent(jLabel12)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(utxtPass, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(utxtUsername, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                             .addComponent(jLabel6)
                             .addGap(18, 18, 18)
@@ -408,7 +426,10 @@ public class CrudEmpleado extends javax.swing.JFrame {
                                 .addComponent(utxtemail, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(utxtsalario, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(utxtcargo)
-                                .addComponent(utxtidjefe, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(utxtidjefe, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(utxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(utxtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ucomboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -444,7 +465,9 @@ public class CrudEmpleado extends javax.swing.JFrame {
                 .addComponent(utxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(utxtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ucomboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ubtLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ubtEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -490,7 +513,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEliminar))
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Eliminar", jPanel4);
@@ -531,7 +554,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
         String idjefe=ctxtidjefe.getText();
         String user=txtUsername.getText();
         String pass=txtPass.getText();
-        if(control.CrearEmpleado(IdEmp, cargo, email, idjefe, sal, user, pass, true)==1){
+        String perfil=comboPerfil.getSelectedItem().toString();
+        if(control.CrearEmpleado(IdEmp, cargo, email, idjefe, sal, user, pass,perfil, true)==1){
             JOptionPane.showMessageDialog(null, "Empleado Creado Exitosamente");
         }
         else{
@@ -563,6 +587,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
             rtxtidjefe.setText(emp.getIdJefe());
             rtxtUsername.setText(emp.getUsername());
             rtxtPass.setText(emp.getPassword());
+            rtxtperfil.setText(emp.getPerfil());
         }
     }//GEN-LAST:event_rbtBuscarActionPerformed
 
@@ -575,6 +600,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
         rtxtemail.setText("");
         rtxtUsername.setText(null);
         rtxtPass.setText(null);
+        rtxtperfil.setText(null);
     }//GEN-LAST:event_rbtLimpiarActionPerformed
 
     private void ubtBuscarActionPerformed(java.awt.event.ActionEvent evt) {                                   rtxtIdemp=rtxtIdemp;//GEN-FIRST:event_ubtBuscarActionPerformed
@@ -591,19 +617,22 @@ public class CrudEmpleado extends javax.swing.JFrame {
             utxtidjefe.setText(emp.getIdJefe());
             utxtUsername.setText(emp.getUsername());
             utxtPass.setText(emp.getPassword());
+            ucomboPerfil.setSelectedItem(emp.getPerfil());
+            
         }
     }//GEN-LAST:event_ubtBuscarActionPerformed
 
     private void ubtEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubtEditarActionPerformed
         int result=0;
-        String IdEmp=utxtIdemp.getText();
+        String IdEmp=utxtId.getText();
         int sal=Integer.parseInt(utxtsalario.getText());
         String cargo=utxtcargo.getText();
         String email=utxtemail.getText();
         String idjefe=utxtidjefe.getText();
         String user=utxtUsername.getText();
         String pass=utxtPass.getText();
-        result=control.EditarEmpleado(IdEmp, cargo, email, idjefe, sal, user, pass, true);
+        String perfil=ucomboPerfil.getSelectedItem().toString();
+        result=control.EditarEmpleado(IdEmp, cargo, email, idjefe, sal, user, pass, perfil, true);
         if(result==1){
             JOptionPane.showMessageDialog(null, "Editado Exitosamente");
         }
@@ -621,6 +650,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
         utxtIdemp.setText("");
         utxtUsername.setText(null);
         utxtPass.setText(null);
+        
     }//GEN-LAST:event_ubtLimpiarActionPerformed
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
@@ -669,8 +699,9 @@ public class CrudEmpleado extends javax.swing.JFrame {
        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 BaseDatos bd = new BaseDatos();
-                ControlEmpleado objcontrol = new ControlEmpleado();
-                objcontrol.connectDB();
+                Connection con = bd.getConnetion();
+                ControlEmpleado objcontrol = new ControlEmpleado(con);
+                //objcontrol.connectDB();
                 new CrudEmpleado(objcontrol).setVisible(true);
             }
         });
@@ -680,6 +711,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton btCrear;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton cbtLimpiar;
+    private javax.swing.JComboBox comboPerfil;
     private javax.swing.JTextField ctxtCargo;
     private javax.swing.JTextField ctxtSalario;
     private javax.swing.JTextField ctxtemail;
@@ -721,12 +753,14 @@ public class CrudEmpleado extends javax.swing.JFrame {
     private javax.swing.JTextField rtxtcargo;
     private javax.swing.JTextField rtxtemail;
     private javax.swing.JTextField rtxtidjefe;
+    private javax.swing.JTextField rtxtperfil;
     private javax.swing.JTextField rtxtsalario;
     private javax.swing.JTextField txtPass;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JButton ubtBuscar;
     private javax.swing.JButton ubtEditar;
     private javax.swing.JButton ubtLimpiar;
+    private javax.swing.JComboBox ucomboPerfil;
     private javax.swing.JTextField utxtId;
     private javax.swing.JTextField utxtIdemp;
     private javax.swing.JTextField utxtPass;

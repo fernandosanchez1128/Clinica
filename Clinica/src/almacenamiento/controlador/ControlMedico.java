@@ -17,8 +17,8 @@ public class ControlMedico {
     /**
      * En el constructor se crea el DAO
      */
-    public ControlMedico(){
-        daomed=new DAOMedico();
+    public ControlMedico(Connection con){
+        daomed=new DAOMedico(con);
     }
     public void connectDB(){
         daomed.connectDB();

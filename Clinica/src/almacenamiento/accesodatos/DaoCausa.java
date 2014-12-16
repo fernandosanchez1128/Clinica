@@ -6,6 +6,7 @@
 package almacenamiento.accesodatos;
 import java.sql.*;
 import proceso.Causa;
+import java.sql.Connection;
 /**
  *
  * @author Nelson
@@ -16,7 +17,7 @@ public class DaoCausa {
     /**
      * constructor, inicializa los atributos.
      */
-    public DaoCausa(){ db=new BaseDatos(); }
+    public DaoCausa(Connection con){  db=new BaseDatos(); conn=con; }
     /**
      * Metodo que permite realizar la conexion a la base de datos
      */
@@ -35,8 +36,7 @@ public class DaoCausa {
     public int CrearCausa(Causa cau){
         String sql_save;
         int numRows=0;
-        sql_save="INSERT INTO Causa VALUES ('" + cau.getCodCausa()+ 
-                "' , '" + cau.getNombre()+ 
+        sql_save="INSERT INTO Causa ( nombre, descripcion, estado ) VALUES  (' "+cau.getNombre()+ 
                 "', '" + cau.getDescripcion()+"' , true)";
         try{
             Statement sentencia = conn.createStatement();
@@ -92,7 +92,7 @@ public class DaoCausa {
         String sql_save;
 	sql_save="UPDATE causa SET nombre='"+cau.getNombre()+
                 "', descripcion='"+cau.getDescripcion()+
-                "', codigo_causa='"+codigo+"' WHERE codigo_causa='" + cau.getCodCausa()+ "'";
+                "' WHERE codigo_causa='" + cau.getCodCausa()+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);

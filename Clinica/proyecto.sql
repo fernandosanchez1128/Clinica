@@ -73,6 +73,8 @@ cargo VARCHAR  (20),
 salario INTEGER, 
 email VARCHAR  (35),
  id_jefe VARCHAR  (15),
+nombre_usuario VARCHAR (50),
+password VARCHAR (50),
  estado boolean,
  CONSTRAINT Empleado_fk1 FOREIGN KEY (id_empleado)
  REFERENCES Persona (id) 
@@ -272,3 +274,34 @@ CONSTRAINT Registro_fk3 FOREIGN KEY (cod_medicamento)
 REFERENCES Medicamento(cod_medicamento) 
 ON DELETE NO ACTION);
 ---------
+/** diferencias **/
+ALTER TABLE Areas ADD COLUMN estado BOOLEAN DEFAULT TRUE ;
+ALTER TABLE Cama ADD COLUMN activa BOOLEAN DEFAULT TRUE ;
+ALTER TABLE Medicamento ADD COLUMN estado BOOLEAN DEFAULT TRUE;
+/** cita cambio de estructura **/
+DROP SEQUENCE IF EXISTS cita_seq;
+CREATE SEQUENCE cita_seq;
+DROP TABLE Cita;
+CREATE TABLE Cita(
+id varchar (10) PRIMARY KEY,
+id_paciente VARCHAR (20) NOT NULL, 
+id_medico VARCHAR  (20) NOT NULL, 
+hora TIME NOT NULL,
+fecha DATE NOT NULL,
+tipo VARCHAR (30),
+costo INTEGER,
+ UNIQUE (id_paciente, id_medico, hora, fecha),
+ CONSTRAINT cita_fk1 FOREIGN KEY (id_paciente)
+ REFERENCES Paciente(id_paciente) 
+ ON DELETE NO ACTION,
+ CONSTRAINT cita_fk2 FOREIGN KEY (id_medico)
+ REFERENCES Medico(id_medico) 
+ON DELETE NO ACTION );
+
+ALTER TABLE Cita ADD COLUMN estado VARCHAR (20) DEFAULT 'Programada';
+ALTER TABLE Cita ALTER id SET DEFAULT nextval('cita_seq');
+/** indice para mejora de busqueda **/
+CREATE INDEX indice_nombre_medico
+ON Persona
+USING BTREE (nombre);
+
