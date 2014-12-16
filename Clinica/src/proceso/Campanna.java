@@ -5,50 +5,34 @@
  */
 package proceso;
 
-import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 /**
  *
  * @author fernando
  */
-@Entity
-@Table(name = "campanna")
-@NamedQueries({
-    @NamedQuery(name = "Campanna.findAll", query = "SELECT c FROM Campanna c")})
-public class Campanna implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "cod_campanna")
+public class Campanna {
     private String codCampanna;
-    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "objetivo")
     private String objetivo;
-    @Column(name = "fecha_realizacion")
-    @Temporal(TemporalType.DATE)
-    private Date fechaRealizacion;
-    @JoinColumn(name = "id_medico", referencedColumnName = "id_medico")
-    @ManyToOne(optional = false)
-    private Medico idMedico;
+    private boolean estado;
+    private String fechaRealizacion;
+    private String idMedico;
 
     public Campanna() {
     }
 
     public Campanna(String codCampanna) {
         this.codCampanna = codCampanna;
+    }
+    
+    public Campanna(String nomCam, String idMedico, String obj, String fechaR, boolean estado){
+        nombre=nomCam;
+        this.idMedico=idMedico;
+        objetivo=obj;
+        fechaRealizacion=fechaR;
+        this.estado=estado;
     }
 
     public String getCodCampanna() {
@@ -75,40 +59,28 @@ public class Campanna implements Serializable {
         this.objetivo = objetivo;
     }
 
-    public Date getFechaRealizacion() {
+    public String getFechaRealizacion() {
         return fechaRealizacion;
     }
 
-    public void setFechaRealizacion(Date fechaRealizacion) {
+    public void setFechaRealizacion(String fechaRealizacion) {
         this.fechaRealizacion = fechaRealizacion;
     }
 
-    public Medico getIdMedico() {
+    public String getIdMedico() {
         return idMedico;
     }
 
-    public void setIdMedico(Medico idMedico) {
+    public void setIdMedico(String idMedico) {
         this.idMedico = idMedico;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (codCampanna != null ? codCampanna.hashCode() : 0);
-        return hash;
+    
+    public boolean getEstado(){
+        return estado;
     }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Campanna)) {
-            return false;
-        }
-        Campanna other = (Campanna) object;
-        if ((this.codCampanna == null && other.codCampanna != null) || (this.codCampanna != null && !this.codCampanna.equals(other.codCampanna))) {
-            return false;
-        }
-        return true;
+    
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     @Override
