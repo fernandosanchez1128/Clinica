@@ -28,6 +28,7 @@ public class VistaLogin extends javax.swing.JFrame {
      */
     public VistaLogin() {
         initComponents();
+        System.out.println("Se inicializo la ventana login");
     }
 
     /**
