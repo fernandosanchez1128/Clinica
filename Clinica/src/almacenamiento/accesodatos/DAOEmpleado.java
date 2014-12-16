@@ -40,7 +40,7 @@ public class DAOEmpleado {
                 "', '"+ emp.getIdJefe()+
                 "', '"+ emp.getUsername()+
                 "', '"+ emp.getPassword()+
-                "', '"+ emp.getPerfil()+"' , true)"; ///CONVERTIR DATE
+                "', "+ emp.getPerfil()+" , true)"; ///CONVERTIR DATE
         try{
             Statement sentencia = conn.createStatement();
             numRows = sentencia.executeUpdate(sql_save);           
@@ -82,7 +82,7 @@ public class DAOEmpleado {
                 
                 emp.setPassword(table.getString(7));
                 
-                emp.setPerfil(table.getString(8));
+                emp.setPerfil(table.getInt(8));
                 System.out.println("ok");
             }            
             return emp;
@@ -101,7 +101,7 @@ public class DAOEmpleado {
                 "', salario="+emp.getSalario()+                
                 ", nombre_usuario='"+emp.getUsername()+
                 "', password='"+ emp.getPassword()+
-                "', perfil='"+emp.getPerfil()+"' WHERE id_empleado='" + emp.getIdEmpleado()+ "'";
+                "', perfil="+emp.getPerfil()+" WHERE id_empleado='" + emp.getIdEmpleado()+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);

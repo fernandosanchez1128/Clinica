@@ -272,11 +272,12 @@
             <Component class="javax.swing.JComboBox" name="comboPerfil">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="5">
+                    <StringItem index="0" value="1-Administrador"/>
+                    <StringItem index="1" value="2-Gerente"/>
+                    <StringItem index="2" value="3-M&#xe9;dico"/>
+                    <StringItem index="3" value="4-Secretaria"/>
+                    <StringItem index="4" value="5-Enfermera"/>
                   </StringArray>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Seleccione un perfil de Usuario"/>
@@ -308,40 +309,36 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="rtxtperfil" max="32767" attributes="0"/>
                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="rtxtIdemp" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="rtxtIdemp" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="rtxtId" min="-2" pref="223" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="rbtBuscar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="rbtLimpiar" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel17" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="rtxtId" min="-2" pref="223" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="rbtBuscar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="rtxtemail" alignment="0" pref="220" max="32767" attributes="0"/>
+                                  <Component id="rtxtsalario" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rtxtcargo" max="32767" attributes="0"/>
+                                  <Component id="rtxtidjefe" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="rbtLimpiar" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel17" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="rtxtemail" alignment="0" pref="220" max="32767" attributes="0"/>
-                                      <Component id="rtxtsalario" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="rtxtcargo" max="32767" attributes="0"/>
-                                      <Component id="rtxtidjefe" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="rtxtUsername" max="32767" attributes="0"/>
-                              <Component id="rtxtPass" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="rtxtUsername" alignment="1" max="32767" attributes="0"/>
+                          <Component id="rtxtPass" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="16" max="32767" attributes="0"/>
                   </Group>
@@ -703,11 +700,12 @@
             <Component class="javax.swing.JComboBox" name="ucomboPerfil">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="5">
+                    <StringItem index="0" value="1-Administrador"/>
+                    <StringItem index="1" value="2-Gerente"/>
+                    <StringItem index="2" value="3-M&#xe9;dico"/>
+                    <StringItem index="3" value="4-Secretaria"/>
+                    <StringItem index="4" value="5-Enfermera"/>
                   </StringArray>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Seleccione un perfil de Usuario"/>
@@ -719,6 +717,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ucomboPerfilActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

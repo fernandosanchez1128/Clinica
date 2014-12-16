@@ -149,7 +149,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
         txtPass.setToolTipText("NickName");
         txtPass.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
 
-        comboPerfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPerfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1-Administrador", "2-Gerente", "3-Médico", "4-Secretaria", "5-Enfermera" }));
         comboPerfil.setToolTipText("Seleccione un perfil de Usuario");
         comboPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil de Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11))); // NOI18N
 
@@ -275,32 +275,30 @@ public class CrudEmpleado extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(rtxtperfil)
                     .addComponent(jLabel11)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(18, 18, 18)
-                            .addComponent(rtxtIdemp))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(rtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(rbtBuscar)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(rbtLimpiar)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(rtxtIdemp))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(rtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbtBuscar))
+                    .addComponent(rbtLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel18)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addComponent(jLabel16)
-                                .addComponent(jLabel19))
-                            .addGap(47, 47, 47)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(rtxtemail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                .addComponent(rtxtsalario, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(rtxtcargo)
-                                .addComponent(rtxtidjefe)))
-                        .addComponent(rtxtUsername)
-                        .addComponent(rtxtPass, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addComponent(jLabel18)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel19))
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(rtxtemail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                            .addComponent(rtxtsalario, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rtxtcargo)
+                            .addComponent(rtxtidjefe)))
+                    .addComponent(rtxtUsername, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rtxtPass))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -388,9 +386,14 @@ public class CrudEmpleado extends javax.swing.JFrame {
         utxtPass.setToolTipText("NickName");
         utxtPass.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
 
-        ucomboPerfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ucomboPerfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1-Administrador", "2-Gerente", "3-Médico", "4-Secretaria", "5-Enfermera" }));
         ucomboPerfil.setToolTipText("Seleccione un perfil de Usuario");
         ucomboPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil de Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11))); // NOI18N
+        ucomboPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ucomboPerfilActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -554,7 +557,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
         String idjefe=ctxtidjefe.getText();
         String user=txtUsername.getText();
         String pass=txtPass.getText();
-        String perfil=comboPerfil.getSelectedItem().toString();
+        int perfil=comboPerfil.getSelectedIndex()+1;
         if(control.CrearEmpleado(IdEmp, cargo, email, idjefe, sal, user, pass,perfil, true)==1){
             JOptionPane.showMessageDialog(null, "Empleado Creado Exitosamente");
         }
@@ -587,7 +590,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
             rtxtidjefe.setText(emp.getIdJefe());
             rtxtUsername.setText(emp.getUsername());
             rtxtPass.setText(emp.getPassword());
-            rtxtperfil.setText(emp.getPerfil());
+            rtxtperfil.setText(emp.getPerfil()+"");
         }
     }//GEN-LAST:event_rbtBuscarActionPerformed
 
@@ -631,7 +634,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
         String idjefe=utxtidjefe.getText();
         String user=utxtUsername.getText();
         String pass=utxtPass.getText();
-        String perfil=ucomboPerfil.getSelectedItem().toString();
+        int perfil=ucomboPerfil.getSelectedIndex();
         result=control.EditarEmpleado(IdEmp, cargo, email, idjefe, sal, user, pass, perfil, true);
         if(result==1){
             JOptionPane.showMessageDialog(null, "Editado Exitosamente");
@@ -667,6 +670,10 @@ public class CrudEmpleado extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ucomboPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ucomboPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ucomboPerfilActionPerformed
 
     /**
      * @param args the command line arguments

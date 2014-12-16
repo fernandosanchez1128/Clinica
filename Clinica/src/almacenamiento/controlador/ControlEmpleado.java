@@ -27,7 +27,7 @@ public class ControlEmpleado {
         return daoemp.getConn();
     }
     
-     public int CrearEmpleado(String idEmpleado,String cargo, String email,String idJefe,int salario, String username, String password, String perfil, boolean estado){
+     public int CrearEmpleado(String idEmpleado,String cargo, String email,String idJefe,int salario, String username, String password, int perfil, boolean estado){
         Empleado emp=new Empleado(idEmpleado, cargo, email, idJefe, salario, username, password,perfil, estado);
         int result=daoemp.CrearEmpleado(emp);
         return result;
@@ -39,7 +39,7 @@ public class ControlEmpleado {
         return emp;
     }
     
-    public int EditarEmpleado(String idEmpleado,String cargo, String email,String idJefe,int salario, String username, String password, String perfil,  boolean estado){
+    public int EditarEmpleado(String idEmpleado,String cargo, String email,String idJefe,int salario, String username, String password, int perfil,  boolean estado){
         int result=0;
         Empleado emp=new Empleado(idEmpleado, cargo, email, idJefe, salario, username, password, perfil, estado);
         result=daoemp.ActualizarEmpleado(emp, idEmpleado);
