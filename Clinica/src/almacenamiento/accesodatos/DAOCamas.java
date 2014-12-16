@@ -18,7 +18,8 @@ import proceso.*;
  */
 public class DAOCamas 
 {
-        private BaseDatos db;
+    private int codigo;
+    private BaseDatos db;
     private Connection conn;
     //private Connection conn ;
     public DAOCamas(Connection conect){
@@ -45,24 +46,33 @@ public class DAOCamas
         sql_save = "INSERT INTO Cama (cod_area,descripcion,estado,activa) VALUES ( '"+ cama.getArea().getCodArea()+ "','" + cama.getDescripcion() + "','" 
                  + cama.getEstado()+ "',true );";
         System.out.println(sql_save);
-        try{
+        try
+        {
             Statement sentencia = conn.createStatement();
 
             numRows = sentencia.executeUpdate(sql_save);            
             System.out.println("numRowsDAO: " + numRows);
+            ResultSet table = sentencia.executeQuery("SELECT last_value FROM cama_seq");
+           while (table.next())
+            {
+                codigo = table.getInt("last_value");
+            }
             return numRows;
         }
         catch(SQLException e){
-            
             System.out.println(e); 
             return -2;
         }
         catch(Exception e){ 
-            
             System.out.println(e);
         }
         return -1;
     } 
+    
+    public int getCodigo ()
+    {
+        return codigo;
+    }
     /**
      * Metodo que permite consultar la informacion de una cmaa dado su codigo
      * @param codigo : codigo de la cama
@@ -105,7 +115,7 @@ public class DAOCamas
      * metodo que permite modificar una cama dado su codigo
      * @param codigo codigo de la cama
      * @param med objeto don estan los nuevos datos de la cama.
-     * @return -1 en caso de error , -2 si el Cama ya existe y el numero de filas en caso contrario
+     * @return -1 en caso de error , -2 si el Cama no existe existe y el numero de filas en caso contrario
      */
     
     public int actualizarCamaCod (String codigo, Cama cama){

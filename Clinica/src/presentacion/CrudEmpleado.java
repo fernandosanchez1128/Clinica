@@ -7,6 +7,7 @@ package presentacion;
 
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlEmpleado;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import proceso.Empleado;
 
@@ -20,6 +21,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
      * Creates new form CrudEmpleado
      */
     public CrudEmpleado(ControlEmpleado obj) {
+        getContentPane().setBackground(Color.white);
         initComponents();
         control=obj;
     }

@@ -7,6 +7,7 @@ package presentacion;
 
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlEnfermera;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import proceso.Enfermera;
 
@@ -20,6 +21,7 @@ public class CrudEnfermera extends javax.swing.JFrame {
      * Creates new form CrudEnfermera
      */
     public CrudEnfermera(ControlEnfermera obj) {
+        getContentPane().setBackground(Color.white);
         initComponents();
         control=obj;
     }

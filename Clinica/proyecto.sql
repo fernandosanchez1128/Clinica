@@ -1,4 +1,4 @@
-﻿DROP  TABLE IF EXISTS  Areas  CASCADE;
+DROP  TABLE IF EXISTS  Areas  CASCADE;
 DROP  TABLE IF EXISTS  Cama CASCADE;
 DROP  TABLE IF EXISTS  Persona CASCADE;
 DROP  TABLE IF EXISTS  Medicamento CASCADE;
@@ -18,26 +18,28 @@ DROP  TABLE IF EXISTS  Medicacion CASCADE;
 
 
 --Areas(cod_area , nombre, descripcion)
-DROP SEQUENCE IF EXISTS areas_seq;
+DROP SEQUENCE areas_seq;
 CREATE SEQUENCE areas_seq;
 
 CREATE TABLE Areas(
 cod_area VARCHAR(7) NOT NULL PRIMARY KEY, 
 nombre VARCHAR(50) UNIQUE, 
-descripcion TEXT );
+descripcion TEXT,
+estado BOOLEAN );
 --area999
 ALTER TABLE Areas ALTER cod_area SET DEFAULT nextval('areas_seq');
 -----------------------------------------------------------------------
 
 --Cama(cod_cama, cod_area (fk­>area), descripcion, estado)
-DROP SEQUENCE IF EXISTS cama_seq;
+DROP SEQUENCE cama_seq;
 CREATE SEQUENCE cama_seq;
 CREATE TABLE cama(
 cod_cama VARCHAR(8) NOT NULL PRIMARY KEY, 
 cod_area VARCHAR(7) NOT NULL, 
 descripcion TEXT, 
-estado VARCHAR(15), 
-CONSTRAINT fk_cama FOREIGN KEY (cod_area) references areas(cod_area) 
+estado VARCHAR(15),
+activa  BOOLEAN, 
+CONSTRAINT fk_cama FOREIGN KEY (cod_area) references Areas(cod_area) 
 ON UPDATE NO ACTION ON DELETE NO ACTION ); 
 --cama9999
 ALTER TABLE cama ALTER cod_cama SET DEFAULT nextval('cama_seq');
@@ -48,20 +50,22 @@ CREATE TABLE persona(
 id VARCHAR (15) NOT NULL PRIMARY KEY,
 nombre VARCHAR  (20),
 direccion VARCHAR  (20), 
-telefono VARCHAR  (10),
-estado boolean );
-
+telefono VARCHAR  (10) );
+CREATE INDEX indice_nombre_medico
+ON Persona
+USING BTREE (nombre);
 -----------------------------------------------------------------------
 
 --Medicamento(cod_medicamento, nombre, descripcion, costo)
-DROP SEQUENCE IF EXISTS medicamento_seq;
+DROP SEQUENCE medicamento_seq;
 CREATE SEQUENCE medicamento_seq;
 
 CREATE TABLE Medicamento(
 cod_medicamento VARCHAR (15) NOT NULL PRIMARY KEY, 
 nombre VARCHAR  (20) UNIQUE , 
 descripcion TEXT, 
-costo INTEGER );
+costo INTEGER,
+estado BOOLEAN);
 
 ALTER TABLE Medicamento ALTER cod_medicamento SET DEFAULT nextval('medicamento_seq');
 --Empleado(id_empleado (fk­>persona), cargo, salario, email, id_jefe(fk­>empleado), cod_area)
@@ -73,7 +77,6 @@ cargo VARCHAR  (20),
 salario INTEGER, 
 email VARCHAR  (35),
  id_jefe VARCHAR  (15),
- estado boolean,
  CONSTRAINT Empleado_fk1 FOREIGN KEY (id_empleado)
  REFERENCES Persona (id) 
 ON DELETE NO ACTION,
@@ -86,9 +89,8 @@ ON DELETE NO ACTION );
 CREATE TABLE Paciente(
 id_paciente VARCHAR (15) NOT NULL PRIMARY KEY, 
 num_seguridad_social VARCHAR  (20), 
+fecha_nac date, 
 actividad_economica VARCHAR  (20),
-fecha_nac VARCHAR (30), 
-estado boolean,
  CONSTRAINT Paciente_fk FOREIGN KEY (id_paciente)
  REFERENCES Persona (id) 
 ON DELETE NO ACTION );
@@ -101,15 +103,15 @@ id_medico VARCHAR (15) NOT NULL PRIMARY KEY,
 especialidad VARCHAR  (20), 
 num_licencia  VARCHAR (20), 
 universidad VARCHAR  (20),
-estado boolean,
 CONSTRAINT Medico_fk FOREIGN KEY (id_medico)
-REFERENCES Empleado (id_empleado) 
+REFERENCES Persona (id) 
 ON DELETE NO ACTION );
+
 
 -----------------------------------------------------------------------
 
 --Campanna(cod_campanna, nombre, objetivo, fecha_realizacion, id_medico (fk­>medico))
-DROP SEQUENCE IF EXISTS campanna_seq;
+DROP SEQUENCE campanna_seq;
 CREATE SEQUENCE campanna_seq;
 
 CREATE TABLE Campanna(
@@ -129,13 +131,9 @@ ALTER TABLE Campanna ALTER cod_campanna SET DEFAULT nextval('campanna_seq');
 --Enfermera (id_enfermera (fk­>persona) , experiencia, cod_area (fk­>area))
 CREATE TABLE Enfermera(
 id_enfermera VARCHAR (15) NOT NULL PRIMARY KEY, 
-experiencia integer, 
+experiencia VARCHAR  (20), 
 cod_area  VARCHAR (20) NOT NULL,
-estado boolean,
-CONSTRAINT Enfermera_fk1 FOREIGN KEY (id_enfermera)
-REFERENCES Empleado (id_empleado) 
-ON DELETE NO ACTION,
- CONSTRAINT Enfermera_fk2 FOREIGN KEY (cod_area)
+ CONSTRAINT Enfermera_fk FOREIGN KEY (cod_area)
  REFERENCES Areas (cod_area) 
 ON DELETE NO ACTION );
 
@@ -153,7 +151,7 @@ ON DELETE NO ACTION );
 -----------------------------------------------------------------------
 
 --Historia ( cod_historia, id_paciente (fk­>paciente), fecha_apertura)
-DROP SEQUENCE IF EXISTS historia_seq;
+DROP SEQUENCE historia_seq;
 CREATE SEQUENCE historia_seq;
 
 CREATE TABLE Historia(
@@ -169,14 +167,17 @@ ALTER TABLE Historia ALTER cod_historia SET DEFAULT nextval('historia_seq');
 -----------------------------------------------------------------------
 
 --Cita ( id_paciente (fk­>persona), id_medico (fk­>persona) ,hora, fecha, tipo,costo)
+DROP SEQUENCE cita_seq;
+CREATE SEQUENCE cita_seq;
 CREATE TABLE Cita(
+id varchar (10) PRIMARY KEY,
 id_paciente VARCHAR (20) NOT NULL, 
 id_medico VARCHAR  (20) NOT NULL, 
 hora TIME NOT NULL,
 fecha DATE NOT NULL,
 tipo VARCHAR (30),
 costo INTEGER,
- CONSTRAINT cita_pk PRIMARY KEY (id_paciente, id_medico, hora, fecha),
+ UNIQUE (id_paciente, id_medico, hora, fecha),
  CONSTRAINT cita_fk1 FOREIGN KEY (id_paciente)
  REFERENCES Paciente(id_paciente) 
  ON DELETE NO ACTION,
@@ -184,10 +185,12 @@ costo INTEGER,
  REFERENCES Medico(id_medico) 
 ON DELETE NO ACTION );
 
+ALTER TABLE Cita ADD COLUMN estado VARCHAR (20) DEFAULT 'Programada';
+ALTER TABLE Cita ALTER id SET DEFAULT nextval('cita_seq');
 -----------------------------------------------------------------------
 
 --Causa( codigo_causa, nombre, descripcion)
-DROP SEQUENCE IF EXISTS causa_seq;
+DROP SEQUENCE causa_seq;
 CREATE SEQUENCE causa_seq;
 
 CREATE TABLE Causa(
@@ -270,4 +273,6 @@ ON DELETE NO ACTION,
 CONSTRAINT Registro_fk3 FOREIGN KEY (cod_medicamento)
 REFERENCES Medicamento(cod_medicamento) 
 ON DELETE NO ACTION);
----------
+
+-----------------------------------------------------------------------
+

@@ -7,7 +7,7 @@ package almacenamiento.accesodatos;
 
 /**
  *
- * @author USUARIO
+ * @author Nelson
  */
 import java.sql.*;
 import proceso.Medico;

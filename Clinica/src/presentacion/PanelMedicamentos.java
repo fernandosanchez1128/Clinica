@@ -6,6 +6,7 @@
 package presentacion;
 import presentacion.*;
 import almacenamiento.controlador.*;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import proceso.Medicamento;
@@ -24,6 +25,7 @@ public class PanelMedicamentos extends javax.swing.JFrame {
     private ControladorMedicamento controlMedicamentos;
     private boolean editar_codigo = false;
     private boolean editar_nombre = false;
+    /** contructor usado para prueba ya que crea una conexion **/
     public PanelMedicamentos() {
         valida = new Validador ();
         controlMedicamentos = new ControladorMedicamento();
@@ -31,6 +33,17 @@ public class PanelMedicamentos extends javax.swing.JFrame {
         
         initComponents();
         
+        //adiccion del titulo al frame
+        this.setTitle("Medicamentos");
+        //ajusta el tamaño
+        this.pack();
+        
+    }
+    /** contructor usado en el programa usa la misma conexion **/
+    public PanelMedicamentos(Connection conn) {
+        valida = new Validador ();
+        controlMedicamentos = new ControladorMedicamento(conn);
+        initComponents();
         //adiccion del titulo al frame
         this.setTitle("Medicamentos");
         //ajusta el tamaño
@@ -748,7 +761,9 @@ public class PanelMedicamentos extends javax.swing.JFrame {
         {
             costo = valida.consultarEntero();
             int result = controlMedicamentos.crearMedicamento(nombre, descripcion, costo);
-            if (result == 1) { valida.desplegarMensajeDialogo(this,"el medicamento se ha guardado en la base de datos satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
+            if (result == 1) { 
+                int codigo =  controlMedicamentos.getCodigo();
+                valida.desplegarMensajeDialogo(this,"el medicamento se ha guardado en la base de datos satisfacoriamente \n Codigo : " + codigo,"proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
             if (result == -2) { valida.desplegarMensajeDialogo(this,"el medicamento ya existe","ERROR",JOptionPane.ERROR_MESSAGE );}
             if (result == -1) { valida.desplegarMensajeDialogo(this,"el medicamento no se ha podido registrar","ERROR",JOptionPane.ERROR_MESSAGE );}
         }

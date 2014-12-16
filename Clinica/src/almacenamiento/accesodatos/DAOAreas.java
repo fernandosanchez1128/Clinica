@@ -29,6 +29,8 @@ public class DAOAreas {
         conn = conect; 
         //conn = db.getConnetion();
     }
+    
+    
     public DAOAreas(){
      db = new BaseDatos();
     }
@@ -36,7 +38,7 @@ public class DAOAreas {
         conn = db.getConnetion();
     }
     /**
-     * Metodo que permite crear un Medicament en la base de datos
+     * Metodo que permite crear un Medicamento en la base de datos
      * @param area el area que se va a crear en la base de datos
      * @return -1 en caso de error , -2 si el area ya existe y el numero de filas en caso contrario
      */

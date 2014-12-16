@@ -6,6 +6,7 @@
 package presentacion;
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlPersona;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import proceso.Persona;
 /**
@@ -18,6 +19,7 @@ public class CrudPersona extends javax.swing.JFrame {
      * Creates new form CrudPersona
      */
     public CrudPersona(ControlPersona obj) {
+        getContentPane().setBackground(Color.white);
         initComponents();
         control=obj;
     }

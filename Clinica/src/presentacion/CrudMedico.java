@@ -6,6 +6,7 @@
 package presentacion;
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlMedico;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import proceso.Medico;
 /**
@@ -20,7 +21,15 @@ public class CrudMedico extends javax.swing.JFrame {
      * Creates new form CrearMedico
      */
     public CrudMedico(ControlMedico obj) {
+        getContentPane().setBackground(Color.white);
         initComponents();
+        controlmed=obj;
+    }
+    public CrudMedico(ControlMedico obj, int param) {
+        initComponents();
+        jTabbedPane1.setEnabledAt(1, false);
+        jTabbedPane1.setEnabledAt(2, false);
+        jTabbedPane1.setEnabledAt(3, false);
         controlmed=obj;
     }
 
@@ -81,12 +90,16 @@ public class CrudMedico extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion Medico");
+        setBackground(new java.awt.Color(0, 0, 255));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("GESTIÓN MEDICO");
 
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jTextIdMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +116,7 @@ public class CrudMedico extends javax.swing.JFrame {
         jLabel5.setText("Universidad:");
 
         btLimpiar.setText("Limpiar");
+        btLimpiar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimpiarActionPerformed(evt);
@@ -138,7 +152,7 @@ public class CrudMedico extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTextEspe, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btLimpiar)
+                                .addComponent(btLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextUni)
@@ -171,13 +185,15 @@ public class CrudMedico extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jTextUni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btLimpiar))
+                    .addComponent(btLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Crear", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel7.setText("Consultar Medico");
@@ -268,6 +284,8 @@ public class CrudMedico extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Consultar", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setText("Editar Medico");
@@ -362,6 +380,8 @@ public class CrudMedico extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Editar", jPanel3);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel9.setText("Eliminar Medico");

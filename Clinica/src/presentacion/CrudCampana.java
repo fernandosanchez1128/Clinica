@@ -79,7 +79,7 @@ public class CrudCampana extends javax.swing.JFrame {
         dtxtNomCam = new javax.swing.JTextField();
         btEliminar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("PACIENTE");
         setResizable(false);
 

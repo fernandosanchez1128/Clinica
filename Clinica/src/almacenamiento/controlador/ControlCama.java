@@ -43,6 +43,11 @@ public class ControlCama
         return result;
     }
     
+    public int getCodigo ()
+    {
+        return daoCama.getCodigo();
+    }
+    
     /**
      * Metodo que permite consultar la informacion de  
      * una cama dado su codigo
