@@ -7,9 +7,9 @@ package presentacion;
 
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlCausa;
-import java.util.concurrent.Executors;
 import javax.swing.JOptionPane;
 import proceso.Causa;
+import java.sql.Connection;
 
 /**
  *
@@ -17,12 +17,14 @@ import proceso.Causa;
  */
 public class CrudCausa extends javax.swing.JFrame {
         ControlCausa ControlCausa;
+        Connection con;
     /**
      * Creates new form CrudCausa
      */
-    public CrudCausa(ControlCausa ca) {
+    public CrudCausa(ControlCausa ca, Connection con) {
         initComponents();
         ControlCausa = ca;
+        this.con=con;
     }
 
     /**
@@ -588,9 +590,10 @@ public class CrudCausa extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 BaseDatos bd = new BaseDatos();
+                Connection c= bd.getConnetion();
                 ControlCausa objcontrol = new ControlCausa();
                 objcontrol.connectDB();
-                new CrudCausa(objcontrol).setVisible(true);
+                new CrudCausa(objcontrol, c).setVisible(true);
             }
         });
     }

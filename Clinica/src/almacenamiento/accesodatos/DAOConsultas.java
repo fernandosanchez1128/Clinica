@@ -46,7 +46,7 @@ public class DAOConsultas {
         Consultas con= new Consultas();
         String sql_select;
         
-            sql_select="SELECT Registro.cod_medico, Registro.cod_historia, Registro.cod_causa FROM  Registro WHERE id_medico='" + req +  "'";
+            sql_select="SELECT Registro.cod_medico, Registro.cod_historia, Registro.codigo_causa FROM  Registro WHERE id_medico='" + req +  "'";
         
         try{
             System.out.println("consultando en la bd");

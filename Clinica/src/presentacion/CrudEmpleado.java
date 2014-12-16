@@ -52,6 +52,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         ctxtemail = new javax.swing.JTextField();
         ctxtidjefe = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
+        txtPass = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         rtxtIdemp = new javax.swing.JTextField();
@@ -67,6 +69,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
         rtxtemail = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         rtxtidjefe = new javax.swing.JTextField();
+        rtxtUsername = new javax.swing.JTextField();
+        rtxtPass = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         utxtId = new javax.swing.JTextField();
         ubtBuscar = new javax.swing.JButton();
@@ -83,6 +87,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
         utxtidjefe = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         utxtIdemp = new javax.swing.JTextField();
+        utxtUsername = new javax.swing.JTextField();
+        utxtPass = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         dtxtId = new javax.swing.JTextField();
         btEliminar = new javax.swing.JButton();
@@ -133,15 +139,21 @@ public class CrudEmpleado extends javax.swing.JFrame {
 
         jLabel15.setText("Id_jefe:");
 
+        txtUsername.setToolTipText("NickName");
+        txtUsername.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre de Usuario"));
+
+        txtPass.setToolTipText("NickName");
+        txtPass.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel14)
@@ -162,8 +174,10 @@ public class CrudEmpleado extends javax.swing.JFrame {
                                     .addComponent(ctxtid)
                                     .addComponent(ctxtSalario, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)))
                             .addComponent(ctxtemail)
-                            .addComponent(ctxtidjefe))))
-                .addContainerGap())
+                            .addComponent(ctxtidjefe)))
+                    .addComponent(txtUsername)
+                    .addComponent(txtPass))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,10 +206,14 @@ public class CrudEmpleado extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(ctxtidjefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbtLimpiar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
 
         jTabbedPane1.addTab("Crear", jPanel1);
@@ -229,6 +247,12 @@ public class CrudEmpleado extends javax.swing.JFrame {
 
         jLabel19.setText("Id_jefe:");
 
+        rtxtUsername.setToolTipText("NickName");
+        rtxtUsername.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre de Usuario"));
+
+        rtxtPass.setToolTipText("NickName");
+        rtxtPass.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -246,7 +270,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
                             .addComponent(rtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(rbtBuscar)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(rbtLimpiar)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +284,9 @@ public class CrudEmpleado extends javax.swing.JFrame {
                                 .addComponent(rtxtemail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                                 .addComponent(rtxtsalario, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(rtxtcargo)
-                                .addComponent(rtxtidjefe)))))
+                                .addComponent(rtxtidjefe)))
+                        .addComponent(rtxtUsername)
+                        .addComponent(rtxtPass, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -292,9 +318,13 @@ public class CrudEmpleado extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(rtxtidjefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(rtxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(rtxtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(rbtLimpiar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Consultar", jPanel2);
@@ -336,6 +366,12 @@ public class CrudEmpleado extends javax.swing.JFrame {
 
         jLabel6.setText("Identificacion:");
 
+        utxtUsername.setToolTipText("NickName");
+        utxtUsername.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre de Usuario"));
+
+        utxtPass.setToolTipText("NickName");
+        utxtPass.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -354,6 +390,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
                             .addComponent(ubtBuscar)))
                     .addComponent(jLabel12)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(utxtPass, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(utxtUsername, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                             .addComponent(jLabel6)
                             .addGap(18, 18, 18)
@@ -386,7 +424,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(utxtIdemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(utxtcargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -403,6 +441,10 @@ public class CrudEmpleado extends javax.swing.JFrame {
                     .addComponent(jLabel23)
                     .addComponent(utxtidjefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(utxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(utxtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ubtLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ubtEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -448,7 +490,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEliminar))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(341, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Eliminar", jPanel4);
@@ -487,7 +529,9 @@ public class CrudEmpleado extends javax.swing.JFrame {
         String cargo=ctxtCargo.getText();
         String email=ctxtemail.getText();
         String idjefe=ctxtidjefe.getText();
-        if(control.CrearEmpleado(IdEmp, cargo, email, idjefe, sal, true)==1){
+        String user=txtUsername.getText();
+        String pass=txtPass.getText();
+        if(control.CrearEmpleado(IdEmp, cargo, email, idjefe, sal, user, pass, true)==1){
             JOptionPane.showMessageDialog(null, "Empleado Creado Exitosamente");
         }
         else{
@@ -501,6 +545,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
         ctxtSalario.setText("");
         ctxtemail.setText("");
         ctxtidjefe.setText("");
+        txtUsername.setText(null);
+        txtPass.setText(null);
     }//GEN-LAST:event_cbtLimpiarActionPerformed
 
     private void rbtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtBuscarActionPerformed
@@ -515,6 +561,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
             rtxtsalario.setText(emp.getSalario().toString());
             rtxtemail.setText(emp.getEmail());
             rtxtidjefe.setText(emp.getIdJefe());
+            rtxtUsername.setText(emp.getUsername());
+            rtxtPass.setText(emp.getPassword());
         }
     }//GEN-LAST:event_rbtBuscarActionPerformed
 
@@ -525,6 +573,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
         rtxtsalario.setText("");
         rtxtidjefe.setText("");
         rtxtemail.setText("");
+        rtxtUsername.setText(null);
+        rtxtPass.setText(null);
     }//GEN-LAST:event_rbtLimpiarActionPerformed
 
     private void ubtBuscarActionPerformed(java.awt.event.ActionEvent evt) {                                   rtxtIdemp=rtxtIdemp;//GEN-FIRST:event_ubtBuscarActionPerformed
@@ -539,6 +589,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
             utxtsalario.setText(emp.getSalario().toString());
             utxtemail.setText(emp.getEmail());
             utxtidjefe.setText(emp.getIdJefe());
+            utxtUsername.setText(emp.getUsername());
+            utxtPass.setText(emp.getPassword());
         }
     }//GEN-LAST:event_ubtBuscarActionPerformed
 
@@ -549,7 +601,9 @@ public class CrudEmpleado extends javax.swing.JFrame {
         String cargo=utxtcargo.getText();
         String email=utxtemail.getText();
         String idjefe=utxtidjefe.getText();
-        result=control.EditarEmpleado(IdEmp, cargo, email, idjefe, sal, true);
+        String user=utxtUsername.getText();
+        String pass=utxtPass.getText();
+        result=control.EditarEmpleado(IdEmp, cargo, email, idjefe, sal, user, pass, true);
         if(result==1){
             JOptionPane.showMessageDialog(null, "Editado Exitosamente");
         }
@@ -565,6 +619,8 @@ public class CrudEmpleado extends javax.swing.JFrame {
         utxtidjefe.setText("");
         utxtemail.setText("");
         utxtIdemp.setText("");
+        utxtUsername.setText(null);
+        utxtPass.setText(null);
     }//GEN-LAST:event_ubtLimpiarActionPerformed
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
@@ -660,15 +716,21 @@ public class CrudEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton rbtLimpiar;
     private javax.swing.JTextField rtxtId;
     private javax.swing.JTextField rtxtIdemp;
+    private javax.swing.JTextField rtxtPass;
+    private javax.swing.JTextField rtxtUsername;
     private javax.swing.JTextField rtxtcargo;
     private javax.swing.JTextField rtxtemail;
     private javax.swing.JTextField rtxtidjefe;
     private javax.swing.JTextField rtxtsalario;
+    private javax.swing.JTextField txtPass;
+    private javax.swing.JTextField txtUsername;
     private javax.swing.JButton ubtBuscar;
     private javax.swing.JButton ubtEditar;
     private javax.swing.JButton ubtLimpiar;
     private javax.swing.JTextField utxtId;
     private javax.swing.JTextField utxtIdemp;
+    private javax.swing.JTextField utxtPass;
+    private javax.swing.JTextField utxtUsername;
     private javax.swing.JTextField utxtcargo;
     private javax.swing.JTextField utxtemail;
     private javax.swing.JTextField utxtidjefe;

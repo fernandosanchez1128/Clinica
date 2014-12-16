@@ -37,7 +37,9 @@ public class DAOEmpleado {
                 "' , '" + emp.getCargo()+ 
                 "', " + emp.getSalario()+  
                 ", '" + emp.getEmail()+ 
-                "', '"+ emp.getIdJefe()+"' , true)"; ///CONVERTIR DATE
+                "', '"+ emp.getIdJefe()+
+                "', '"+ emp.getUsername()+
+                "', '"+ emp.getPassword()+"' , true)"; ///CONVERTIR DATE
         try{
             Statement sentencia = conn.createStatement();
             numRows = sentencia.executeUpdate(sql_save);           
@@ -57,7 +59,7 @@ public class DAOEmpleado {
     public Empleado LeerEmpleado(String req){
         Empleado emp= new Empleado();
         String sql_select;
-        sql_select="SELECT Empleado.Id_empleado, Empleado.Cargo, Empleado.salario,Empleado.email,Empleado.id_jefe FROM  Empleado WHERE id_empleado='" + req +  "' and estado=true";
+        sql_select="SELECT Id_empleado, Cargo, salario,email,id_jefe,nombre_usuario,password FROM  Empleado WHERE id_empleado='" + req +  "' and estado=true";
         try{
             System.out.println("consultando en la bd");
             Statement statement = conn.createStatement();
@@ -74,6 +76,10 @@ public class DAOEmpleado {
                 emp.setEmail(table.getString(4));
                 
                 emp.setIdJefe(table.getString(5));
+                
+                emp.setUsername(table.getString(6));
+                
+                emp.setPassword(table.getString(7));
                 System.out.println("ok");
             }            
             return emp;
@@ -89,7 +95,9 @@ public class DAOEmpleado {
 	sql_save="UPDATE Empleado SET cargo='"+emp.getCargo()+
                 "', email='"+emp.getEmail()+
                 "', id_jefe='"+emp.getIdJefe()+
-                "', salario="+emp.getSalario()+" WHERE id_empleado='" + emp.getIdEmpleado()+ "'";
+                "', salario="+emp.getSalario()+                
+                ", nombre_usuario='"+emp.getUsername()+
+                "', password='"+ emp.getPassword()+"' WHERE id_empleado='" + emp.getIdEmpleado()+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);
