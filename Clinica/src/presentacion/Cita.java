@@ -299,39 +299,36 @@ public class Cita extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addComponent(descripcion_area3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(39, 39, 39)
+                            .addComponent(tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addComponent(descripcion_area4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(38, 38, 38)
+                            .addComponent(costo))
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nombre_area, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(descripcion_area, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(descripcion_area2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(descripcion_area1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(48, 48, 48)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cedula_paciente)
+                                    .addComponent(cedula_medico, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addComponent(descripcion_area3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(39, 39, 39)
-                                    .addComponent(tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addComponent(descripcion_area4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(38, 38, 38)
-                                    .addComponent(costo))
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nombre_area, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(descripcion_area, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(descripcion_area2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(descripcion_area1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(48, 48, 48)
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cedula_paciente)
-                                            .addComponent(cedula_medico, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel7Layout.createSequentialGroup()
-                                            .addComponent(combo_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(16, 16, 16)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(combo_minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(6, 6, 6))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                                    .addComponent(combo_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(16, 16, 16)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(combo_minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(6, 6, 6))))
+                .addGap(89, 89, 89))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,35 +375,37 @@ public class Cita extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel2))
+                        .addGap(236, 236, 236)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                        .addComponent(jLabel4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -421,7 +420,7 @@ public class Cita extends javax.swing.JFrame {
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -529,7 +528,7 @@ public class Cita extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,7 +550,7 @@ public class Cita extends javax.swing.JFrame {
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 325, Short.MAX_VALUE))
+                .addGap(0, 295, Short.MAX_VALUE))
         );
         jLayeredPane2.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -568,90 +567,11 @@ public class Cita extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buscarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMedicoActionPerformed
-        // TODO add your handling code here:
-        String[] columnas = {"ID", "NOMBRE"};
-        String nombre = nombre_medico.getText();
-        if (valida.ValidaVacios(rootPane, nombre, "nombre"));
-        {
-            String[][] resultado = daoCitas.BuscarMedico(nombre);
-            if(resultado==null){
-                JOptionPane.showMessageDialog(this, "No hay medico con ese nombre","Error!",JOptionPane.ERROR_MESSAGE);
-            }else{
-                
-                Reporte rep_medicos =  new Reporte("Medicos", columnas, resultado);
-                rep_medicos.setVisible(true);
-            }
-        }
-    }//GEN-LAST:event_buscarMedicoActionPerformed
-
-    private void combo_minutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_minutosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_minutosActionPerformed
-
-    private void combo_horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_horaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_horaActionPerformed
-
-    private void cedula_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedula_medicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cedula_medicoActionPerformed
-
-    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        // TODO add your handling code here:
-        boolean validacion = true;
-        String  id_paciente, id_medico,fecha_cita, tipo_cita;
-        int costo_cita,hora,minutos;
-        id_paciente = cedula_paciente.getText();
-        id_medico = cedula_medico.getText();
-        fecha_cita = fecha.getText();
-        tipo_cita = tipo.getSelectedItem().toString();
-
-        validacion = validacion && valida.capturarEntero(this, id_paciente, "Cedula Paciente");
-        validacion = validacion && valida.capturarEntero(this, id_medico, "Cedula Medico");
-        validacion = validacion && valida.ValidaVacios(this, fecha_cita, "Fecha");
-        validacion = validacion && valida.ValidaVacios(this, tipo_cita, "Tipo");
-        validacion = validacion && valida.capturarEntero(this,costo.getText() , "Costo");
-        costo_cita = valida.consultarEntero();
-        validacion = validacion && valida.capturarEntero(this, combo_hora.getSelectedItem().toString(), "Hora");
-        hora = valida.consultarEntero();
-        validacion = validacion && valida.capturarEntero(this, combo_minutos.getSelectedItem().toString(), "Minutos");
-        minutos = valida.consultarEntero();
-        if (validacion)
-        {
-            int [] []citas_medico = daoCitas.ConsultarDisponibilidad(id_paciente,id_medico, hora, minutos,fecha_cita);
-            
-            if ((citas_medico [0] [0] == 0) && (citas_medico [0] [1] == 0))
-            {
-                String hora_char = Integer.toString(hora) + ":"+ Integer.toString(minutos);
-                int result =  daoCitas.crearCita(id_paciente, id_medico,hora_char , fecha_cita, tipo_cita, costo_cita);
-                if (result == 1) { valida.desplegarMensajeDialogo(this,"La Cita ha sido registrada con exito","Proceso Exitoso",JOptionPane.INFORMATION_MESSAGE );}
-                if (result == -2) { valida.desplegarMensajeDialogo(this,"La cita no ha podido ser registrada. Medico o Paciente no Existen en la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE );}
-                if (result == -1) { valida.desplegarMensajeDialogo(this,"Error interno la cita no ha sido programada","ERROR",JOptionPane.ERROR_MESSAGE );}
-
-            }
-            else {
-                    if (citas_medico [0] [0] > 0)
-                    {
-                                valida.desplegarMensajeDialogo(this,"el medico ya tiene asignada una cita para ese horario","ERROR",JOptionPane.ERROR_MESSAGE );
-                    }
-                    else 
-                    {
-                        valida.desplegarMensajeDialogo(this,"el paciente ya tiene asignada una cita para ese horario","ERROR",JOptionPane.ERROR_MESSAGE );
-                    }
-                }
-        }
-    }//GEN-LAST:event_crearActionPerformed
-
-    private void nombre_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_medicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombre_medicoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -689,24 +609,69 @@ public class Cita extends javax.swing.JFrame {
                 }
             }
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cedula_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedula_consultaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cedula_consultaActionPerformed
 
-    private void combo_hora_disponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_hora_disponibilidadActionPerformed
+    private void combo_horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_horaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combo_hora_disponibilidadActionPerformed
+    }//GEN-LAST:event_combo_horaActionPerformed
 
-    private void combo_minutos_disponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_minutos_disponibilidadActionPerformed
+    private void cedula_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedula_medicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combo_minutos_disponibilidadActionPerformed
+    }//GEN-LAST:event_cedula_medicoActionPerformed
 
-    private void fecha_disponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha_disponibilidadActionPerformed
+    private void combo_minutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_minutosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fecha_disponibilidadActionPerformed
+    }//GEN-LAST:event_combo_minutosActionPerformed
+
+    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
+        // TODO add your handling code here:
+        boolean validacion = true;
+        String  id_paciente, id_medico,fecha_cita, tipo_cita;
+        int costo_cita,hora,minutos;
+        id_paciente = cedula_paciente.getText();
+        id_medico = cedula_medico.getText();
+        fecha_cita = fecha.getText();
+        tipo_cita = tipo.getSelectedItem().toString();
+
+        validacion = validacion && valida.capturarEntero(this, id_paciente, "Cedula Paciente");
+        validacion = validacion && valida.capturarEntero(this, id_medico, "Cedula Medico");
+        validacion = validacion && valida.ValidaVacios(this, fecha_cita, "Fecha");
+        validacion = validacion && valida.ValidaVacios(this, tipo_cita, "Tipo");
+        validacion = validacion && valida.capturarEntero(this,costo.getText() , "Costo");
+        costo_cita = valida.consultarEntero();
+        validacion = validacion && valida.capturarEntero(this, combo_hora.getSelectedItem().toString(), "Hora");
+        hora = valida.consultarEntero();
+        validacion = validacion && valida.capturarEntero(this, combo_minutos.getSelectedItem().toString(), "Minutos");
+        minutos = valida.consultarEntero();
+        if (validacion)
+        {
+            int [] []citas_medico = daoCitas.ConsultarDisponibilidad(id_paciente,id_medico, hora, minutos,fecha_cita);
+
+            if ((citas_medico [0] [0] == 0) && (citas_medico [0] [1] == 0))
+            {
+                String hora_char = Integer.toString(hora) + ":"+ Integer.toString(minutos);
+                int result =  daoCitas.crearCita(id_paciente, id_medico,hora_char , fecha_cita, tipo_cita, costo_cita);
+                if (result == 1) { valida.desplegarMensajeDialogo(this,"La Cita ha sido registrada con exito","Proceso Exitoso",JOptionPane.INFORMATION_MESSAGE );}
+                if (result == -2) { valida.desplegarMensajeDialogo(this,"La cita no ha podido ser registrada. Medico o Paciente no Existen en la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE );}
+                if (result == -1) { valida.desplegarMensajeDialogo(this,"Error interno la cita no ha sido programada","ERROR",JOptionPane.ERROR_MESSAGE );}
+
+            }
+            else {
+                if (citas_medico [0] [0] > 0)
+                {
+                    valida.desplegarMensajeDialogo(this,"el medico ya tiene asignada una cita para ese horario","ERROR",JOptionPane.ERROR_MESSAGE );
+                }
+                else
+                {
+                    valida.desplegarMensajeDialogo(this,"el paciente ya tiene asignada una cita para ese horario","ERROR",JOptionPane.ERROR_MESSAGE );
+                }
+            }
+        }
+    }//GEN-LAST:event_crearActionPerformed
 
     private void consultar_DisponibiidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_DisponibiidadActionPerformed
         // TODO add your handling code here:
@@ -729,12 +694,45 @@ public class Cita extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No hay medico disponibles para ese horario","Error!",JOptionPane.ERROR_MESSAGE);
             }
             else
-            {        
-                    Reporte rep_medicos =  new Reporte("Medicos", columnas, resultado);
-                    rep_medicos.setVisible(true);
+            {
+                Reporte rep_medicos =  new Reporte("Medicos", columnas, resultado);
+                rep_medicos.setVisible(true);
             }
         }
     }//GEN-LAST:event_consultar_DisponibiidadActionPerformed
+
+    private void fecha_disponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha_disponibilidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fecha_disponibilidadActionPerformed
+
+    private void combo_minutos_disponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_minutos_disponibilidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_minutos_disponibilidadActionPerformed
+
+    private void combo_hora_disponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_hora_disponibilidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_hora_disponibilidadActionPerformed
+
+    private void nombre_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_medicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombre_medicoActionPerformed
+
+    private void buscarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMedicoActionPerformed
+        // TODO add your handling code here:
+        String[] columnas = {"ID", "NOMBRE"};
+        String nombre = nombre_medico.getText();
+        if (valida.ValidaVacios(rootPane, nombre, "nombre"));
+        {
+            String[][] resultado = daoCitas.BuscarMedico(nombre);
+            if(resultado==null){
+                JOptionPane.showMessageDialog(this, "No hay medico con ese nombre","Error!",JOptionPane.ERROR_MESSAGE);
+            }else{
+
+                Reporte rep_medicos =  new Reporte("Medicos", columnas, resultado);
+                rep_medicos.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_buscarMedicoActionPerformed
 
     /**
      * @param args the command line arguments
