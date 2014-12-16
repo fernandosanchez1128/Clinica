@@ -8,6 +8,7 @@ package presentacion;
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlPaciente;
 import java.awt.Color;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import proceso.Paciente;
 /**
@@ -559,8 +560,9 @@ public class CrudPaciente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 BaseDatos bd = new BaseDatos();
-                ControlPaciente objcontrol = new ControlPaciente();
-                objcontrol.connectDB();
+                Connection con=bd.getConnetion();
+                ControlPaciente objcontrol = new ControlPaciente(con);
+                //objcontrol.connectDB();
                 new CrudPaciente(objcontrol).setVisible(true);
             }
         });

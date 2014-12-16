@@ -8,6 +8,7 @@ package presentacion;
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlEnfermera;
 import java.awt.Color;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import proceso.Enfermera;
 
@@ -518,8 +519,9 @@ public class CrudEnfermera extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 BaseDatos bd = new BaseDatos();
-                ControlEnfermera objcontrol = new ControlEnfermera();
-                objcontrol.connectDB();
+                Connection con = bd.getConnetion();
+                ControlEnfermera objcontrol = new ControlEnfermera(con);
+                //objcontrol.connectDB();
                 new CrudEnfermera(objcontrol).setVisible(true);
             }
         });

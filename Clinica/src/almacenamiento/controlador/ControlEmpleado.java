@@ -17,8 +17,8 @@ public class ControlEmpleado {
     /**
      * En el constructor se crea el DAO
      */
-    public ControlEmpleado(){
-        daoemp=new DAOEmpleado();
+    public ControlEmpleado(Connection con){
+        daoemp=new DAOEmpleado(con);
     }
     public void connectDB(){
         daoemp.connectDB();
@@ -27,8 +27,8 @@ public class ControlEmpleado {
         return daoemp.getConn();
     }
     
-     public int CrearEmpleado(String idEmpleado,String cargo, String email,String idJefe,int salario, String username, String password, boolean estado){
-        Empleado emp=new Empleado(idEmpleado, cargo, email, idJefe, salario, username, password, estado);
+     public int CrearEmpleado(String idEmpleado,String cargo, String email,String idJefe,int salario, String username, String password, String perfil, boolean estado){
+        Empleado emp=new Empleado(idEmpleado, cargo, email, idJefe, salario, username, password,perfil, estado);
         int result=daoemp.CrearEmpleado(emp);
         return result;
     }
@@ -39,9 +39,9 @@ public class ControlEmpleado {
         return emp;
     }
     
-    public int EditarEmpleado(String idEmpleado,String cargo, String email,String idJefe,int salario, String username, String password,  boolean estado){
+    public int EditarEmpleado(String idEmpleado,String cargo, String email,String idJefe,int salario, String username, String password, String perfil,  boolean estado){
         int result=0;
-        Empleado emp=new Empleado(idEmpleado, cargo, email, idJefe, salario, username, password,  estado);
+        Empleado emp=new Empleado(idEmpleado, cargo, email, idJefe, salario, username, password, perfil, estado);
         result=daoemp.ActualizarEmpleado(emp, idEmpleado);
         return result;
     }

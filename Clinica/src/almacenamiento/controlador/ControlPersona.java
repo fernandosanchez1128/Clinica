@@ -17,8 +17,8 @@ public class ControlPersona {
     /**
      * En el constructor se crea el DAO
      */
-    public ControlPersona(){
-        daoper=new DAOPersona();
+    public ControlPersona(Connection con){
+        daoper=new DAOPersona(con);
     }
     public void connectDB(){
         daoper.connectDB();

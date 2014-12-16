@@ -14,8 +14,8 @@ import java.sql.Connection;
 public class ControlConsulta {
     DAOConsultas daoCons;
     
-    public ControlConsulta(){
-        daoCons = new DAOConsultas();
+    public ControlConsulta(Connection con){
+        daoCons = new DAOConsultas(con);
     }
    
     public void connectDB(){

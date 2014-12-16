@@ -15,8 +15,8 @@ import java.sql.Connection;
 
 public class ControlEnfermera {
     DAOEnfermera daoenf;
-    public ControlEnfermera(){
-        daoenf=new DAOEnfermera();
+    public ControlEnfermera(Connection con){
+        daoenf=new DAOEnfermera(con);
     }
     public void connectDB(){
         daoenf.connectDB();

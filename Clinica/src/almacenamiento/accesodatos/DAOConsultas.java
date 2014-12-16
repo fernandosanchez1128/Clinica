@@ -13,7 +13,7 @@ import proceso.Consultas;
 public class DAOConsultas {
     private BaseDatos db;
     Connection conn ;
-    public DAOConsultas(){db=new BaseDatos();}
+    public DAOConsultas(Connection con){db=new BaseDatos(); conn=con;}
     public void connectDB(){
         conn = db.getConnetion();
     }

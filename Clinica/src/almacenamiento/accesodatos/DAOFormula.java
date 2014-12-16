@@ -13,7 +13,7 @@ import proceso.Formula;
 public class DAOFormula {
     private BaseDatos db;
     Connection conn ;
-    public DAOFormula(){db=new BaseDatos();}
+    public DAOFormula(Connection con){db=new BaseDatos(); conn=con;}
     public void connectDB(){
         conn = db.getConnetion();
     }

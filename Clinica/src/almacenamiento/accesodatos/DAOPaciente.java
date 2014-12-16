@@ -17,7 +17,7 @@ public class DAOPaciente {
     /**
      * constructor, inicializa los atributos.
      */
-    public DAOPaciente(){  db=new BaseDatos();  }
+    public DAOPaciente(Connection con){  db=new BaseDatos();conn=con;  }
     
     /**
      * Metodo que permite realizar la conexion a la base de datos

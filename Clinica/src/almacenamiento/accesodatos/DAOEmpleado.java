@@ -18,7 +18,7 @@ public class DAOEmpleado {
     /**
      * constructor, inicializa los atributos.
      */
-    public DAOEmpleado(){  db=new BaseDatos();  }
+    public DAOEmpleado(Connection con){ db=new BaseDatos();  conn=con;  }
     
     /**
      * Metodo que permite realizar la conexion a la base de datos
@@ -39,7 +39,8 @@ public class DAOEmpleado {
                 ", '" + emp.getEmail()+ 
                 "', '"+ emp.getIdJefe()+
                 "', '"+ emp.getUsername()+
-                "', '"+ emp.getPassword()+"' , true)"; ///CONVERTIR DATE
+                "', '"+ emp.getPassword()+
+                "', '"+ emp.getPerfil()+"' , true)"; ///CONVERTIR DATE
         try{
             Statement sentencia = conn.createStatement();
             numRows = sentencia.executeUpdate(sql_save);           
@@ -59,7 +60,7 @@ public class DAOEmpleado {
     public Empleado LeerEmpleado(String req){
         Empleado emp= new Empleado();
         String sql_select;
-        sql_select="SELECT Id_empleado, Cargo, salario,email,id_jefe,nombre_usuario,password FROM  Empleado WHERE id_empleado='" + req +  "' and estado=true";
+        sql_select="SELECT Id_empleado, Cargo, salario,email,id_jefe,nombre_usuario,password, perfil FROM  Empleado WHERE id_empleado='" + req +  "' and estado=true";
         try{
             System.out.println("consultando en la bd");
             Statement statement = conn.createStatement();
@@ -80,6 +81,8 @@ public class DAOEmpleado {
                 emp.setUsername(table.getString(6));
                 
                 emp.setPassword(table.getString(7));
+                
+                emp.setPerfil(table.getString(8));
                 System.out.println("ok");
             }            
             return emp;
@@ -97,7 +100,8 @@ public class DAOEmpleado {
                 "', id_jefe='"+emp.getIdJefe()+
                 "', salario="+emp.getSalario()+                
                 ", nombre_usuario='"+emp.getUsername()+
-                "', password='"+ emp.getPassword()+"' WHERE id_empleado='" + emp.getIdEmpleado()+ "'";
+                "', password='"+ emp.getPassword()+
+                "', perfil='"+emp.getPerfil()+"' WHERE id_empleado='" + emp.getIdEmpleado()+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);

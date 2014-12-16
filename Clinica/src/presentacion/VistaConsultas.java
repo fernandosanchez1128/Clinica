@@ -5,8 +5,10 @@
  */
 package presentacion;
 
+import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlConsulta;
 import java.awt.Color;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import proceso.Medico;
 
@@ -19,10 +21,12 @@ public class VistaConsultas extends javax.swing.JFrame {
     /**
      * Creates new form VistaConsultas
      */
-    public VistaConsultas(Medico med) {
+    Connection con;
+    public VistaConsultas(Medico med,Connection con) {
         getContentPane().setBackground(Color.white);
         initComponents();
         txtId.setText(med.getIdMedico());
+        this.con=con;
     }
 
     /**
@@ -148,7 +152,7 @@ public class VistaConsultas extends javax.swing.JFrame {
         String his=txtHistoria.getText();
         String causa=txtCausa.getText();
         System.out.println("Datos: "+id+" "+his+" "+causa);
-        ControlConsulta control= new ControlConsulta();
+        ControlConsulta control= new ControlConsulta(con);
         //control.CrearConsultas(id, his, causa);
         if(control.CrearConsultas(id, his, causa)==1){
             JOptionPane.showMessageDialog(null, "Registro Creado Exitosamente");    
@@ -190,7 +194,9 @@ public class VistaConsultas extends javax.swing.JFrame {
             public void run() {
                 Medico m=new Medico();
                 m.setIdMedico("1144180");
-                new VistaConsultas( m).setVisible(true);
+                BaseDatos bd = new BaseDatos();
+                Connection con=bd.getConnetion();
+                new VistaConsultas( m, con).setVisible(true);
             }
         });
     }

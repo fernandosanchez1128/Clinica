@@ -22,7 +22,7 @@ public class DAOMedico {
     /**
      * constructor, inicializa los atributos.
      */
-    public DAOMedico(){ db=new BaseDatos(); }
+    public DAOMedico(Connection con){ db=new BaseDatos(); conn=con; }
     /**
      * Metodo que permite realizar la conexion a la base de datos
      */

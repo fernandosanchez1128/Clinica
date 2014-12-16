@@ -5,8 +5,10 @@
  */
 package presentacion;
 
+import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlFormula;
 import java.awt.Color;
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,10 +26,12 @@ public class VistaFormulas extends javax.swing.JFrame {
     /**
      * Creates new form VistaFormulas
      */
-    public VistaFormulas(Medico med) {
+    Connection con;
+    public VistaFormulas(Medico med, Connection con) {
         getContentPane().setBackground(Color.white);
         initComponents();
         txtId.setText(med.getIdMedico());
+        this.con=con;
     }
 
     /**
@@ -182,7 +186,7 @@ public class VistaFormulas extends javax.swing.JFrame {
         int Cantidad=Integer.parseInt(SpinnerCantidad.getValue().toString());       
         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("DD/MM/YYYY");
         Date f=formatoDelTexto.parse(fecha);
-        ControlFormula ff=new ControlFormula();
+        ControlFormula ff=new ControlFormula(con);
         if((ff.CrearFormulas(idMedico, historia, Medicamento, Cantidad, fecha, Precio))==1){
             JOptionPane.showMessageDialog(null, "Se registro Medicacion Exitosamente");
             System.out.println("Datos:"+idMedico+historia+Medicamento+fecha+Precio+Cantidad);
@@ -233,7 +237,9 @@ public class VistaFormulas extends javax.swing.JFrame {
             public void run() {
                 Medico m=new Medico();
                 m.setIdMedico("1144180");
-                new VistaFormulas(m).setVisible(true);
+                BaseDatos bd=new BaseDatos();
+                Connection con=bd.getConnetion();
+                new VistaFormulas(m, con).setVisible(true);
             }
         });
     }

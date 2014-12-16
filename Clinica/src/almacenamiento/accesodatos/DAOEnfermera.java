@@ -22,7 +22,7 @@ public class DAOEnfermera {
     /**
      * constructor, inicializa los atributos.
      */
-    public DAOEnfermera(){  db=new BaseDatos();  }
+    public DAOEnfermera(Connection con){ db=new BaseDatos();  conn=con;  }
     
     /**
      * Metodo que permite realizar la conexion a la base de datos
