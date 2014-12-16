@@ -154,5 +154,76 @@ public class DAOMedico {
         db.closeConection(db.getConnetion());
     }
     
+    /** metodo que permite consultar la programacion en un mes de un medico
+     * @param id_medico : cedula del medico.
+     * @param mes : mes en que se va a ver la agenda del medico.en numero
+     * @param ano : ano de la consulta numero.
+     * @return String [] [] con los datos de las citas que tiene programadas e doctor para ese mes.
+     * null en caso de no haber citas programadas para ese mes.
+     */
+    public String[][] agendaMedico (String id_medico, String mes,String ano ){	
+        String sql_consult;
+        String fecha_ini, fecha_fin;
+        String [] [] resultado = null;
+        String dia_final;
+        int mes_entero = Integer.parseInt(mes);
+        switch (mes_entero)
+        {
+            case 2 : dia_final = "28"; break;
+            case 4 : dia_final = "30"; break;
+            case 6 : dia_final = "30"; break;
+            case 9 : dia_final = "30"; break;
+            case 11 : dia_final = "30"; break;
+            default : dia_final= "31"; break;
+        }
+        fecha_ini = ano +"-"+ mes + "-01";
+        fecha_fin = ano+ "-" + mes + "-" + dia_final;
+        sql_consult = "SELECT DISTINCT C.id,id_paciente, P.nombre,fecha, hora,tipo FROM " +  
+        "Cita C, Persona P  WHERE id_medico = '" + id_medico + "' AND C.estado = 'Programada' AND "
+                + "fecha BETWEEN ' " +fecha_ini+ "' AND '" +fecha_fin+ "' AND C.id_paciente = P.id;";
+        // System.out.println(sql_consult);
+        
+        try{
+            
+             Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet table = statement.executeQuery(sql_consult);
+            int i = 0;
+            table.last();
+            int filas = table.getRow();
+            if (filas !=0) {resultado = new String [filas][7];}
+            table.first();
+            table.previous();
+            while (table.next ())
+            {
+                resultado [i][0] = table.getString(1);
+                resultado [i][1] = table.getString(2);
+                resultado [i][2] = table.getString(3);
+                resultado [i][3] = table.getString(4);
+                resultado [i][4] = table.getString(5);
+                resultado [i][5] = table.getString(6);
+                i++;
+            }
+            
+            /*for (int a = 0; a <7; a++) {
+            //modelo.addRow(datos[i]);
+            System.out.println(resultado[a][1]);
+            }*/
+        
+            
+        }
+        catch(SQLException e){
+            System.out.println(e);
+            resultado = new String [1][1];
+            resultado [0][0] = null;
+        }
+        catch(Exception e){ 
+            System.out.println(e);
+            resultado = new String [1][1];
+            resultado [0][0] = null;
+        }
+        return resultado;
+        
+    }
+    
     
 }
