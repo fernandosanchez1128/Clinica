@@ -19,6 +19,7 @@ import proceso.*;
  */
 public class DAOMedicamento {
     
+    private int codigo;
     private BaseDatos db;
     private Connection conn;
     //private Connection conn ;
@@ -51,6 +52,11 @@ public class DAOMedicamento {
 
             numRows = sentencia.executeUpdate(sql_save);            
             System.out.println("numRowsDAO: " + numRows);
+            ResultSet table = sentencia.executeQuery("select last_value from medicamento_seq ;");
+            while (table.next())
+            {
+                codigo = table.getInt("last_value");
+            }
             return numRows;
         }
         catch(SQLException e){
@@ -64,6 +70,12 @@ public class DAOMedicamento {
         }
         return -1;
     } 
+    
+      public int getCodigo ()
+    {
+        return codigo;
+    }
+      
     /**
      * Metodo que permite consultar la informacion de un medicamento dado el codigo
      * @param codigo : codigo del medicamento

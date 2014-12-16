@@ -42,6 +42,11 @@ public class ControladorMedicamento {
         return result;
     }
     
+    public int getCodigo ()
+    {
+        return daoMed.getCodigo();
+    }
+    
     /**
      * Metodo que permite consultar la informacion de un 
      * medicamento dado su codigo

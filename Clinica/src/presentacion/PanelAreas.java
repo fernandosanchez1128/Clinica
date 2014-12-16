@@ -7,6 +7,7 @@ package presentacion;
 
 import almacenamiento.controlador.ControladorAreas;
 import java.awt.Dimension;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,12 +25,20 @@ public class PanelAreas extends javax.swing.JFrame {
     private Validador valida;
     private ControladorAreas controlArea;
     private boolean editar_codigo = false;
+    /** constructor para prueba abre conexion nueva **/
     public PanelAreas() {
         valida = new Validador ();
         controlArea = new ControladorAreas();
         controlArea.connectDB();
         initComponents();
     }
+    /** constructor usado para el programa usa la misma conexion**/
+     public PanelAreas(Connection conexion) {
+        valida = new Validador ();
+        controlArea = new ControladorAreas(conexion);
+        initComponents();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -590,7 +599,7 @@ public class PanelAreas extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -780,22 +789,14 @@ public class PanelAreas extends javax.swing.JFrame {
     private void ConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaActionPerformed
         // TODO add your handling code here:
         String[][] resultado = controlArea.ConsultaEmpleados();
+        
         if(resultado==null){
             JOptionPane.showMessageDialog(this, "No hay empleados en la base de datos","Error!",JOptionPane.ERROR_MESSAGE);
         }else{
                 String[] nombresColumnas = {"ID", "NOMBRES","DIRECCION","TELEFONO","CARGO","SALARIO","EMAIL", "ID_JEFE","AREA"};
-                JTable ventana = new JTable(resultado,nombresColumnas);
-                ventana.setEnabled(true);
-                Dimension d = ventana.getPreferredSize();
-                
-                
-                JScrollPane panel = new JScrollPane(ventana);
-                panel.setPreferredSize(new Dimension(nombresColumnas.length * 110,ventana.getRowHeight()*9+1));
-               
-                
-                JOptionPane.showMessageDialog(this, panel,"Aspirantes",JOptionPane.INFORMATION_MESSAGE);
-        }
-        
+                Reporte rep_empleados =  new Reporte("Empleados Areas", nombresColumnas, resultado);
+                rep_empleados.setVisible(true);
+            }
     }//GEN-LAST:event_ConsultaActionPerformed
 
     /**

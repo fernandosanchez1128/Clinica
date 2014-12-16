@@ -7,6 +7,7 @@ package presentacion;
 
 import almacenamiento.accesodatos.DAOCitas;
 import java.awt.Dimension;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,13 +24,19 @@ public class Cita extends javax.swing.JFrame {
     
     Validador valida;
     DAOCitas daoCitas;
+    /** contructor usado para prueba ya que crea una conexion **/
     public Cita() {
         initComponents();
         valida = new Validador();
         daoCitas = new DAOCitas ();
         daoCitas.connectDB();
     }
-
+    /** contructor usado en el programa usa la misma conexion **/
+    public Cita(Connection conn) {
+        initComponents();
+        valida = new Validador();
+        daoCitas = new DAOCitas (conn);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

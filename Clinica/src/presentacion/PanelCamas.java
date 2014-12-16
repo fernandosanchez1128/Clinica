@@ -8,6 +8,7 @@ package presentacion;
 import almacenamiento.controlador.ControlCama;
 import almacenamiento.controlador.ControladorMedicamento;
 import java.awt.geom.Area;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import proceso.Areas;
@@ -27,10 +28,22 @@ public class PanelCamas extends javax.swing.JFrame {
     private ControlCama controlCama;
     private boolean editar_codigo = false;
     
+    /** contructor usado para prueba ya que crea una conexion **/
     public PanelCamas() {
          valida = new Validador ();
         controlCama = new ControlCama();
         controlCama.connectDB();
+        initComponents();
+        this.setTitle("CAMAS");
+        //ajusta el tamaño
+        this.pack();
+
+    }
+    
+    /** contructor usado en el programa usa la misma conexion **/
+     public PanelCamas(Connection conn) {
+        valida = new Validador ();
+        controlCama = new ControlCama(conn);
         initComponents();
         this.setTitle("CAMAS");
         //ajusta el tamaño
@@ -594,7 +607,7 @@ public class PanelCamas extends javax.swing.JFrame {
         // TODO add your handling code here:
         String codigo = codigo_eliminar.getText();
         boolean control = true;
-        String mensaje = "el medicamento con codigo " + codigo +" no  se encuentra en la Base de Datos";
+        String mensaje = "La cama con codigo " + codigo +" no  se encuentra en la Base de Datos";
         if (valida.capturarEntero(this, codigo, "codigo"))
         {
             Cama cama = controlCama.consultarCama(codigo);
@@ -637,7 +650,11 @@ public class PanelCamas extends javax.swing.JFrame {
             Areas area = new Areas ();
             area.setCodArea(cod_area);
             int result = controlCama.crearCama(descripcion, estado, area);
-            if (result == 1) { valida.desplegarMensajeDialogo(this,"la cama se ha guardado en la base de datos satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
+            if (result == 1) 
+            { 
+                int codigo = controlCama.getCodigo();
+                valida.desplegarMensajeDialogo(this,"la cama se ha guardado en la base de datos satisfacoriamente \n Codigo : "+ codigo,"proceso exitoso",JOptionPane.INFORMATION_MESSAGE );
+            }
             if (result == -2) { valida.desplegarMensajeDialogo(this,"la cama ya se encuentra registrada o el area no existe","ERROR",JOptionPane.ERROR_MESSAGE );}
             if (result == -1) { valida.desplegarMensajeDialogo(this,"no se no se ha podido registrar error interno","ERROR",JOptionPane.ERROR_MESSAGE );}
         }
@@ -666,9 +683,10 @@ public class PanelCamas extends javax.swing.JFrame {
                 area_cama_consulta.setText(area);
                 descripcion_cama_consulta.setText(cama.getDescripcion());
 
+                System.out.println(estado_consulta.getSelectedIndex());
                 System.out.println(estado_consulta.getSelectedItem());
 
-                if (cama.getEstado() == "Libre") {estado_consulta.setSelectedIndex(0);}
+                if ("Libre".equals(cama.getEstado())) {estado_consulta.setSelectedIndex(0);}
                 else { estado_consulta.setSelectedIndex(1);}
 
             }
@@ -752,9 +770,9 @@ public class PanelCamas extends javax.swing.JFrame {
             
             if (editar_codigo)
             {
-                if (result == 1) { valida.desplegarMensajeDialogo(this,"el medicamento se ha guardado en la base de datos satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
-                if (result == -2) { valida.desplegarMensajeDialogo(this,"el medicamento ya existe","ERROR",JOptionPane.ERROR_MESSAGE );}
-                if (result == -1) { valida.desplegarMensajeDialogo(this,"el medicamento no se ha podido registrar","ERROR",JOptionPane.ERROR_MESSAGE );}
+                if (result == 1) { valida.desplegarMensajeDialogo(this,"la cama ha sido actualizada satisfacoriamente","proceso exitoso",JOptionPane.INFORMATION_MESSAGE );}
+                if (result == -2) { valida.desplegarMensajeDialogo(this,"el cama no existe","ERROR",JOptionPane.ERROR_MESSAGE );}
+                if (result == -1) { valida.desplegarMensajeDialogo(this,"el cama no ha podido ser actualizada","ERROR",JOptionPane.ERROR_MESSAGE );}
             }
             
             areas_editar.setText("");
