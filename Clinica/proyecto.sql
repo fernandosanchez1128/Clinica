@@ -229,13 +229,13 @@ ON DELETE NO ACTION );
 
 -----------------------------------------------------------------------
 
---Registro (id_medico (fk­>persona), cod_historia (fk­>historia), cod_causa
+--Registro (id_medico (fk­>persona), cod_historia (fk­>historia), codigo_causa
 --(fk­>causa))
 
 CREATE TABLE Registro(
 id_medico VARCHAR (20) NOT NULL,
 cod_historia  VARCHAR (20) NOT NULL,
-cod_causa VARCHAR  (10) NOT NULL,
+codigo_causa VARCHAR  (10) NOT NULL,
 CONSTRAINT Registro_pk PRIMARY KEY (id_medico, cod_historia,codigo_causa),
 CONSTRAINT Registro_fk1 FOREIGN KEY (id_medico)
 REFERENCES Medico(id_medico) 
@@ -243,7 +243,7 @@ ON DELETE NO ACTION,
 CONSTRAINT Registro_fk2 FOREIGN KEY (cod_historia)
 REFERENCES Historia(cod_historia) 
 ON DELETE NO ACTION,
-CONSTRAINT Registro_fk3 FOREIGN KEY (cod_causa)
+CONSTRAINT Registro_fk3 FOREIGN KEY (codigo_causa)
 REFERENCES Causa(codigo_causa) 
 ON DELETE NO ACTION);
 

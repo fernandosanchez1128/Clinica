@@ -53,7 +53,7 @@ public class Persona  {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
+    }    
     
     public boolean getEstado() {
         return estado;
