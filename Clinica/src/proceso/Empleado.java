@@ -8,15 +8,15 @@ package proceso;
  */
 
 public class Empleado {
-    private String idEmpleado, cargo, email, idJefe,  username,  password, perfil;
-    private Integer salario;
+    private String idEmpleado, cargo, email, idJefe,  username,  password;
+    private Integer salario, perfil;
     
     private boolean estado;
 
     public Empleado() {
     }
 
-    public Empleado(String idEmpleado,String cargo, String email,String idJefe,Integer salario,  String username, String password, String perfil, boolean estado) {
+    public Empleado(String idEmpleado,String cargo, String email,String idJefe,Integer salario,  String username, String password, int perfil, boolean estado) {
         this.idEmpleado = idEmpleado;
         this.cargo = cargo;
         this.email = email;
@@ -84,11 +84,11 @@ public class Empleado {
         this.password = password;
     }
     
-    public String getPerfil() {
+    public int getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(String perfil) {
+    public void setPerfil(int perfil) {
         this.perfil = perfil;
     }
 

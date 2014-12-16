@@ -84,5 +84,9 @@ public class ControlMedico {
         return daomed.EliminarMedico(id);
     }
     
+    public String [][] AgendaMedico(String id_medico, String mes,String ano){
+        return daomed.agendaMedico(id_medico, mes, ano);
+    }
+    
     
 }
