@@ -8,7 +8,7 @@ package proceso;
  */
 
 public class Empleado {
-    private String idEmpleado, cargo, email, idJefe;
+    private String idEmpleado, cargo, email, idJefe,  username,  password;
     private Integer salario;
     
     private boolean estado;
@@ -16,13 +16,15 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(String idEmpleado,String cargo, String email,String idJefe,Integer salario, boolean estado) {
+    public Empleado(String idEmpleado,String cargo, String email,String idJefe,Integer salario,  String username, String password, boolean estado) {
         this.idEmpleado = idEmpleado;
         this.cargo = cargo;
         this.email = email;
         this.idJefe = idJefe;
         this.salario = salario;
         this.estado = estado;
+        this.password=password;
+        this.username=username;
     }
 
     public String getIdEmpleado() {
@@ -63,6 +65,22 @@ public class Empleado {
 
     public void setIdJefe(String idJefe) {
         this.idJefe = idJefe;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean getEstado() {
