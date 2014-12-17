@@ -154,7 +154,7 @@ public class DAOCampana {
         String sql_save;
 	sql_save="UPDATE Campanna SET nombre='"+cam.getNombre()+
                 "', objetivo='"+cam.getObjetivo()+
-                "', fecha_realizacion='"+cam.getFechaRealizacion()+"', id_medico='"+cam.getIdMedico()+"', estado="+Boolean.toString(cam.getEstado())+ " WHERE cod_campanna='" + cam.getCodCampanna()+ "'";
+                "', fecha_realizacion='"+cam.getFechaRealizacion()+"', id_medico='"+cam.getIdMedico()+"', estado="+Boolean.toString(cam.getEstado())+ " WHERE cod_campanna='" + codCam+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);

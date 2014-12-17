@@ -89,7 +89,7 @@ public class CrudMedico extends javax.swing.JFrame {
         jButtonSalir = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestion Medico");
         setBackground(new java.awt.Color(0, 0, 255));
         setResizable(false);
@@ -159,7 +159,7 @@ public class CrudMedico extends javax.swing.JFrame {
                             .addComponent(jTextUni)
                             .addComponent(jTextIdMedico)
                             .addComponent(jTextNumLic))
-                        .addContainerGap(28, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -281,7 +281,7 @@ public class CrudMedico extends javax.swing.JFrame {
                     .addComponent(rtxtUni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtLimpiar)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar", jPanel2);
