@@ -168,11 +168,11 @@ public class VistaLogin extends javax.swing.JFrame {
                         this.dispose();
                         break;
                     case 4:
-                        secPanel= new PanelAdmin(emp.getIdEmpleado(), conn);
+                        secPanel= new PanelSecretaria(emp.getIdEmpleado(), conn);
                         this.dispose();
                         break;
                     case 5:
-                        enfPanel= new PanelAdmin(emp.getIdEmpleado(), conn);
+                        enfPanel= new PanelEnfermera(emp.getIdEmpleado(), conn);
                         this.dispose();
                         break;
                     default:

@@ -16,19 +16,18 @@ import java.sql.Connection;
 public class ControlCampana {
     
     DAOCampana daocam;
+    Connection conn;
+   
+    
     /**
      * En el constructor se crea el DAO
+     * @param conexion Objeto con la conexion a la bd
      */
-    public ControlCampana(){
-        daocam=new DAOCampana();
+    public ControlCampana(Connection conexion){
+        conn=conexion;
+        daocam=new DAOCampana(conexion);
     }
-    public void connectDB(){
-        daocam.connectDB();
-    }
-    public Connection getconection(){
-        return daocam.getConn();
-    }
-    
+        
      public int CrearCampana(String nomCam, String idMedico, String objetivo, String fechaR, boolean estado){
         Campanna cam=new Campanna(nomCam, idMedico, objetivo, fechaR, estado);
         int result=daocam.CrearCampanna(cam);
