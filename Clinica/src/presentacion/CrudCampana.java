@@ -274,23 +274,22 @@ public class CrudCampana extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(rbtLimpiar))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel12)
-                                .addComponent(jLabel14))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel13)
-                                        .addComponent(jLabel11)))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(9, 9, 9)
-                                    .addComponent(jScrollPane4))))))
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel14))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel11)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jScrollPane4)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -551,11 +550,17 @@ public class CrudCampana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No Se Encuentra en la Base de Datos");
         }
         else{
-            pacientes=control.PacientesCampanna(idMedico);
-            iniciaTabla();
-            jLabel13.setText(""+cam.getCodCampanna());
-            jTextArea3.setText(cam.getObjetivo());
-            jLabel11.setText(cam.getFechaRealizacion());
+            if(cam.getEstado()==false){
+                JOptionPane.showMessageDialog(this, "La campaNa se encuentra desactivada\n"
+                        + "si desea reactivarla dirijase a la pestaNa editar");
+            }else{
+                pacientes=control.PacientesCampanna(cam.getNombre());
+                numSeleccionados=control.numSeleccionados(cam.getNombre());
+                iniciaTabla();
+                jLabel13.setText(""+cam.getCodCampanna());
+                jTextArea3.setText(cam.getObjetivo());
+                jLabel11.setText(cam.getFechaRealizacion());
+            }
         }
     }//GEN-LAST:event_rbtBuscarActionPerformed
 
