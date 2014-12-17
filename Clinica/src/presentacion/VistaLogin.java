@@ -66,7 +66,7 @@ public class VistaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/LogoSinFondo2.png"))); // NOI18N
+        //Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/LogoSinFondo2.png"))); // NOI18N
 
         jLabel1.setText("Nombre de Usuario:");
 
@@ -157,22 +157,27 @@ public class VistaLogin extends javax.swing.JFrame {
                 switch (numPerfil) {
                     case 1:
                         admPanel= new PanelAdmin(emp.getIdEmpleado(), conn);
+                        admPanel.setVisible(true);
                         this.dispose();
                         break;
                     case 2:
                         gerPanel= new PanelGerente(emp.getIdEmpleado(), conn);
+                        gerPanel.setVisible(true);
                         this.dispose();
                         break;
                     case 3:
                         medPanel= new PanelMedico(emp.getIdEmpleado(), conn);
+                        medPanel.setVisible(true);
                         this.dispose();
                         break;
                     case 4:
                         secPanel= new PanelSecretaria(emp.getIdEmpleado(), conn);
+                        secPanel.setVisible(true);
                         this.dispose();
                         break;
                     case 5:
                         enfPanel= new PanelEnfermera(emp.getIdEmpleado(), conn);
+                        enfPanel.setVisible(true);
                         this.dispose();
                         break;
                     default:
