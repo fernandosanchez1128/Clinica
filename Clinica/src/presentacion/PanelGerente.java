@@ -6,6 +6,7 @@
 package presentacion;
 import almacenamiento.controlador.*;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 /**
  *
  * @author juand
@@ -142,10 +143,21 @@ public class PanelGerente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ControladorAreas controlArea = new ControladorAreas(conexion);
+        String[][] resultado = controlArea.ConsultaEmpleados();
+        
+        if(resultado==null){
+            JOptionPane.showMessageDialog(this, "No hay empleados en la base de datos","Error!",JOptionPane.ERROR_MESSAGE);
+        }else{
+                String[] nombresColumnas = {"ID", "NOMBRES","DIRECCION","TELEFONO","CARGO","SALARIO","EMAIL", "ID_JEFE","AREA"};
+                Reporte rep_empleados =  new Reporte("Empleados Areas", nombresColumnas, resultado);
+                rep_empleados.setVisible(true);
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        VistaAgendaMedico agenda = new VistaAgendaMedico(conexion);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

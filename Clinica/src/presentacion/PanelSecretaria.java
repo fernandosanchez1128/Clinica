@@ -70,6 +70,11 @@ public class PanelSecretaria extends javax.swing.JFrame {
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/Login-out-icon.png"))); // NOI18N
 
         jButton1.setText("Ingresar pacientes a campañas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,11 +130,21 @@ public class PanelSecretaria extends javax.swing.JFrame {
 
     private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
         // TODO add your handling code here:
+        Cita cita = new Cita(conexion);
+        cita.setVisible(true);
+        
     }//GEN-LAST:event_btnCitasActionPerformed
 
     private void btnMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicamentosActionPerformed
         // TODO add your handling code here:
+        PanelMedicamentos medicamentos = new PanelMedicamentos(conexion);
+        medicamentos.setVisible(true);
     }//GEN-LAST:event_btnMedicamentosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //VistaPersonasCampanna persona_campanas = new VistaPersonasCampanna(null, idUsuario)
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
