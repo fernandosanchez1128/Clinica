@@ -107,10 +107,11 @@ public class DAOHistoria {
         int resultado=0;
         Statement sentencia;
         ResultSet table;
-        String sql = "SELECT Persona.nombre, Causa.nombre, Causa.descripcion FROM Persona, Medico, "
-                    + "Registro, Causa, Historia WHERE Persona.id=Medico.id_medico AND Medico.id_medico="
-                    + "Registro.id_medico AND Registro.cod_causa=Causa.codigo_causa AND Registro.cod_historia"
+        String sql = "SELECT COUNT (*) FROM Persona, Medico, "
+                    + "Registro, Causa, Historia WHERE Persona.id=Medico.id_medico AND Medico.id_medico= "
+                    + "Registro.id_medico AND Registro.codigo_causa=Causa.codigo_causa AND Registro.cod_historia "
                     + "=Historia.cod_historia AND Historia.id_paciente = '"+req+"'";
+        System.out.println(sql);
         try{
             sentencia = conn.createStatement();
             table = sentencia.executeQuery(sql);
@@ -133,7 +134,7 @@ public class DAOHistoria {
         try{
             String sql = "SELECT Persona.nombre, Causa.nombre, Causa.descripcion FROM Persona, Medico, "
                     + "Registro, Causa, Historia WHERE Persona.id=Medico.id_medico AND Medico.id_medico="
-                    + "Registro.id_medico AND Registro.cod_causa=Causa.codigo_causa AND Registro.cod_historia"
+                    + "Registro.id_medico AND Registro.codigo_causa=Causa.codigo_causa AND Registro.cod_historia"
                     + "=Historia.cod_historia AND Historia.id_paciente = '"+req+"'";
             sentencia = conn.createStatement();
             table = sentencia.executeQuery(sql);
@@ -187,7 +188,7 @@ public class DAOHistoria {
             String sql = "SELECT Persona.nombre, Medicamento.nombre, Medicacion.cantidad, "
                     + "Medicacion.fecha, Medicacion.precio FROM Persona, Medico, Medicacion, "
                     + "Medicamento, Historia WHERE Persona.id=Medico.id_medico AND "
-                    + "Medico.id_medico=Medicacion.id_medico AND Medicacion.cod_medicamento="
+                    + "Medico.id_medico=Medicacion.id_medico AND Medicacion.cod_medicamento= "
                     + "Medicamento.cod_medicamento AND Medicacion.cod_historia=Historia.cod_historia "
                     + "AND Historia.id_paciente = '"+req+"'";
             sentencia = conn.createStatement();
@@ -217,9 +218,9 @@ public class DAOHistoria {
         int resultado=0;
         Statement sentencia;
         ResultSet table;
-        String sql = "SELECT Persona.nombre, Cita.fecha, Cita.hora, Cita.tipo, Cita.costo "
+        String sql = "SELECT COUNT (*) "
                     + "FROM Persona, Medico, Cita, Historia WHERE Persona.id=Medico.id_medico "
-                    + "AND Medico.id_medico=Cita.id_medico AND Cita.id_paciente=Historia.id_paciente"
+                    + "AND Medico.id_medico=Cita.id_medico AND Cita.id_paciente=Historia.id_paciente "
                     + "AND Historia.id_paciente = '"+req+"'";
         try{
             sentencia = conn.createStatement();
@@ -236,15 +237,17 @@ public class DAOHistoria {
     public String[][] citas(String req){
         String[][] resultado;
         int longitud;
-        longitud=numRegistros(req);
+        longitud=numCitas(req);
         Statement sentencia;
         ResultSet table;
+        System.out.println(longitud);
         resultado= new String[longitud][5];
         try{
-            String sql = "SELECT Persona.nombre, Cita.fecha, Cita.hora, Cita.tipo, Cita.costo "
+            String sql = "SELECT DISTINCT Persona.nombre, Cita.fecha, Cita.hora, Cita.tipo, Cita.costo "
                     + "FROM Persona, Medico, Cita, Historia WHERE Persona.id=Medico.id_medico "
-                    + "AND Medico.id_medico=Cita.id_medico AND Cita.id_paciente=Historia.id_paciente"
+                    + "AND Medico.id_medico=Cita.id_medico AND Cita.id_paciente=Historia.id_paciente "
                     + "AND Historia.id_paciente = '"+req+"'";
+            System.out.println(sql);
             sentencia = conn.createStatement();
             table = sentencia.executeQuery(sql);
             int i = 0;
@@ -255,9 +258,9 @@ public class DAOHistoria {
                 System.out.println("Fecha cita:"+resultado[i][1]+"\n");
                 resultado[i][2] = table.getString(3);
                 System.out.println("Hora cita:"+resultado[i][2]+"\n");
-                resultado[i][2] = table.getString(4);
+                resultado[i][3] = table.getString(4);
                 System.out.println("Tipo:"+resultado[i][3]+"\n");
-                resultado[i][2] = table.getString(5);
+                resultado[i][4] = table.getString(5);
                 System.out.println("Costo:"+resultado[i][4]+"\n");
                 i++;
             }
@@ -273,7 +276,7 @@ public class DAOHistoria {
         Statement sentencia;
         ResultSet table;
         String sql = "SELECT Persona.nombre FROM Paciente, Persona WHERE Paciente.id_paciente=Persona.id"
-                    + "AND Paciente.id_paciente = '"+req+"'";
+                    + " AND Paciente.id_paciente = '"+req+"'";
         try{
             sentencia = conn.createStatement();
             table = sentencia.executeQuery(sql);
@@ -291,7 +294,8 @@ public class DAOHistoria {
         Statement sentencia;
         ResultSet table;
         String sql = "SELECT cod_historia FROM Paciente, Historia WHERE Paciente.id_paciente=Historia.id_paciente"
-                    + "AND Paciente.id_paciente = '"+req+"'";
+                    + " AND Paciente.id_paciente = '"+req+"'";
+        System.out.println(sql);
         try{
             sentencia = conn.createStatement();
             table = sentencia.executeQuery(sql);

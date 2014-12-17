@@ -30,7 +30,7 @@ public class VistaHistoria extends javax.swing.JFrame {
      */
     public VistaHistoria(Connection conn) {
         initComponents();
-        conn=conexion;
+        conexion = conn;
         control=new ControlHistoria(conn);
         numReg=0;
         numMed=0;
