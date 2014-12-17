@@ -53,4 +53,12 @@ public class ControlPaciente {
         return daopac.EliminarPaciente(id);
     }
     
+    public int CostoPromedioCita(String ID, String mes, String ano, int param){
+        return daopac.CostoPromedioCita(ID, mes, ano, param);
+    }
+    
+    public int CostoPromedioMedicamentos(String ID, String mes, String ano, int param){
+        return daopac.CostoPromedioMedicamentos(ID, mes, ano, param);
+    }
+    
 }

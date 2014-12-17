@@ -127,4 +127,115 @@ public class DAOPaciente {
         db.closeConection(db.getConnetion());
     }
     
+    public int CostoPromedioCita (String id, String mes,String ano, int param ){	
+        String sql_consult;
+        String fecha_ini, fecha_fin;
+        fecha_ini = ano +"-01-01";
+        fecha_fin = ano+ "-12-31";
+        String dia_final;
+        int mes_entero = Integer.parseInt(mes);
+        int resultado=0;
+        switch (mes_entero)
+        {
+            case 2 : dia_final = "28"; break;
+            case 4 : dia_final = "30"; break;
+            case 6 : dia_final = "30"; break;
+            case 9 : dia_final = "30"; break;
+            case 11 : dia_final = "30"; break;
+            default : dia_final= "31"; break;
+        }
+        switch(param)
+        {
+            case 1 :    fecha_ini = ano +"-"+ mes + "-01";
+                        fecha_fin = ano+ "-" + mes + "-" + dia_final; break;
+            
+            case 2:     fecha_ini = ano +"-01-01";
+                        fecha_fin = ano+ "-12-31"; break;
+        }
+        
+        sql_consult = "select avg(costo) from cita where id_paciente = '"+id+"' and  fecha between '"+fecha_ini+"' and '"+fecha_fin+"'";
+        // System.out.println(sql_consult);
+        
+        try{
+            
+             Statement statement = conn.createStatement();
+            ResultSet table = statement.executeQuery(sql_consult);
+            int i = 0;            
+            while (table.next ())
+            {
+                resultado = table.getInt(1);                              
+            }
+            
+           
+            System.out.println(resultado);
+            
+        
+            
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+        catch(Exception e){ 
+            System.out.println(e);
+        }
+        return resultado;
+        
+    }
+    
+    
+    public int CostoPromedioMedicamentos (String id, String mes,String ano, int param ){	
+        String sql_consult;
+        String fecha_ini, fecha_fin;
+        fecha_ini = ano +"-01-01";
+        fecha_fin = ano+ "-12-31";
+        String dia_final;
+        int mes_entero = Integer.parseInt(mes);
+        int resultado=0;
+        switch (mes_entero)
+        {
+            case 2 : dia_final = "28"; break;
+            case 4 : dia_final = "30"; break;
+            case 6 : dia_final = "30"; break;
+            case 9 : dia_final = "30"; break;
+            case 11 : dia_final = "30"; break;
+            default : dia_final= "31"; break;
+        }
+        switch(param)
+        {
+            case 1 :    fecha_ini = ano +"-"+ mes + "-01";
+                        fecha_fin = ano+ "-" + mes + "-" + dia_final; break;
+            
+            case 2:     fecha_ini = ano +"-01-01";
+                        fecha_fin = ano+ "-12-31"; break;
+        }
+        
+        sql_consult = "select avg(precio) from medicacion where cod_historia = (select cod_historia from historia where id_paciente='"+id+"') and  fecha between '"+fecha_ini+"' and '"+fecha_fin+"'";
+        // System.out.println(sql_consult);
+        
+        try{
+            
+             Statement statement = conn.createStatement();
+            ResultSet table = statement.executeQuery(sql_consult);
+            int i = 0;            
+            while (table.next ())
+            {
+                resultado = table.getInt(1);                              
+            }
+            
+           
+            System.out.println(resultado);
+            
+        
+            
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+        catch(Exception e){ 
+            System.out.println(e);
+        }
+        return resultado;
+        
+    }
+    
 }

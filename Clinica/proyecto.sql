@@ -178,6 +178,7 @@ hora TIME NOT NULL,
 fecha DATE NOT NULL,
 tipo VARCHAR (30),
 costo INTEGER,
+perfil INTEGER,
  CONSTRAINT cita_pk PRIMARY KEY (id_paciente, id_medico, hora, fecha),
  CONSTRAINT cita_fk1 FOREIGN KEY (id_paciente)
  REFERENCES Paciente(id_paciente) 
