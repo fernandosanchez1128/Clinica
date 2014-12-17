@@ -225,5 +225,64 @@ public class DAOMedico {
         
     }
     
+     /** metodo que permite consultar la cantidad de cita atendidas por medicos
+     * @param mes : mes en que se va ver el numero de citas atendids por los medicos.numero
+     * @param ano : ano de la consulta. numero.
+     * @return String [] [] con el nombre del medico y la cantidad de citas que atendio en ese mes.
+     * null en caso de no haber citas programadas para ese mes.
+     */
+    public String[][] cantidadCitasMedico (String mes,String ano ){	
+        String sql_consult;
+        String fecha_ini, fecha_fin;
+        String [] [] resultado = null;
+        String dia_final;
+        int mes_entero = Integer.parseInt(mes);
+        switch (mes_entero)
+        {
+            case 2 : dia_final = "28"; break;
+            case 4 : dia_final = "30"; break;
+            case 6 : dia_final = "30"; break;
+            case 9 : dia_final = "30"; break;
+            case 11 : dia_final = "30"; break;
+            default : dia_final= "31"; break;
+        }
+        fecha_ini = ano +"-"+ mes + "-01";
+        fecha_fin = ano+ "-" + mes + "-" + dia_final;
+        sql_consult = "SELECT DISTINCT C.id_medico, P.nombre, Count (id_paciente) nombre FROM " +
+                "Persona as P, Cita as C WHERE C.id_medico = P.id AND C.estado = 'Programada' " +
+                "AND fecha BETWEEN ' " +fecha_ini +"' AND ' " +fecha_fin + "'GROUP BY C.id_medico , P.nombre";
+
+         System.out.println(sql_consult);
+        
+        try{
+            
+             Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet table = statement.executeQuery(sql_consult);
+            int i = 0;
+            table.last();
+            int filas = table.getRow();
+            if (filas !=0) {resultado = new String [filas][3];}
+            table.first();
+            table.previous();
+            while (table.next ())
+            {
+                resultado [i][0] = table.getString(1);
+                resultado [i][1] = table.getString(2);
+                resultado [i][2] = Integer.toString(table.getInt(3));
+            }
+        }
+        catch(SQLException e){
+            System.out.println(e);
+            resultado = new String [1][1];
+            resultado [0][0] = null;
+        }
+        catch(Exception e){ 
+            System.out.println(e);
+            resultado = new String [1][1];
+            resultado [0][0] = null;
+        }
+        return resultado;
+        
+    }
     
 }

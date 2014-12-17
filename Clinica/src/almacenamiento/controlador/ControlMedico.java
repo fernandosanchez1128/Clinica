@@ -88,5 +88,8 @@ public class ControlMedico {
         return daomed.agendaMedico(id_medico, mes, ano);
     }
     
+    public String [][] cantidadCitasMedico(String mes,String ano){
+        return daomed.cantidadCitasMedico(mes, ano);
+    }
     
 }

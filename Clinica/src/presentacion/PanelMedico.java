@@ -6,6 +6,7 @@
 package presentacion;
 import almacenamiento.controlador.*;
 import java.sql.Connection;
+import proceso.Medico;
 
 /**
  *
@@ -150,6 +151,10 @@ public class PanelMedico extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Medico medico = new Medico ();
+        medico.setIdMedico(idUsuario);
+        VistaConsultas consultas = new VistaConsultas(medico, conexion);
+        consultas.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
