@@ -42,7 +42,7 @@ public class ControlCampana {
     
     public String[][] PacientesCampanna(String nomCampanna){
         String[][] pacientes=daocam.pacientes(nomCampanna);
-        if(pacientes[0][0]==null){
+        if(pacientes==null){
             return null;
         }
         

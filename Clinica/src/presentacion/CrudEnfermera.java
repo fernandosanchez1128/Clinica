@@ -75,7 +75,7 @@ public class CrudEnfermera extends javax.swing.JFrame {
         btEliminar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestion Enfermera");
         setResizable(false);
 
