@@ -33,7 +33,7 @@ public class DAOEmpleado {
     public int CrearEmpleado(Empleado emp){
         String sql_save;
         int numRows=0;
-        sql_save="INSERT INTO Empleado VALUES ('" + emp.getIdEmpleado()+ 
+        sql_save="INSERT INTO Empleado (id_empleado,cargo,salario,email,id_jefe,nombre_usuario,password,perfil,estado) VALUES ('" + emp.getIdEmpleado()+ 
                 "' , '" + emp.getCargo()+ 
                 "', " + emp.getSalario()+  
                 ", '" + emp.getEmail()+ 
@@ -41,6 +41,7 @@ public class DAOEmpleado {
                 "', '"+ emp.getUsername()+
                 "', '"+ emp.getPassword()+
                 "', "+ emp.getPerfil()+" , true)"; ///CONVERTIR DATE
+                System.out.println(sql_save);
         try{
             Statement sentencia = conn.createStatement();
             numRows = sentencia.executeUpdate(sql_save);           
