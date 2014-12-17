@@ -20,10 +20,10 @@ public class CrudPaciente extends javax.swing.JFrame {
     /**
      * Creates new form CrudPaciente
      */
-    public CrudPaciente(ControlPaciente obj) {
+    public CrudPaciente(Connection con) {
         getContentPane().setBackground(Color.white);
         initComponents();
-        control=obj;
+        control=new ControlPaciente(con);
     }
 
     /**
@@ -563,7 +563,7 @@ public class CrudPaciente extends javax.swing.JFrame {
                 Connection con=bd.getConnetion();
                 ControlPaciente objcontrol = new ControlPaciente(con);
                 //objcontrol.connectDB();
-                new CrudPaciente(objcontrol).setVisible(true);
+                new CrudPaciente(con).setVisible(true);
             }
         });
     }

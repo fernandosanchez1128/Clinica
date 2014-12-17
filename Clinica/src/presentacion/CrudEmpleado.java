@@ -21,10 +21,10 @@ public class CrudEmpleado extends javax.swing.JFrame {
     /**
      * Creates new form CrudEmpleado
      */
-    public CrudEmpleado(ControlEmpleado obj) {
+    public CrudEmpleado(Connection con) {
         getContentPane().setBackground(Color.white);
         initComponents();
-        control=obj;
+        control=new ControlEmpleado(con);
     }
 
     /**
@@ -709,7 +709,7 @@ public class CrudEmpleado extends javax.swing.JFrame {
                 Connection con = bd.getConnetion();
                 ControlEmpleado objcontrol = new ControlEmpleado(con);
                 //objcontrol.connectDB();
-                new CrudEmpleado(objcontrol).setVisible(true);
+                new CrudEmpleado(con).setVisible(true);
             }
         });
     }

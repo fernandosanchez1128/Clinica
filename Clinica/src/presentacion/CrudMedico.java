@@ -21,10 +21,10 @@ public class CrudMedico extends javax.swing.JFrame {
     /**
      * Creates new form CrearMedico
      */
-    public CrudMedico(ControlMedico obj) {
+    public CrudMedico(Connection con) {
         getContentPane().setBackground(Color.white);
         initComponents();
-        controlmed=obj;
+        controlmed=new ControlMedico(con);
     }
     public CrudMedico(ControlMedico obj, int param) {
         initComponents();
@@ -600,7 +600,7 @@ public class CrudMedico extends javax.swing.JFrame {
                 Connection con=bd.getConnetion();
                 ControlMedico objcontrol = new ControlMedico(con);
                 //objcontrol.connectDB();
-                new CrudMedico(objcontrol).setVisible(true);
+                new CrudMedico(con).setVisible(true);
             }
         });
     }

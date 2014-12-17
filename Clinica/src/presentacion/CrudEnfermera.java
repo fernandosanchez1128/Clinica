@@ -21,10 +21,10 @@ public class CrudEnfermera extends javax.swing.JFrame {
     /**
      * Creates new form CrudEnfermera
      */
-    public CrudEnfermera(ControlEnfermera obj) {
+    public CrudEnfermera(Connection con) {
         getContentPane().setBackground(Color.white);
         initComponents();
-        control=obj;
+        control=new ControlEnfermera(con);
     }
 
     /**
@@ -522,7 +522,7 @@ public class CrudEnfermera extends javax.swing.JFrame {
                 Connection con = bd.getConnetion();
                 ControlEnfermera objcontrol = new ControlEnfermera(con);
                 //objcontrol.connectDB();
-                new CrudEnfermera(objcontrol).setVisible(true);
+                new CrudEnfermera(con).setVisible(true);
             }
         });
     }
