@@ -325,7 +325,7 @@ public class VistaHistoria extends javax.swing.JFrame {
         modelo.addColumn("Causa");
         modelo.addColumn("Descripcion");
         
-        for(int i=0; i<numReg; i++){
+        for(int i=0; i<registros.length; i++){
             Object[] registroSel = new Object[3];
             registroSel[0]= registros[i][0];
             registroSel[1]= registros[i][1];
@@ -345,7 +345,7 @@ public class VistaHistoria extends javax.swing.JFrame {
         modelo.addColumn("Fecha");
         modelo.addColumn("Precio");
         
-        for(int i=0; i<numMed; i++){
+        for(int i=0; i<medicaciones.length; i++){
             Object[] medicinasSel = new Object[5];
             medicinasSel[0]= medicaciones[i][0];
             medicinasSel[1]= medicaciones[i][1];
@@ -367,7 +367,7 @@ public class VistaHistoria extends javax.swing.JFrame {
         modelo.addColumn("Tipo");
         modelo.addColumn("Costo");
         
-        for(int i=0; i<numCit; i++){
+        for(int i=0; i<citas.length; i++){
             Object[] citasSel = new Object[5];
             citasSel[0]= citas[i][0];
             citasSel[1]= citas[i][1];

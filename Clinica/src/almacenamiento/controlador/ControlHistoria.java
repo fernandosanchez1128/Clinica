@@ -30,7 +30,7 @@ public class ControlHistoria {
     
     public String[][] ConsultaRegistros(String cedula){
         String[][] registros=daocam.registros(cedula);
-        if(registros[0][0]==null){
+        if(registros == null){
             return null;
         }
         
@@ -45,7 +45,7 @@ public class ControlHistoria {
     
     public String[][] ConsultaMedicaciones(String cedula){
         String[][] registros=daocam.medicaciones(cedula);
-        if(registros[0][0]==null){
+        if(registros == null){
             return null;
         }
         
@@ -60,7 +60,7 @@ public class ControlHistoria {
     
     public String[][] ConsultaCitas(String cedula){
         String[][] registros=daocam.citas(cedula);
-        if(registros[0][0]==null){
+        if(registros == null){
             return null;
         }
         
