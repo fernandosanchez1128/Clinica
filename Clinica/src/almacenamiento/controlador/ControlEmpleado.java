@@ -39,6 +39,12 @@ public class ControlEmpleado {
         return emp;
     }
     
+    public Empleado ConsultarEmpleadoUsername(String user){
+        Empleado emp=new Empleado();
+        emp=daoemp.LeerEmpleadoUsername(user);
+        return emp;
+    }
+    
     public int EditarEmpleado(String idEmpleado,String cargo, String email,String idJefe,int salario, String username, String password, int perfil,  boolean estado){
         int result=0;
         Empleado emp=new Empleado(idEmpleado, cargo, email, idJefe, salario, username, password, perfil, estado);

@@ -92,6 +92,40 @@ public class DAOEmpleado {
         return null;
     }//fin readUser
     
+    public Empleado LeerEmpleadoUsername(String req){
+        Empleado emp= new Empleado();
+        String sql_select;
+        sql_select="SELECT Id_empleado, Cargo, salario,email,id_jefe,nombre_usuario,password, perfil FROM  Empleado WHERE nombre_usuario='" + req +  "' and estado=true";
+        try{
+            System.out.println("consultando en la bd");
+            Statement statement = conn.createStatement();
+            ResultSet table = statement.executeQuery(sql_select);
+            
+            while(table.next()){
+                //System.out.println("dentro del while");
+                emp.setIdEmpleado(table.getString(1));
+               
+                emp.setCargo(table.getString(2));
+                
+                emp.setSalario(table.getInt(3));
+                
+                emp.setEmail(table.getString(4));
+                
+                emp.setIdJefe(table.getString(5));
+                
+                emp.setUsername(table.getString(6));
+                
+                emp.setPassword(table.getString(7));
+                
+                emp.setPerfil(table.getInt(8));
+                System.out.println("ok");
+            }            
+            return emp;
+         }
+         catch(SQLException e){ System.out.println(e); }
+         catch(Exception e){ System.out.println("excepcion del dao"); System.out.println(e); }
+        return null;
+    }//fin readUser
     
     public int ActualizarEmpleado(Empleado emp, String cedula){
         String sql_save;
