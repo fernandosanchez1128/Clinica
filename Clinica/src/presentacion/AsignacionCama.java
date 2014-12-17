@@ -7,6 +7,7 @@ package presentacion;
 
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.*;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import proceso.Cama;
 import proceso.Campanna;
@@ -19,12 +20,19 @@ public class AsignacionCama extends javax.swing.JFrame {
     String[][] pacientes;
     ControlCama control_cama;
     Validador valida;
+    Connection conexion;
     /**
      * Creates new form CrudPaciente
      */
     public AsignacionCama() {
         control_cama  = new ControlCama ();
         control_cama.connectDB();
+        valida = new Validador();
+        initComponents();
+    }
+    
+    public AsignacionCama(Connection conn) {
+        control_cama  = new ControlCama (conn);
         valida = new Validador();
         initComponents();
     }

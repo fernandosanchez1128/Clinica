@@ -120,11 +120,13 @@ public class PanelEnfermera extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        CrudPaciente pacientes = new CrudPaciente(conexion);
+        pacientes.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        PanelCamas camas = new PanelCamas (conexion);
+        AsignacionCama camas =new AsignacionCama(conexion);
         camas.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
