@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.sql.*;
 import almacenamiento.accesodatos.BaseDatos;
 import almacenamiento.controlador.ControlCampana;
 import javax.swing.JOptionPane;
@@ -18,14 +19,18 @@ public class VistaPersonasCampanna extends javax.swing.JFrame {
     String idMedico;
     int numSeleccionados;
     String[][] pacientes;
-    
+    Connection conn;
+        
     /**
-     * Creates new form CrudPaciente
+     * Crea la interfaz VistaPersonasCampanna
+     * @param idMed id del usuario que la maneja
+     * @param conn Conexion a la bd
      */
-    public VistaPersonasCampanna(ControlCampana obj, String idMed) {
+    public VistaPersonasCampanna(String idMed, Connection conexion) {
         idMedico=idMed;
+        conn=conexion;
         initComponents();
-        control=obj;
+        control=new ControlCampana(conn);
         numSeleccionados=0;
     }
 
@@ -245,12 +250,24 @@ public class VistaPersonasCampanna extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String ced=txtACedula.getText();
         String camp=txtACam.getText();
-        if(control.AgregarPaciente(ced, camp)==1){
-            JOptionPane.showMessageDialog(null, "Paciente agredado exitosamente");
+        Campanna cam;
+        cam=control.ConsultarCampanna(camp);
+        if(cam==null || cam.getCodCampanna()==null){
+            JOptionPane.showMessageDialog(this, "No Se Encuentra la CampaNa en la Base de Datos");
+        }else{
+            if(cam.getEstado()==false){
+                JOptionPane.showMessageDialog(this, "La campaNa se encuentra desactivada\n"
+                        + "si desea reactivarla contacte al Medico encargado");
+            }else{
+                if(control.AgregarPaciente(ced, camp)==1){
+                    JOptionPane.showMessageDialog(null, "Paciente agredado exitosamente");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Error al agregar paciente");
+                }
+            }
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Error al agregar paciente");
-        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -284,43 +301,43 @@ public class VistaPersonasCampanna extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-       try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaPersonasCampanna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaPersonasCampanna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaPersonasCampanna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaPersonasCampanna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                BaseDatos bd = new BaseDatos();
-                ControlCampana objcontrol = new ControlCampana();
-                objcontrol.connectDB();
-                new VistaPersonasCampanna(objcontrol, "001").setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//       try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(VistaPersonasCampanna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(VistaPersonasCampanna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(VistaPersonasCampanna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(VistaPersonasCampanna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                BaseDatos bd = new BaseDatos();
+//                ControlCampana objcontrol = new ControlCampana();
+//                objcontrol.connectDB();
+//                new VistaPersonasCampanna(objcontrol, "001").setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEliminar;

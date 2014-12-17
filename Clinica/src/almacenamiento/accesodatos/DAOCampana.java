@@ -16,20 +16,15 @@ import proceso.Campanna;
 public class DAOCampana {
     private BaseDatos db;
     Connection conn ;
-    /**
-     * constructor, inicializa los atributos.
-     */
-    public DAOCampana(){  db=new BaseDatos();  }
+    
     
     /**
-     * Metodo que permite realizar la conexion a la base de datos
+     * constructor, inicializa los atributos.
+     * @param conexion Constructor con conexion a la bd
      */
-    public void connectDB(){
-        conn = db.getConnetion();
-    }
-    public Connection getConn(){
-        return conn;
-    }
+    public DAOCampana(Connection conexion){  
+    conn=conexion;}
+    
     
     public int CrearCampanna(Campanna cam){
         String sql_save;
@@ -81,7 +76,7 @@ public class DAOCampana {
     public Campanna LeerCampanna(String req){
         Campanna cam= new Campanna();
         String sql_select;
-        sql_select="SELECT Campanna.cod_campanna, Campanna.nombre, Campanna.objetivo, Campanna.fecha_realizacion, Campanna.id_medico, Campanna.estado FROM Campanna WHERE nombre='" + req +  "' and estado=true";
+        sql_select="SELECT Campanna.cod_campanna, Campanna.nombre, Campanna.objetivo, Campanna.fecha_realizacion, Campanna.id_medico, Campanna.estado FROM Campanna WHERE nombre='" + req +  "'";
         try{
             System.out.println("consultando en la bd");
             Statement statement = conn.createStatement();
@@ -98,6 +93,8 @@ public class DAOCampana {
                 cam.setFechaRealizacion(table.getString(4));
                 
                 cam.setIdMedico(table.getString(5));
+                
+                cam.setEstado(table.getBoolean(6));
                 System.out.println("ok");
             return cam;
             }            
@@ -157,7 +154,7 @@ public class DAOCampana {
         String sql_save;
 	sql_save="UPDATE Campanna SET nombre='"+cam.getNombre()+
                 "', objetivo='"+cam.getObjetivo()+
-                "', fecha_realizacion='"+cam.getFechaRealizacion()+"', id_medico='"+cam.getIdMedico()+ "'WHERE cod_campanna='" + cam.getCodCampanna()+ "'";
+                "', fecha_realizacion='"+cam.getFechaRealizacion()+"', id_medico='"+cam.getIdMedico()+"', estado="+Boolean.toString(cam.getEstado())+ " WHERE cod_campanna='" + cam.getCodCampanna()+ "'";
         try{
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql_save);
