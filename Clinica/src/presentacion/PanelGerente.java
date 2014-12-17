@@ -80,6 +80,11 @@ public class PanelGerente extends javax.swing.JFrame {
         });
 
         jButton4.setText("Costo por paciente");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/Login-out-icon.png"))); // NOI18N
 
@@ -166,6 +171,12 @@ public class PanelGerente extends javax.swing.JFrame {
         CantidadCitas citas = new CantidadCitas(conexion);
         citas.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        VistaCostos costos = new VistaCostos(conexion);
+        costos.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
