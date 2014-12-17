@@ -4,18 +4,29 @@
  * and open the template in the editor.
  */
 package presentacion;
+import almacenamiento.controlador.*;
+import java.sql.Connection;
 
 /**
  *
  * @author juand
  */
 public class PanelMedico extends javax.swing.JFrame {
+    
+    String idUsuario;
+    Connection conexion;
 
     /**
      * Creates new form PanelAdmin
      */
     public PanelMedico() {
         initComponents();
+    }
+    
+    public PanelMedico(String idUser, UserController conn) {
+        idUsuario=idUser;
+        initComponents();
+        conexion = conn.getConn();
     }
 
     /**

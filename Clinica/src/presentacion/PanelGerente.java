@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package presentacion;
-
+import almacenamiento.controlador.*;
+import java.sql.Connection;
 /**
  *
  * @author juand
@@ -12,6 +13,7 @@ package presentacion;
 public class PanelGerente extends javax.swing.JFrame {
 
     String idUsuario;
+    Connection conexion;
     
     /**
      * Creates new form PanelAdmin
@@ -19,6 +21,12 @@ public class PanelGerente extends javax.swing.JFrame {
     public PanelGerente(String idUser) {
         idUsuario=idUser;
         initComponents();
+    }
+    
+    public PanelGerente(String idUser, UserController conn) {
+        idUsuario=idUser;
+        initComponents();
+        conexion = conn.getConn();
     }
 
     /**

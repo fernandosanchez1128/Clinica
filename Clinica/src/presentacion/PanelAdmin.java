@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package presentacion;
+import almacenamiento.controlador.*;
+import java.sql.Connection;
 
 /**
  *
@@ -13,13 +15,19 @@ public class PanelAdmin extends javax.swing.JFrame {
 
     
     String idUsuario;
-            
+    Connection conexion;        
     /**
      * Creates new form PanelAdmin
      */
     public PanelAdmin(String idUser) {
         idUsuario=idUser;
         initComponents();
+        
+    }
+    public PanelAdmin(String idUser,  UserController conn) {
+        idUsuario=idUser;
+        initComponents();
+        conexion = conn.getConn();
     }
 
     /**

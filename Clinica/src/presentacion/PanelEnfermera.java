@@ -5,11 +5,15 @@
  */
 package presentacion;
 
+import almacenamiento.controlador.UserController;
+import java.sql.Connection;
+
 /**
  *
  * @author juand
  */
 public class PanelEnfermera extends javax.swing.JFrame {
+    Connection conexion;
 
     String idUsuario;
     
@@ -19,6 +23,12 @@ public class PanelEnfermera extends javax.swing.JFrame {
     public PanelEnfermera(String idUser) {
         idUsuario=idUser;
         initComponents();
+    }
+    
+    public PanelEnfermera(String idUser, UserController conn) {
+        idUsuario=idUser;
+        initComponents();
+        conexion = conn.getConn();
     }
 
     /**
