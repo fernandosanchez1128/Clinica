@@ -19,10 +19,10 @@ public class CrudPersona extends javax.swing.JFrame {
     /**
      * Creates new form CrudPersona
      */
-    public CrudPersona(ControlPersona obj) {
+    public CrudPersona(Connection con) {
         getContentPane().setBackground(Color.white);
         initComponents();
-        control=obj;
+        control=new ControlPersona(con);
     }
 
     /**
@@ -676,7 +676,7 @@ public class CrudPersona extends javax.swing.JFrame {
                 Connection con=bd.getConnetion();
                 ControlPersona objcontrol = new ControlPersona(con);
                 //objcontrol.connectDB();
-                new CrudPersona(objcontrol).setVisible(true);
+                new CrudPersona(con).setVisible(true);
             }
         });
     }

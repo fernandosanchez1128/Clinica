@@ -21,10 +21,9 @@ public class CrudCausa extends javax.swing.JFrame {
     /**
      * Creates new form CrudCausa
      */
-    public CrudCausa(ControlCausa ca, Connection con) {
+    public CrudCausa(Connection con) {
         initComponents();
-        ControlCausa = ca;
-        this.con=con;
+        ControlCausa = new ControlCausa(con);        
     }
 
     /**
@@ -598,7 +597,7 @@ public class CrudCausa extends javax.swing.JFrame {
                 Connection c= bd.getConnetion();
                 ControlCausa objcontrol = new ControlCausa(c);
                 //objcontrol.connectDB();
-                new CrudCausa(objcontrol, c).setVisible(true);
+                new CrudCausa( c).setVisible(true);
             }
         });
     }

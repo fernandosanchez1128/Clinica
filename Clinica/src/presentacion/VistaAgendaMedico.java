@@ -21,9 +21,10 @@ public class VistaAgendaMedico extends javax.swing.JFrame {
      */
     Connection con;
     DefaultTableModel modelo;
+    ControlMedico control;
     public VistaAgendaMedico(Connection con) {
         initComponents();
-        this.con=con;
+        ControlMedico control= new ControlMedico(con);
         String columna[]=new String[]{"Codigo Cita","ID Paciente","Nombre Paciente", "Fecha", "Hora", "Tipo"};
         modelo = new DefaultTableModel(null,columna);
         TablaAgenda.setModel(modelo);
@@ -157,7 +158,6 @@ public class VistaAgendaMedico extends javax.swing.JFrame {
         String mes=spMes.getValue().toString();
         String ano=spAno.getValue().toString();
         String [][] datos;        
-        ControlMedico control= new ControlMedico(con);
         datos=control.AgendaMedico(cod, mes, ano);
         System.out.println("DATOS: "+cod+" "+mes+" "+ano+" "+datos.length);
         String data[]=new String[7];                 

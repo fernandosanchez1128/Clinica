@@ -22,11 +22,13 @@ public class VistaConsultas extends javax.swing.JFrame {
      * Creates new form VistaConsultas
      */
     Connection con;
+    ControlConsulta control;
     public VistaConsultas(Medico med,Connection con) {
         getContentPane().setBackground(Color.white);
         initComponents();
         txtId.setText(med.getIdMedico());
         this.con=con;
+        ControlConsulta control= new ControlConsulta(con);
     }
 
     /**
@@ -152,7 +154,7 @@ public class VistaConsultas extends javax.swing.JFrame {
         String his=txtHistoria.getText();
         String causa=txtCausa.getText();
         System.out.println("Datos: "+id+" "+his+" "+causa);
-        ControlConsulta control= new ControlConsulta(con);
+        
         //control.CrearConsultas(id, his, causa);
         if(control.CrearConsultas(id, his, causa)==1){
             JOptionPane.showMessageDialog(null, "Registro Creado Exitosamente");    

@@ -26,12 +26,14 @@ public class VistaFormulas extends javax.swing.JFrame {
     /**
      * Creates new form VistaFormulas
      */
+    ControlFormula ff;
     Connection con;
     public VistaFormulas(Medico med, Connection con) {
         getContentPane().setBackground(Color.white);
         initComponents();
         txtId.setText(med.getIdMedico());
         this.con=con;
+        ControlFormula ff=new ControlFormula(con);
     }
 
     /**
@@ -185,8 +187,7 @@ public class VistaFormulas extends javax.swing.JFrame {
         int Precio= Integer.parseInt(txtPrecio.getText());
         int Cantidad=Integer.parseInt(SpinnerCantidad.getValue().toString());       
         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("DD/MM/YYYY");
-        Date f=formatoDelTexto.parse(fecha);
-        ControlFormula ff=new ControlFormula(con);
+        Date f=formatoDelTexto.parse(fecha);        
         if((ff.CrearFormulas(idMedico, historia, Medicamento, Cantidad, fecha, Precio))==1){
             JOptionPane.showMessageDialog(null, "Se registro Medicacion Exitosamente");
             System.out.println("Datos:"+idMedico+historia+Medicamento+fecha+Precio+Cantidad);
