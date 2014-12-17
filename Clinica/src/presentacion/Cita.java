@@ -93,7 +93,7 @@ public class Cita extends javax.swing.JFrame {
         id_cancelar = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         buscarMedico.setText("Buscar Medico");
         buscarMedico.addActionListener(new java.awt.event.ActionListener() {

@@ -88,7 +88,7 @@ public class DAOCitas {
         String hora_ant_char = Integer.toString(hora_ant) + ":" + Integer.toString(minutos_ant) ;
         String hora_desp_char = Integer.toString(hora_desp) + ":" + Integer.toString(minutos_desp) ;
         sql_consult = "SELECT DISTINCT id_medico, nombre  FROM Medico as M ,Persona as P  WHERE M.id_medico = P.id EXCEPT "
-                + "SELECT DISTINCT id_medico,nombre FROM Cita AS C, Persona AS P WHERE estado = 'Programada' AND hora BETWEEN '" + hora_ant_char + "' AND '" +
+                + "SELECT DISTINCT id_medico,nombre FROM Cita AS C, Persona AS P WHERE C.estado = 'Programada' AND hora BETWEEN '" + hora_ant_char + "' AND '" +
         hora_desp_char + "' AND fecha = '" + fecha + "' AND p.id = c.id_medico;" ;
                   
         System.out.println(sql_consult);
@@ -232,7 +232,7 @@ public class DAOCitas {
         String sql_consult;
         String [] [] resultado = null;
         sql_consult ="SELECT DISTINCT C.id,id_paciente,id_medico, P.nombre,fecha, hora,tipo FROM " + 
-        "Cita C,Persona P  WHERE id_paciente ='" + id_paciente + "' AND estado = 'Programada' AND C.id_medico = P.id;";
+        "Cita C,Persona P  WHERE id_paciente ='" + id_paciente + "' AND C.estado = 'Programada' AND C.id_medico = P.id;";
          System.out.println(sql_consult);
         
         try{

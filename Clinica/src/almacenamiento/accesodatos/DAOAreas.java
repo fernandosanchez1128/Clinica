@@ -211,16 +211,16 @@ public class DAOAreas {
             resultado = new String [filas][9];
             int i =0;
             while(table.next()){
-                resultado[i][0] = table.getString(1);
-                resultado[i][1] = table.getString(2);
-                resultado[i][2] = table.getString(3);
-                resultado[i][3] = table.getString(4);
-                resultado[i][4] = table.getString(6);
-                int salario = table.getInt(7);
+                resultado[i][0] = table.getString("id");
+                resultado[i][1] = table.getString("nombre");
+                resultado[i][2] = table.getString("direccion");
+                resultado[i][3] = table.getString("telefono");
+                resultado[i][4] = table.getString("cargo");
+                int salario = table.getInt("salario");
                 resultado[i][5] = Integer.toString(salario);
-                resultado[i][6] = table.getString(8);
-                resultado[i][7] = table.getString(9);
-                resultado[i][8] = table.getString(10);
+                resultado[i][6] = table.getString("email");
+                resultado[i][7] = table.getString("id_jefe");
+                resultado[i][8] = table.getString("area");
                 i++;
                         
             }

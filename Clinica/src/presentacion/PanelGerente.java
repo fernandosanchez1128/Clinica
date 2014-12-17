@@ -155,7 +155,7 @@ public class PanelGerente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No hay empleados en la base de datos","Error!",JOptionPane.ERROR_MESSAGE);
         }else{
                 String[] nombresColumnas = {"ID", "NOMBRES","DIRECCION","TELEFONO","CARGO","SALARIO","EMAIL", "ID_JEFE","AREA"};
-                Reporte rep_empleados =  new Reporte("Empleados Areas", nombresColumnas, resultado);
+                Reporte rep_empleados =  new Reporte("Empleados Areas", nombresColumnas, resultado,800);
                 rep_empleados.setVisible(true);
             }
     }//GEN-LAST:event_jButton1ActionPerformed
