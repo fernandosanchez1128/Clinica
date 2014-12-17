@@ -6,6 +6,7 @@
 package presentacion;
 import almacenamiento.controlador.*;
 import java.sql.Connection;
+import proceso.Medicamento;
 import proceso.Medico;
 
 /**
@@ -84,8 +85,18 @@ public class PanelMedico extends javax.swing.JFrame {
 
         jButton6.setText("Ver historia clínica");
         jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Consultar agenda");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,6 +178,21 @@ public class PanelMedico extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        Medico med = new Medico ();
+        med.setIdMedico(idUsuario);
+        VistaFormulas formulas = new VistaFormulas(med, conexion);
+        formulas.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+       VistaAgendaMedico agenda = new VistaAgendaMedico(conexion);
+       agenda.setVisible(true);
+       
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

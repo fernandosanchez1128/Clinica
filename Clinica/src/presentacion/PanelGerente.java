@@ -163,6 +163,8 @@ public class PanelGerente extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        CantidadCitas citas = new CantidadCitas(conexion);
+        citas.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
