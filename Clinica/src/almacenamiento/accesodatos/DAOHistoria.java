@@ -16,20 +16,15 @@ import proceso.Campanna;
 public class DAOHistoria {
     private BaseDatos db;
     Connection conn ;
-    /**
-     * constructor, inicializa los atributos.
-     */
-    public DAOHistoria(){  db=new BaseDatos();  }
     
     /**
-     * Metodo que permite realizar la conexion a la base de datos
+     * Constructor del DAOHistoria
+     * @param conexion Conexion abierta a la bd
      */
-    public void connectDB(){
-        conn = db.getConnetion();
+    public DAOHistoria(Connection conexion){
+        conn=conexion;
     }
-    public Connection getConn(){
-        return conn;
-    }
+    
     
     public int CrearCampanna(Campanna cam){
         String sql_save;

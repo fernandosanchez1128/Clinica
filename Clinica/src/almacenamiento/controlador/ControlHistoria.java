@@ -16,17 +16,15 @@ import java.sql.Connection;
 public class ControlHistoria {
     
     DAOHistoria daocam;
+    Connection conn;
+    
     /**
-     * En el constructor se crea el DAO
+     * Constructor de ControlHistoria
+     * @param conexion Conexion abierta a la bd
      */
-    public ControlHistoria(){
-        daocam=new DAOHistoria();
-    }
-    public void connectDB(){
-        daocam.connectDB();
-    }
-    public Connection getconection(){
-        return daocam.getConn();
+    public ControlHistoria(Connection conexion){
+        conn=conexion;
+        daocam=new DAOHistoria(conn);
     }
     
     
