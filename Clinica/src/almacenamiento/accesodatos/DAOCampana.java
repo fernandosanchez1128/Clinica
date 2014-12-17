@@ -129,11 +129,18 @@ public class DAOCampana {
         Statement sentencia;
         ResultSet table;
         resultado= new String[longitud][3];
-        try{
-            String sql = "SELECT Paciente.id_paciente, Persona.nombre, Paciente.num_seguridad_social FROM Persona NATURAL JOIN Paciente NATURAL JOIN Paciente_Campanna NATURAL JOIN Campanna WHERE estado=true AND Campanna.nombre = '"+req+"'";
+        try{System.out.println("Se hace consulta");
+            String sql = "SELECT Persona.id, Persona.nombre, "
+                    + "Paciente.num_seguridad_social FROM Persona, "
+                    + "Paciente, Paciente_Campanna, Campanna WHERE "
+                    + "Persona.id=Paciente.id_paciente AND "
+                    + "Paciente.id_paciente=Paciente_Campanna.id_paciente "
+                    + "AND Campanna.cod_campanna=Paciente_Campanna.cod_campanna "
+                    + "AND Campanna.estado=true AND Campanna.nombre = '"+req+"'";
             sentencia = conn.createStatement();
             table = sentencia.executeQuery(sql);
             int i = 0;
+            System.out.println("Se llena la matriz");
             while(table.next()){
                 resultado[i][0] = table.getString(1);
                 System.out.println("Id:"+resultado[i][0]+"\n");
@@ -196,7 +203,7 @@ public class DAOCampana {
     public int EliminarPaciente(String cedula, String nomCam){	
         String codCam=LeerCampanna(nomCam).getCodCampanna();
         String sql_save;
-        sql_save="DELETE FROM Paciente_Campanna WHERE id_paciente='"+cedula+"', AND cod_campanna='"+codCam+"'";
+        sql_save="DELETE FROM Paciente_Campanna WHERE id_paciente='"+cedula+"' AND cod_campanna='"+codCam+"'";
         try{
             Statement statement = conn.createStatement();
 

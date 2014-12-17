@@ -41,6 +41,7 @@ public class ControlCampana {
     }
     
     public String[][] PacientesCampanna(String nomCampanna){
+        System.out.println("Entra a Control");
         String[][] pacientes=daocam.pacientes(nomCampanna);
         if(pacientes==null){
             return null;

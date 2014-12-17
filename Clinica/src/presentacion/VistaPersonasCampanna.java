@@ -281,15 +281,26 @@ public class VistaPersonasCampanna extends javax.swing.JFrame {
     
     
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-        String ced=txtACedula.getText();
-        String camp=txtACam.getText();
-        int res=0;
-        res=control.EliminarPaciente(ced, camp);
-        if(res==1){
-            JOptionPane.showMessageDialog(null,"Elimado Exitosamente");
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Error al eliminar");
+        String ced=txtECedula.getText();
+        String camp=txtECam.getText();
+        Campanna cam;
+        cam=control.ConsultarCampanna(camp);
+        if(cam==null || cam.getCodCampanna()==null){
+            JOptionPane.showMessageDialog(this, "No Se Encuentra la CampaNa en la Base de Datos");
+        }else{
+            if(cam.getEstado()==false){
+                JOptionPane.showMessageDialog(this, "La campaNa se encuentra desactivada\n"
+                        + "si desea reactivarla contacte al Medico encargado");
+            }else{
+                int res=0;
+                res=control.EliminarPaciente(ced, camp);
+                if(res==1){
+                    JOptionPane.showMessageDialog(null,"Elimado Exitosamente");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Error al eliminar paciente");
+                }
+            }
         }
     }//GEN-LAST:event_btEliminarActionPerformed
 
