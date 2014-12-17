@@ -23,10 +23,10 @@ public class PanelMedico extends javax.swing.JFrame {
         initComponents();
     }
     
-    public PanelMedico(String idUser, UserController conn) {
+    public PanelMedico(String idUser, Connection conn) {
         idUsuario=idUser;
         initComponents();
-        conexion = conn.getConn();
+        conexion = conn;
     }
 
     /**

@@ -24,10 +24,10 @@ public class PanelGerente extends javax.swing.JFrame {
         initComponents();
     }
     
-    public PanelGerente(String idUser, UserController conn) {
+    public PanelGerente(String idUser, Connection conn) {
         idUsuario=idUser;
         initComponents();
-        conexion = conn.getConn();
+        conexion = conn;
     }
 
     /**

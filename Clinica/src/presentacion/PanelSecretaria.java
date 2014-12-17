@@ -22,10 +22,10 @@ public class PanelSecretaria extends javax.swing.JFrame {
         initComponents();
     }
     
-    public PanelSecretaria(String idUser, UserController conn) {
+    public PanelSecretaria(String idUser, Connection conn) {
         idUsuario=idUser;
         initComponents();
-        conexion = conn.getConn();
+        conexion = conn;
     }
 
     /**

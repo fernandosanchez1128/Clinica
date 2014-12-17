@@ -25,10 +25,10 @@ public class PanelEnfermera extends javax.swing.JFrame {
         initComponents();
     }
     
-    public PanelEnfermera(String idUser, UserController conn) {
+    public PanelEnfermera(String idUser, Connection conn) {
         idUsuario=idUser;
         initComponents();
-        conexion = conn.getConn();
+        conexion = conn;
     }
 
     /**
