@@ -35,12 +35,22 @@ public class ControlCama
      * Metodo que permite agregar una cama a la base de datos
      * @param descripcion: descripcion de la cama
      * @param costo : costo del medicamento.
-     * @return valor de la ultima formacion registrada exitosamente
+     * @return valor de la ultima formicacion registrada exitosamente
      */
     public int crearCama (String descripcion, String estado, Areas area ){
         Cama cama = new Cama ("1",descripcion,estado,area);
         int result = daoCama.crearCama(cama); 
         return result;
+    }
+    
+    public String [][] camasDisponbles ()
+    {
+        return daoCama.camasDisponibles();
+    }
+    
+    public int asignarCama (String cedula_paciente,String codigo_cama,String fecha)
+    {
+        return daoCama.asignarCama(cedula_paciente, codigo_cama, fecha);
     }
     
     public int getCodigo ()

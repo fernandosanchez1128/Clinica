@@ -68,6 +68,42 @@ public class DAOCamas
         }
         return -1;
     } 
+    /**
+     * Metodo que permite asinar una cama a un paciente. se crea registro en paciente cama.
+     * @param cedula_paciente : cedula del paciente al que se le va asignar la cama.
+     * @param  codigo_cama : codigo de la cama que va a ser asignada.
+     * @return -1 en caso de error , -2 si el registro ya existe y el numero de filas en caso contrario.
+     */
+    
+    public int asignarCama (String cedula_paciente,String codigo_cama,String fecha){
+        String sql_save,sql_estado;
+        int numRows=0;
+        
+        sql_save = "INSERT INTO Paciente_cama VALUES ('"+  cedula_paciente + "','"+ codigo_cama +"','"+ fecha +"');";
+        sql_estado ="UPDATE Cama SET estado = 'Ocupada' WHERE cod_cama='" + codigo_cama + "';";
+                 
+        try
+        {
+            Statement sentencia = conn.createStatement();
+            numRows = sentencia.executeUpdate(sql_save);
+            int filas = sentencia.executeUpdate(sql_estado);
+            return numRows;
+        }
+        catch(SQLException e){
+            System.out.println(e); 
+            return -2;
+        }
+        catch(Exception e){ 
+            System.out.println(e);
+        }
+        return -1;
+    } 
+    
+    //-----------------------------------------------------------------------//
+    /**
+     * metodo que permite consultar el codigo de la ultima cama registrada
+     * @return codigo de la ultima cama registrada
+     */
     
     public int getCodigo ()
     {
@@ -174,6 +210,38 @@ public class DAOCamas
         }
         return -2;
         
+    }
+    
+    /**
+     * metodo que permite consultar las camas que se encuentran disponibles.
+     * @return String [][] con los datos de las camas libres {codigo,area}
+     */
+    public String [][] camasDisponibles ()
+    {
+        String [] [] resultado = null;
+        String sql_select;
+        sql_select= "SELECT C.cod_cama, A.nombre FROM Cama as C,Areas as A Where C.estado = 'Libre' " + 
+        "AND activa =  true AND C.cod_area = A.cod_area AND A.estado = true";
+        System.out.println(sql_select);
+         try{
+            Statement sentence = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet table = sentence.executeQuery(sql_select);
+            table.last();
+            int filas = table.getRow();
+            table.first();
+            table.previous();
+            if (filas !=0) {resultado = new String [filas][2];}
+            int i =0;
+            while(table.next())
+            {
+                resultado[i][0] = table.getString(1);
+                resultado[i][1] = table.getString(2);
+                i++;
+            }
+         }
+         catch(SQLException e){ System.out.println(e); }
+         catch(Exception e){ System.out.println(e); }
+        return resultado;
     }
         
         /**
